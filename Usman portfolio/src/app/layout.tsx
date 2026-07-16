@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Poppins } from "next/font/google";
 import "./globals.css";
-import TawkChat from "@/components/TawkChat";
+import ChatBot from "@/components/ChatBot";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -87,7 +87,7 @@ export default function RootLayout({
       </head>
       <body className="bg-surface text-text font-sans antialiased">
         {children}
-        <TawkChat />
+        <ChatBot />
       </body>
     </html>
   );
