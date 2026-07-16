@@ -5,30 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="26c670dd-0235-4bc2-96f3-ac9356c41abe" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitattributes" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/Usman Data analyst Repository.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Usman Data analyst Repository.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/09-07/Foundation.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Analysis - Sheet1 .csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Foundation 1.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Foundation.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Loops.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Set_Tuple_List.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tasks.docx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tea or Coffee.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TechMart_Sales_5000_Rows.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/analysis.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cross_analysis.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/discount_analysis.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/heatmap_month_region.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/if else.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/product_category_analysis.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/regional_analysis.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/salesperson_performance.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/trend_analysis.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Python class/Foundation sir.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Python class/Foundation sir.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Python class/Set_Tuple_List.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Python class/Set_Tuple_List.ipynb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,7 +23,7 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/QEC/web" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 8,
@@ -128,7 +107,7 @@
       <workItem from="1784112416466" duration="1328000" />
       <workItem from="1784119669164" duration="7521000" />
       <workItem from="1784164624523" duration="3170000" />
-      <workItem from="1784168248113" duration="795000" />
+      <workItem from="1784168248113" duration="2333000" />
     </task>
     <servers />
   </component>
