@@ -7,7 +7,7 @@
     <list default="true" id="26c670dd-0235-4bc2-96f3-ac9356c41abe" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Python class/Numpy introduction.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Python class/Numpy introduction.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Usman portfolio/src/app/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Usman portfolio/src/app/layout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Usman portfolio/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Usman portfolio/package-lock.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -107,7 +107,7 @@
       <workItem from="1784112416466" duration="1328000" />
       <workItem from="1784119669164" duration="7521000" />
       <workItem from="1784164624523" duration="3170000" />
-      <workItem from="1784168248113" duration="17029000" />
+      <workItem from="1784168248113" duration="19583000" />
     </task>
     <servers />
   </component>
