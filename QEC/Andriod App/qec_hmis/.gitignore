@@ -1,0 +1,35 @@
+# Flutter
+.build/
+build/
+.dart_tool/
+.packages
+.pub/
+.pub-cache/
+*.g.dart
+*.freezed.dart
+
+# IDE
+.idea/
+.vscode/
+*.iml
+*.swp
+*.swo
+
+# Android
+android/.gradle/
+android/app/build/
+android/build/
+android/local.properties
+
+# iOS
+ios/Pods/
+ios/.symlinks/
+ios/Flutter/Flutter.framework
+ios/Flutter/Flutter.podspec
+
+# Misc
+*.log
+*.tmp
+.env
+.env.local
+.DS_Store

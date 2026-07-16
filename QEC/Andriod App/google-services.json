@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "458934653897",
+    "project_id": "qec-app-3b4a7",
+    "storage_bucket": "qec-app-3b4a7.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:458934653897:android:88eb7faa3d2b500b7a8e18",
+        "android_client_info": {
+          "package_name": "com.qec.hmis"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCKcRDzvYFFOUWb3XLu2RPjVMzM--Xqn78"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

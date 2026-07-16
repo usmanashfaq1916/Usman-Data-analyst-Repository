@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="ALL" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="26c670dd-0235-4bc2-96f3-ac9356c41abe" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitattributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Usman Data analyst Repository.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Usman Data analyst Repository.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/09-07/Foundation.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Analysis - Sheet1 .csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Foundation 1.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Foundation.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Loops.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Set_Tuple_List.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tasks.docx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tea or Coffee.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TechMart_Sales_5000_Rows.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/analysis.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cross_analysis.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/discount_analysis.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/heatmap_month_region.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/if else.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/product_category_analysis.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/regional_analysis.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/salesperson_performance.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/trend_analysis.png" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+        <option value="Jupyter Notebook" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/QEC/web" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 8,
+  &quot;fromUser&quot;: false
+}</component>
+  <component name="ProjectId" id="3Fu3oyGOFvG9fFX33Q6OPbkvPrg" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;Python.Foundation 1.executor&quot;: &quot;Run&quot;,
+    &quot;Python.Tea or Coffee.executor&quot;: &quot;Run&quot;,
+    &quot;Python.analysis.executor&quot;: &quot;Run&quot;,
+    &quot;Python.generate_notebook.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/user/Documents/GitHub/Usman Data analyst Repository&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-d6986cc7102b-31caf2ab9e3c-JavaScript-PY-261.26222.68" />
+        <option value="bundled-python-sdk-50341a9f1f9c-c2ffad84badb-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-261.26222.68" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="26c670dd-0235-4bc2-96f3-ac9356c41abe" name="Changes" comment="" />
+      <created>1782911306534</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1782911306534</updated>
+      <workItem from="1782911307995" duration="6016000" />
+      <workItem from="1782967742774" duration="5379000" />
+      <workItem from="1782979256192" duration="444000" />
+      <workItem from="1782979881834" duration="1257000" />
+      <workItem from="1782981495127" duration="846000" />
+      <workItem from="1782990105586" duration="6151000" />
+      <workItem from="1783001894960" duration="3411000" />
+      <workItem from="1783055205393" duration="4300000" />
+      <workItem from="1783082461662" duration="6624000" />
+      <workItem from="1783099163597" duration="1518000" />
+      <workItem from="1783125647808" duration="9638000" />
+      <workItem from="1783152560510" duration="4855000" />
+      <workItem from="1783225683881" duration="5245000" />
+      <workItem from="1783255915795" duration="4142000" />
+      <workItem from="1783341237388" duration="9146000" />
+      <workItem from="1783385142893" duration="1719000" />
+      <workItem from="1783414047457" duration="3257000" />
+      <workItem from="1783423034722" duration="8814000" />
+      <workItem from="1783470373419" duration="3021000" />
+      <workItem from="1783502458505" duration="9966000" />
+      <workItem from="1783557828778" duration="5428000" />
+      <workItem from="1783572706229" duration="5309000" />
+      <workItem from="1783585105829" duration="9424000" />
+      <workItem from="1783684311666" duration="1213000" />
+      <workItem from="1783777558834" duration="38000" />
+      <workItem from="1783778944274" duration="818000" />
+      <workItem from="1783947293078" duration="7963000" />
+      <workItem from="1783992265225" duration="7959000" />
+      <workItem from="1784009863470" duration="10290000" />
+      <workItem from="1784029416743" duration="4832000" />
+      <workItem from="1784036623050" duration="1676000" />
+      <workItem from="1784112416466" duration="1328000" />
+      <workItem from="1784119669164" duration="7521000" />
+      <workItem from="1784164624523" duration="3170000" />
+      <workItem from="1784168248113" duration="795000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/Usman_Data_analyst_Repository$Tea_or_Coffee.coverage" NAME="Tea or Coffee Coverage Results" MODIFIED="1783100646921" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Usman_Data_analyst_Repository$Foundation_1.coverage" NAME="Foundation 1 Coverage Results" MODIFIED="1783426946329" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Usman_Data_analyst_Repository$analysis.coverage" NAME="analysis Coverage Results" MODIFIED="1783778980794" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Project 1" />
+    <SUITE FILE_PATH="coverage/Usman_Data_analyst_Repository$generate_notebook.coverage" NAME="generate_notebook Coverage Results" MODIFIED="1783779117614" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="D:/My website/Project 2" />
+  </component>
+</project>
