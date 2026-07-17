@@ -12,7 +12,7 @@ interface Message {
 const WELCOME_MESSAGE: Message = {
   role: 'assistant',
   content:
-    "Hi! I'm Usman's AI assistant. Ask me about his skills, projects, experience, or how to get in touch. How can I help you today?",
+    "Hi! I'm Usman AI Assistant, the official AI chatbot for Usman Ashfaq's professional portfolio. Ask me about his skills, projects, experience, or how to get in touch. How can I help you today?",
 }
 
 export default function ChatBot() {
@@ -138,10 +138,11 @@ export default function ChatBot() {
             exit={{ scale: 0, opacity: 0 }}
             transition={{ type: 'spring', stiffness: 260, damping: 20 }}
             onClick={() => setIsOpen(true)}
-            className="fixed bottom-6 right-6 z-50 w-14 h-14 bg-primary hover:bg-primary-dark text-white rounded-full shadow-lg shadow-primary/25 flex items-center justify-center transition-colors cursor-pointer"
+            className="fixed bottom-6 right-6 z-50 h-14 px-5 bg-primary hover:bg-primary-dark text-white rounded-full shadow-lg shadow-primary/25 flex items-center gap-2 transition-colors cursor-pointer"
             aria-label="Open chat"
           >
-            <MessageCircle size={24} />
+            <MessageCircle size={20} />
+            <span className="text-sm font-medium whitespace-nowrap">Usman&apos;s Chat Bot</span>
           </motion.button>
         )}
       </AnimatePresence>
@@ -164,7 +165,7 @@ export default function ChatBot() {
                 </div>
                 <div>
                   <h3 className="text-sm font-semibold text-text font-heading">
-                    Usman&apos;s Assistant
+                    Usman AI Assistant
                   </h3>
                   <div className="flex items-center gap-1.5">
                     <span className="w-1.5 h-1.5 bg-accent rounded-full animate-pulse" />

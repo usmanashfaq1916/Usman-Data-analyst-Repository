@@ -1,0 +1,43 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model University {
+  id           String   @id @default(cuid())
+  name         String
+  slug         String   @unique
+  logoUrl      String?
+  province     String
+  city         String
+  type         String
+  websiteUrl   String?
+  admissionUrl String?
+  ranking      Int?
+  createdAt    DateTime @default(now())
+  programs     Program[]
+  admissions   Admission[]
+}
+
+model Program {
+  id           String   @id @default(cuid())
+  universityId String
+  university   University @relation(fields: [universityId], references: [id])
+  name         String
+  degreeLevel  String
+  field        String
+  minAggregate Float?
+}
+
+model Admission {
+  id           String   @id @default(cuid())
+  universityId String
+  university   University @relation(fields: [universityId], references: [id])
+  programId    String?
+  openDate     DateTime
+  closeDate    DateTime
+  status       String
+}
