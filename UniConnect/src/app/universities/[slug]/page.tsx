@@ -47,12 +47,8 @@ export default async function UniversityDetailPage({ params }: PageProps) {
               <MapPin className="h-4 w-4" />
               {university.city}, {university.province}
             </span>
-            <Badge
-              variant={
-                university.type === "Public" ? "Public" : "Private"
-              }
-            >
-              {university.type}
+            <Badge variant="outline">
+              {university.type === "PUBLIC" ? "Public" : university.type === "PRIVATE" ? "Private" : "Military"}
             </Badge>
           </div>
         </div>
@@ -148,11 +144,25 @@ export default async function UniversityDetailPage({ params }: PageProps) {
                     >
                       <div className="space-y-1">
                         <div className="flex items-center gap-2">
-                          <Badge variant={admission.status as 'open' | 'closing_soon' | 'closed' | 'upcoming'}>
-                            {admission.status === "closing_soon"
+                          <Badge
+                            variant={
+                              (
+                                {
+                                  OPEN: "success",
+                                  CLOSING_SOON: "warning",
+                                  UPCOMING: "secondary",
+                                  CLOSED: "destructive",
+                                } as Record<string, "success" | "warning" | "secondary" | "destructive">
+                              )[admission.status]
+                            }
+                          >
+                            {admission.status === "CLOSING_SOON"
                               ? "Closing Soon"
-                              : admission.status.charAt(0).toUpperCase() +
-                                admission.status.slice(1)}
+                              : admission.status === "OPEN"
+                                ? "Open"
+                                : admission.status === "UPCOMING"
+                                  ? "Upcoming"
+                                  : "Closed"}
                           </Badge>
                         </div>
                         <div className="flex items-center gap-3 text-xs text-gray-500">
@@ -176,7 +186,7 @@ export default async function UniversityDetailPage({ params }: PageProps) {
                           </span>
                         </div>
                       </div>
-                      {admission.status !== "closed" && daysLeft > 0 && (
+                      {admission.status !== "CLOSED" && daysLeft > 0 && (
                         <span className="whitespace-nowrap text-sm font-semibold text-warning">
                           {daysLeft}d left
                         </span>

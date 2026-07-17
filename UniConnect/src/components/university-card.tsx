@@ -55,12 +55,8 @@ export function UniversityCard({
             </div>
           </div>
           <div className="flex items-center gap-2">
-            <Badge
-              variant={
-                university.type === "Public" ? "Public" : "Private"
-              }
-            >
-              {university.type}
+            <Badge variant="outline">
+              {university.type === "PUBLIC" ? "Public" : university.type === "PRIVATE" ? "Private" : "Military"}
             </Badge>
             {university.programCount !== undefined && (
               <span className="text-xs text-gray-500">

@@ -6,6 +6,27 @@ import { Badge } from "@/components/ui/badge";
 
 export const dynamic = "force-dynamic";
 
+const BADGE_MAP: Record<string, "success" | "warning" | "secondary" | "destructive"> = {
+  OPEN: "success",
+  CLOSING_SOON: "warning",
+  UPCOMING: "secondary",
+  CLOSED: "destructive",
+};
+
+const STATUS_LABEL: Record<string, string> = {
+  OPEN: "Open",
+  CLOSING_SOON: "Closing Soon",
+  UPCOMING: "Upcoming",
+  CLOSED: "Closed",
+};
+
+const ALERT_ORDER: Record<string, number> = {
+  CLOSING_SOON: 0,
+  OPEN: 1,
+  UPCOMING: 2,
+  CLOSED: 3,
+};
+
 export default async function AdmissionAlertsPage() {
   const now = new Date();
 
@@ -13,13 +34,6 @@ export default async function AdmissionAlertsPage() {
     orderBy: { closeDate: "asc" },
     include: { university: { select: { name: true, slug: true, city: true, province: true } } },
   });
-
-  const ALERT_ORDER: Record<string, number> = {
-    closing_soon: 0,
-    open: 1,
-    upcoming: 2,
-    closed: 3,
-  };
 
   const sorted = [...admissions].sort(
     (a, b) => (ALERT_ORDER[a.status] ?? 99) - (ALERT_ORDER[b.status] ?? 99),
@@ -50,10 +64,7 @@ export default async function AdmissionAlertsPage() {
               (now.getTime() - admission.openDate.getTime()) /
                 (1000 * 60 * 60 * 24),
             );
-            const progress = Math.min(
-              100,
-              Math.max(0, (elapsedDays / totalDays) * 100),
-            );
+            const progress = Math.min(100, Math.max(0, (elapsedDays / totalDays) * 100));
             const daysLeft = Math.max(
               0,
               Math.ceil(
@@ -73,25 +84,13 @@ export default async function AdmissionAlertsPage() {
                       {admission.university.name}
                     </Link>
                     <p className="text-xs text-gray-500">
-                      {admission.university.city},{" "}
-                      {admission.university.province}
+                      {admission.university.city}, {admission.university.province}
                     </p>
                   </div>
 
                   <div className="flex flex-col items-end gap-2">
-                    <Badge
-                      variant={
-                        admission.status as
-                          | "open"
-                          | "closing_soon"
-                          | "closed"
-                          | "upcoming"
-                      }
-                    >
-                      {admission.status === "closing_soon"
-                        ? "Closing Soon"
-                        : admission.status.charAt(0).toUpperCase() +
-                          admission.status.slice(1)}
+                    <Badge variant={BADGE_MAP[admission.status]}>
+                      {STATUS_LABEL[admission.status] || admission.status}
                     </Badge>
 
                     <div className="flex items-center gap-3 text-xs text-gray-500">
@@ -112,7 +111,7 @@ export default async function AdmissionAlertsPage() {
                       </span>
                     </div>
 
-                    {admission.status !== "closed" && daysLeft > 0 && (
+                    {admission.status !== "CLOSED" && daysLeft > 0 && (
                       <div className="flex items-center gap-2">
                         <div className="h-2 w-24 overflow-hidden rounded-full bg-gray-200">
                           <div

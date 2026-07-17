@@ -13,7 +13,7 @@ export default async function HomePage() {
   });
 
   const admissions = await prisma.admission.findMany({
-    where: { status: { in: ["open", "closing_soon"] } },
+    where: { status: { in: ["OPEN", "CLOSING_SOON"] } },
     orderBy: { closeDate: "asc" },
     take: 5,
     include: { university: true },
