@@ -1,27 +1,25 @@
-import type { HTMLAttributes } from "react";
+import * as React from "react";
 import { cn } from "@/lib/utils";
 
-const badgeVariants = {
-  open: "bg-success/10 text-success border-success/20",
-  closing_soon: "bg-warning/10 text-warning border-warning/20",
-  closed: "bg-danger/10 text-danger border-danger/20",
-  upcoming: "bg-secondary/10 text-secondary border-secondary/20",
-  Public: "bg-primary/10 text-primary border-primary/20",
-  Private: "bg-secondary/10 text-secondary border-secondary/20",
-  default: "bg-surface text-gray-600 border-border",
-} as const;
-
-interface BadgeProps extends HTMLAttributes<HTMLSpanElement> {
-  variant?: keyof typeof badgeVariants;
-}
+export type BadgeProps = React.HTMLAttributes<HTMLDivElement> & {
+  variant?: "default" | "secondary" | "destructive" | "outline" | "success" | "warning";
+};
 
 function Badge({ className, variant = "default", ...props }: BadgeProps) {
+  const variants: Record<string, string> = {
+    default: "border-transparent bg-secondary text-white",
+    secondary: "border-transparent bg-primary text-white",
+    destructive: "border-transparent bg-destructive text-destructive-foreground",
+    outline: "text-foreground",
+    success: "border-transparent bg-success text-white",
+    warning: "border-transparent bg-warning text-white",
+  };
   return (
-    <span
+    <div
       className={cn(
-        "inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-medium",
-        badgeVariants[variant] || badgeVariants.default,
-        className,
+        "inline-flex items-center rounded-md border px-2.5 py-0.5 text-xs font-semibold transition-colors",
+        variants[variant],
+        className
       )}
       {...props}
     />
