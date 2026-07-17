@@ -1,16 +1,18 @@
 import { prisma } from "@/lib/db";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Users, University, BookOpen, Calendar } from "lucide-react";
+import { Users, University, BookOpen, Calendar, FileText, HelpCircle } from "lucide-react";
 import Link from "next/link";
 
 export const dynamic = "force-dynamic";
 
 export default async function AdminDashboardPage() {
-  const [universityCount, programCount, admissionCount, userCount] = await Promise.all([
+  const [universityCount, programCount, admissionCount, userCount, blogCount, faqCount] = await Promise.all([
     prisma.university.count(),
     prisma.program.count(),
     prisma.admission.count(),
     prisma.user.count(),
+    prisma.blog.count(),
+    prisma.fAQ.count(),
   ]);
 
   const stats = [
@@ -18,6 +20,8 @@ export default async function AdminDashboardPage() {
     { label: "Programs", value: programCount, icon: BookOpen, href: "/admin/programs", color: "text-success" },
     { label: "Admissions", value: admissionCount, icon: Calendar, href: "/admin/admissions", color: "text-warning" },
     { label: "Users", value: userCount, icon: Users, href: "/admin/users", color: "text-primary" },
+    { label: "Blogs", value: blogCount, icon: FileText, href: "/admin/blogs", color: "text-sky-600" },
+    { label: "FAQs", value: faqCount, icon: HelpCircle, href: "/admin/faqs", color: "text-purple-600" },
   ];
 
   return (

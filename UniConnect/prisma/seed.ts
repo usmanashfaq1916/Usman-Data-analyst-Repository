@@ -484,10 +484,12 @@ Use UniConnect to explore programs across all degree levels!`,
 async function main() {
   console.log("Seeding database with new schema...\n");
 
-  // 1. Create admin user
+  // 1. Create admin user (upsert so seed is idempotent)
   const hashedPassword = await bcrypt.hash("admin123", 12);
-  const admin = await prisma.user.create({
-    data: {
+  const admin = await prisma.user.upsert({
+    where: { email: "admin@uniconnect.pk" },
+    update: {},
+    create: {
       name: "Admin",
       email: "admin@uniconnect.pk",
       password: hashedPassword,
@@ -495,15 +497,17 @@ async function main() {
       emailVerified: new Date(),
     },
   });
-  console.log(`Created admin user: ${admin.email}`);
+  console.log(`Admin user ready: ${admin.email}`);
 
   // 2. Seed universities
   const universities = parseSeedSQL();
   console.log(`Parsed ${universities.length} universities`);
 
   for (const uni of universities) {
-    await prisma.university.create({
-      data: {
+    await prisma.university.upsert({
+      where: { id: uni.id },
+      update: {},
+      create: {
         id: uni.id,
         name: uni.name,
         slug: uni.slug,
@@ -536,7 +540,8 @@ async function main() {
   }
   console.log(`Featured ${featuredSlugs.length} universities`);
 
-  // 4. Seed programs
+  // 4. Seed programs (delete existing first for idempotency)
+  await prisma.program.deleteMany();
   let programCount = 0;
   for (const [slug, programs] of Object.entries(PROGRAM_DATA)) {
     const uni = universities.find((u) => u.slug === slug || u.slug.includes(slug));
@@ -564,7 +569,8 @@ async function main() {
   }
   console.log(`Created ${programCount} programs`);
 
-  // 5. Seed admissions
+  // 5. Seed admissions (delete existing first)
+  await prisma.admission.deleteMany();
   const now = new Date();
   const admissionData = [
     { slug: "national-university-of-sciences-and-technology-pakistan", daysToOpen: -30, daysToClose: 45, status: "OPEN" as const },
@@ -607,13 +613,15 @@ async function main() {
   }
   console.log(`Created ${admissionCount} admission records`);
 
-  // 6. Seed FAQs
+  // 6. Seed FAQs (delete existing first for idempotency)
+  await prisma.fAQ.deleteMany();
   for (const faq of FAQ_DATA) {
     await prisma.fAQ.create({ data: faq });
   }
   console.log(`Created ${FAQ_DATA.length} FAQs`);
 
-  // 7. Seed scholarships for featured universities
+  // 7. Seed scholarships for featured universities (delete existing first)
+  await prisma.scholarship.deleteMany();
   const scholarshipData = [
     { slug: "national-university-of-sciences-and-technology-pakistan", name: "NUST Merit Scholarship", type: "Merit Based", amount: 50000, deadline: new Date(2026, 8, 30), eligibility: "Top 5% in entry test" },
     { slug: "lahore-university-of-management-sciences", name: "LUMS Need-Based Scholarship", type: "Need Based", amount: 500000, deadline: new Date(2026, 6, 15), eligibility: "Family income below PKR 500,000/year" },
@@ -639,7 +647,8 @@ async function main() {
   }
   console.log(`Created ${scholarshipCount} scholarships`);
 
-  // 8. Seed blogs
+  // 8. Seed blogs (delete existing first for idempotency)
+  await prisma.blog.deleteMany();
   let blogCount = 0;
   for (const blog of BLOG_DATA) {
     await prisma.blog.create({

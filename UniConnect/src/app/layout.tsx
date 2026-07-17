@@ -46,6 +46,18 @@ export default function RootLayout({
               >
                 Admission Alerts
               </Link>
+              <Link
+                href="/blog"
+                className="transition-colors hover:text-secondary"
+              >
+                Blog
+              </Link>
+              <Link
+                href="/faqs"
+                className="transition-colors hover:text-secondary"
+              >
+                FAQs
+              </Link>
             </div>
           </div>
         </nav>
