@@ -35,7 +35,7 @@ export function FilterBar({
   }
 
   return (
-    <div className="flex flex-wrap gap-3 rounded-lg border border-border bg-white p-4">
+    <div className="flex flex-wrap gap-3 rounded-lg border border-border bg-card p-4">
       <div className="relative flex-1 min-w-[200px]">
         <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
         <Input
@@ -54,7 +54,7 @@ export function FilterBar({
       <select
         value={currentProvince}
         onChange={(e) => updateFilter("province", e.target.value)}
-        className="h-9 rounded-lg border border-border bg-white px-3 text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-secondary"
+        className="h-9 rounded-lg border border-border bg-card px-3 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-secondary"
       >
         <option value="">All Provinces</option>
         {provinces.map((p) => (
@@ -67,7 +67,7 @@ export function FilterBar({
       <select
         value={currentType}
         onChange={(e) => updateFilter("type", e.target.value)}
-        className="h-9 rounded-lg border border-border bg-white px-3 text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-secondary"
+        className="h-9 rounded-lg border border-border bg-card px-3 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-secondary"
       >
         <option value="">All Types</option>
         <option value="Public">Public</option>

@@ -18,7 +18,7 @@ export default async function BlogPage() {
     <div className="space-y-6">
       <div>
         <h1 className="text-3xl font-bold text-primary">Blog</h1>
-        <p className="mt-1 text-gray-600">
+        <p className="mt-1 text-muted-foreground">
           Tips, guides, and updates for university admissions in Pakistan.
         </p>
       </div>
@@ -34,7 +34,7 @@ export default async function BlogPage() {
             <Link key={blog.id} href={`/blog/${blog.slug}`}>
               <Card className="flex h-full flex-col overflow-hidden transition-shadow hover:shadow-md">
                 {blog.coverUrl && (
-                  <div className="aspect-video w-full overflow-hidden bg-gray-100">
+                  <div className="aspect-video w-full overflow-hidden bg-muted">
                     <img
                       src={blog.coverUrl}
                       alt={blog.title}
@@ -50,7 +50,7 @@ export default async function BlogPage() {
                     </p>
                   )}
                 </CardHeader>
-                <CardContent className="mt-auto flex items-center gap-4 text-xs text-gray-500">
+                <CardContent className="mt-auto flex items-center gap-4 text-xs text-muted-foreground">
                   {blog.author.name && (
                     <span className="flex items-center gap-1">
                       <User className="h-3 w-3" />

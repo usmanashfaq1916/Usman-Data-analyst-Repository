@@ -21,7 +21,7 @@ export function SearchBar() {
 
   return (
     <form onSubmit={handleSubmit} className="relative w-full max-w-2xl">
-      <Search className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400" />
+      <Search className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-muted-foreground" />
       <Input
         placeholder="Search universities by name, city, or program..."
         value={query}

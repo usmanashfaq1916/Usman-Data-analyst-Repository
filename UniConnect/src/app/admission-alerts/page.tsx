@@ -43,13 +43,13 @@ export default async function AdmissionAlertsPage() {
     <div className="space-y-6">
       <div>
         <h1 className="text-3xl font-bold text-primary">Admission Alerts</h1>
-        <p className="mt-1 text-gray-600">
+        <p className="mt-1 text-muted-foreground">
           Track admission deadlines across all universities.
         </p>
       </div>
 
       {sorted.length === 0 ? (
-        <div className="flex flex-col items-center gap-2 py-20 text-gray-500">
+        <div className="flex flex-col items-center gap-2 py-20 text-muted-foreground">
           <p className="text-lg font-medium">No admission alerts</p>
           <p className="text-sm">Check back later for updates.</p>
         </div>
@@ -83,7 +83,7 @@ export default async function AdmissionAlertsPage() {
                     >
                       {admission.university.name}
                     </Link>
-                    <p className="text-xs text-gray-500">
+                    <p className="text-xs text-muted-foreground">
                       {admission.university.city}, {admission.university.province}
                     </p>
                   </div>
@@ -93,7 +93,7 @@ export default async function AdmissionAlertsPage() {
                       {STATUS_LABEL[admission.status] || admission.status}
                     </Badge>
 
-                    <div className="flex items-center gap-3 text-xs text-gray-500">
+                    <div className="flex items-center gap-3 text-xs text-muted-foreground">
                       <span className="flex items-center gap-1">
                         <Calendar className="h-3 w-3" />
                         {admission.openDate.toLocaleDateString("en-PK", {
@@ -113,7 +113,7 @@ export default async function AdmissionAlertsPage() {
 
                     {admission.status !== "CLOSED" && daysLeft > 0 && (
                       <div className="flex items-center gap-2">
-                        <div className="h-2 w-24 overflow-hidden rounded-full bg-gray-200">
+                        <div className="h-2 w-24 overflow-hidden rounded-full bg-muted">
                           <div
                             className={`h-full rounded-full transition-all ${
                               progress > 80
@@ -125,7 +125,7 @@ export default async function AdmissionAlertsPage() {
                             style={{ width: `${progress}%` }}
                           />
                         </div>
-                        <span className="flex items-center gap-1 text-xs font-medium text-gray-600">
+                        <span className="flex items-center gap-1 text-xs font-medium text-muted-foreground">
                           <Clock className="h-3 w-3" />
                           {daysLeft}d left
                         </span>

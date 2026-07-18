@@ -40,7 +40,7 @@ export default async function UniversitiesPage({ searchParams }: PageProps) {
     <div className="space-y-6">
       <div>
         <h1 className="text-3xl font-bold text-primary">Universities</h1>
-        <p className="mt-1 text-gray-600">
+        <p className="mt-1 text-muted-foreground">
           {totalCount} university{totalCount !== 1 ? "ies" : "y"} found
           {params.province && ` in ${params.province}`}
         </p>
@@ -55,7 +55,7 @@ export default async function UniversitiesPage({ searchParams }: PageProps) {
       />
 
       {universities.length === 0 ? (
-        <div className="flex flex-col items-center gap-2 py-20 text-gray-500">
+        <div className="flex flex-col items-center gap-2 py-20 text-muted-foreground">
           <p className="text-lg font-medium">No universities found</p>
           <p className="text-sm">Try adjusting your filters.</p>
         </div>

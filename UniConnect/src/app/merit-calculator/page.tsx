@@ -5,7 +5,7 @@ export default async function MeritCalculatorPage() {
     <div className="space-y-6">
       <div>
         <h1 className="text-3xl font-bold text-primary">Merit Calculator</h1>
-        <p className="mt-1 text-gray-600">
+        <p className="mt-1 text-muted-foreground">
           Calculate your aggregate and see which programs you qualify for.
         </p>
       </div>

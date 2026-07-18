@@ -31,7 +31,7 @@ export default async function FAQsPage() {
       <div className="space-y-6">
         <div>
           <h1 className="text-3xl font-bold text-primary">Frequently Asked Questions</h1>
-          <p className="mt-1 text-gray-600">
+          <p className="mt-1 text-muted-foreground">
             Find answers to common questions about university admissions.
           </p>
         </div>
@@ -70,7 +70,7 @@ export default async function FAQsPage() {
                     <AccordionTrigger className="text-left">
                       {faq.question}
                     </AccordionTrigger>
-                    <AccordionContent className="text-gray-600">
+                    <AccordionContent className="text-muted-foreground">
                       {faq.answer}
                     </AccordionContent>
                   </AccordionItem>

@@ -259,8 +259,14 @@ model Scholarship {
   description   String?
   type          String
   amount        Float?
+  amountType    String?  @default("fixed")
   deadline      DateTime?
   eligibility   String?
+  country       String?  @default("Pakistan")
+  degreeLevel   String?
+  isMeritBased  Boolean  @default(false)
+  isNeedBased   Boolean  @default(false)
+  officialUrl   String?
   isActive      Boolean  @default(true)
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
@@ -270,6 +276,8 @@ model Scholarship {
   @@index([universityId])
   @@index([isActive])
   @@index([deadline])
+  @@index([type])
+  @@index([country])
 }
 
 model Hostel {

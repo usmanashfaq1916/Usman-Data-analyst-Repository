@@ -34,7 +34,7 @@ export default async function BlogPostPage({
       </Link>
 
       {blog.coverUrl && (
-        <div className="mb-6 aspect-video w-full overflow-hidden rounded-lg bg-gray-100">
+        <div className="mb-6 aspect-video w-full overflow-hidden rounded-lg bg-muted">
           <img
             src={blog.coverUrl}
             alt={blog.title}
@@ -45,7 +45,7 @@ export default async function BlogPostPage({
 
       <h1 className="text-3xl font-bold text-primary">{blog.title}</h1>
 
-      <div className="mt-3 flex flex-wrap items-center gap-4 text-sm text-gray-500">
+      <div className="mt-3 flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
         {blog.author.name && (
           <span className="flex items-center gap-1">
             <User className="h-4 w-4" />

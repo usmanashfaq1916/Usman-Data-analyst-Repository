@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { MapPin, Globe, ExternalLink, Calendar, ArrowLeft } from "lucide-react";
+import { MapPin, Globe, ExternalLink, Calendar, ArrowLeft, GitCompareArrows } from "lucide-react";
 import { prisma } from "@/lib/db";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -42,7 +42,7 @@ export default async function UniversityDetailPage({ params }: PageProps) {
           <h1 className="text-3xl font-bold text-primary">
             {university.name}
           </h1>
-          <div className="mt-2 flex flex-wrap items-center gap-3 text-sm text-gray-600">
+          <div className="mt-2 flex flex-wrap items-center gap-3 text-sm text-muted-foreground">
             <span className="flex items-center gap-1">
               <MapPin className="h-4 w-4" />
               {university.city}, {university.province}
@@ -54,6 +54,12 @@ export default async function UniversityDetailPage({ params }: PageProps) {
         </div>
 
         <div className="flex gap-2">
+          <Link href={`/compare`}>
+            <Button variant="outline" size="sm">
+              <GitCompareArrows className="mr-1.5 h-4 w-4" />
+              Compare
+            </Button>
+          </Link>
           {university.websiteUrl && (
             <a
               href={university.websiteUrl}
@@ -88,7 +94,7 @@ export default async function UniversityDetailPage({ params }: PageProps) {
           </CardHeader>
           <CardContent>
             {university.programs.length === 0 ? (
-              <p className="py-8 text-center text-sm text-gray-500">
+              <p className="py-8 text-center text-sm text-muted-foreground">
                 No program data available yet.
               </p>
             ) : (
@@ -126,7 +132,7 @@ export default async function UniversityDetailPage({ params }: PageProps) {
           </CardHeader>
           <CardContent>
             {university.admissions.length === 0 ? (
-              <p className="py-8 text-center text-sm text-gray-500">
+              <p className="py-8 text-center text-sm text-muted-foreground">
                 No admission dates announced yet.
               </p>
             ) : (
@@ -165,7 +171,7 @@ export default async function UniversityDetailPage({ params }: PageProps) {
                                   : "Closed"}
                           </Badge>
                         </div>
-                        <div className="flex items-center gap-3 text-xs text-gray-500">
+                        <div className="flex items-center gap-3 text-xs text-muted-foreground">
                           <span className="flex items-center gap-1">
                             <Calendar className="h-3 w-3" />
                             Opens:{" "}

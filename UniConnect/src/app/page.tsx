@@ -1,23 +1,34 @@
 import { prisma } from "@/lib/db";
-import { SearchBar } from "@/components/search-bar";
+import { HeroSection } from "@/components/hero-section";
+import { StatsSection } from "@/components/stats-section";
 import { AdmissionTicker } from "@/components/ticker";
 import { UniversityCard } from "@/components/university-card";
+import { ScholarshipHighlight } from "@/components/scholarship-highlight";
+import { BlogPreview } from "@/components/blog-preview";
+import { FaqSection } from "@/components/faq-section";
+import { TestimonialSection } from "@/components/testimonial-section";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 
 export const dynamic = "force-dynamic";
 
 export default async function HomePage() {
-  const universities = await prisma.university.findMany({
-    take: 6,
-    orderBy: { name: "asc" },
-    include: { _count: { select: { programs: true } } },
-  });
-
-  const admissions = await prisma.admission.findMany({
-    where: { status: { in: ["OPEN", "CLOSING_SOON"] } },
-    orderBy: { closeDate: "asc" },
-    take: 5,
-    include: { university: true },
-  });
+  const [universities, admissions, totalUniversities, programCount, scholarshipCount] = await Promise.all([
+    prisma.university.findMany({
+      take: 6,
+      orderBy: { name: "asc" },
+      include: { _count: { select: { programs: true } } },
+    }),
+    prisma.admission.findMany({
+      where: { status: { in: ["OPEN", "CLOSING_SOON"] } },
+      orderBy: { closeDate: "asc" },
+      take: 5,
+      include: { university: true },
+    }),
+    prisma.university.count(),
+    prisma.program.count(),
+    prisma.scholarship.count({ where: { isActive: true } }),
+  ]);
 
   const tickerItems = admissions.map((a) => {
     const now = new Date();
@@ -30,39 +41,27 @@ export default async function HomePage() {
     };
   });
 
-  const totalUniversities = await prisma.university.count();
-
   return (
     <div className="space-y-12">
-      <section className="flex flex-col items-center gap-6 py-12 text-center">
-        <h1 className="text-4xl font-bold text-primary sm:text-5xl lg:text-6xl">
-          One Portal.
-          <br />
-          <span className="text-secondary">Every Pakistani University.</span>
-        </h1>
-        <p className="max-w-xl text-lg text-gray-600">
-          Search universities and programs, calculate your admission merit, and
-          track deadlines — all from one place.
-        </p>
-        <SearchBar />
-        <p className="text-sm text-gray-500">
-          {totalUniversities} universities across Pakistan
-        </p>
-      </section>
+      <HeroSection />
+
+      <StatsSection
+        universities={totalUniversities}
+        programs={programCount}
+        scholarships={scholarshipCount}
+      />
 
       {tickerItems.length > 0 && <AdmissionTicker admissions={tickerItems} />}
 
       <section className="space-y-4">
         <div className="flex items-center justify-between">
-          <h2 className="text-2xl font-bold text-primary">
-            Featured Universities
-          </h2>
-          <a
+          <h2 className="text-2xl font-bold text-foreground">Featured Universities</h2>
+          <Link
             href="/universities"
-            className="text-sm font-medium text-secondary hover:underline"
+            className="flex items-center gap-1 text-sm font-medium text-secondary hover:underline"
           >
-            View all &rarr;
-          </a>
+            View all <ArrowRight className="h-3 w-3" />
+          </Link>
         </div>
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {universities.map((uni, i) => (
@@ -77,6 +76,14 @@ export default async function HomePage() {
           ))}
         </div>
       </section>
+
+      <ScholarshipHighlight />
+
+      <BlogPreview />
+
+      <TestimonialSection />
+
+      <FaqSection />
     </div>
   );
 }

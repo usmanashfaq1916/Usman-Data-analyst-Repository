@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import Link from "next/link";
+import { Providers } from "@/components/providers";
+import { Navbar } from "@/components/navbar";
+import { Footer } from "@/components/footer";
+import { PageTransition } from "@/components/page-transition";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -17,59 +20,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
-        <nav className="sticky top-0 z-50 border-b border-border bg-white">
-          <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-            <Link href="/" className="flex items-center gap-2">
-              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-secondary text-sm font-bold text-white">
-                U
-              </div>
-              <span className="text-xl font-bold text-primary">UniConnect</span>
-            </Link>
-            <div className="flex items-center gap-6 text-sm font-medium text-gray-600">
-              <Link
-                href="/universities"
-                className="transition-colors hover:text-secondary"
-              >
-                Universities
-              </Link>
-              <Link
-                href="/merit-calculator"
-                className="transition-colors hover:text-secondary"
-              >
-                Merit Calculator
-              </Link>
-              <Link
-                href="/admission-alerts"
-                className="transition-colors hover:text-secondary"
-              >
-                Admission Alerts
-              </Link>
-              <Link
-                href="/blog"
-                className="transition-colors hover:text-secondary"
-              >
-                Blog
-              </Link>
-              <Link
-                href="/faqs"
-                className="transition-colors hover:text-secondary"
-              >
-                FAQs
-              </Link>
-            </div>
-          </div>
-        </nav>
-        <main className="mx-auto min-h-[calc(100vh-8rem)] max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
-          {children}
-        </main>
-        <footer className="border-t border-border bg-white">
-          <div className="mx-auto flex h-16 max-w-7xl items-center justify-center px-4 text-sm text-gray-500">
-            &copy; {new Date().getFullYear()} UniConnect. One Portal. Every
-            Pakistani University.
-          </div>
-        </footer>
+        <Providers>
+          <Navbar />
+          <PageTransition>
+            <main className="mx-auto min-h-[calc(100vh-8rem)] max-w-7xl px-4 py-8 sm:px-6 lg:px-8">{children}</main>
+          </PageTransition>
+          <Footer />
+        </Providers>
       </body>
     </html>
   );
