@@ -67,16 +67,7 @@ enum NotificationType {
   GENERAL
 }
 
-enum BlogCategory {
-  ADMISSIONS
-  SCHOLARSHIPS
-  CAREER
-  TECHNOLOGY
-  STUDY_TIPS
-  AI
-  GENERAL
-}
-
+<<<<<<< HEAD
 enum DayOfWeek {
   MONDAY
   TUESDAY
@@ -158,6 +149,16 @@ enum NoticePriority {
   NORMAL
   HIGH
   URGENT
+=======
+enum BlogCategory {
+  ADMISSIONS
+  SCHOLARSHIPS
+  CAREER
+  TECHNOLOGY
+  STUDY_TIPS
+  AI
+  GENERAL
+>>>>>>> 99688c0 (feat: AI chatbot, Vercel deployment, admin CRUD, community Q&A, career, PDF export)
 }
 
 model User {
@@ -185,14 +186,17 @@ model User {
   reviews           Review[]
   notifications     Notification[]
   blogs             Blog[]
+<<<<<<< HEAD
   employee          Employee?
   studentProfile    StudentProfile?
+=======
   careerPlans       CareerPlan[]
   questions         Question[]
   answers           Answer[]
   mentorProfile     MentorProfile?
   studyGroupMemberships StudyGroupMember[]
   createdStudyGroups StudyGroup[]
+>>>>>>> 99688c0 (feat: AI chatbot, Vercel deployment, admin CRUD, community Q&A, career, PDF export)
 
   @@index([email])
   @@index([role])
@@ -573,6 +577,7 @@ model FAQ {
   @@index([order])
 }
 
+<<<<<<< HEAD
 // ─── HMIS Models ─────────────────────────────────────────────
 
 model Institute {
@@ -1268,7 +1273,7 @@ model NoticeBoard {
   @@index([priority])
   @@index([isActive])
   @@index([publishedAt])
-
+=======
 model CareerPlan {
   id          String   @id @default(cuid())
   userId      String
@@ -1379,4 +1384,5 @@ model MentorProfile {
 
   @@index([isAvailable])
   @@index([expertise])
+>>>>>>> 99688c0 (feat: AI chatbot, Vercel deployment, admin CRUD, community Q&A, career, PDF export)
 }
