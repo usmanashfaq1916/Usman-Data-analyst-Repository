@@ -5,17 +5,27 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="26c670dd-0235-4bc2-96f3-ac9356c41abe" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/UniConnect/src/app/hmis/dashboard/chairman-dashboard.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UniConnect/src/app/hmis/dashboard/director-dashboard.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UniConnect/src/app/hmis/dashboard/hod-dashboard.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UniConnect/src/app/hmis/dashboard/hr-dashboard.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UniConnect/src/app/hmis/dashboard/page.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UniConnect/src/app/hmis/dashboard/parent-dashboard.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UniConnect/src/app/hmis/dashboard/principal-dashboard.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UniConnect/src/app/hmis/dashboard/student-dashboard.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UniConnect/src/app/hmis/dashboard/super-admin-dashboard.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UniConnect/src/app/hmis/dashboard/teacher-dashboard.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UniConnect/src/app/hmis/layout.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UniConnect/src/components/hmis/hmis-header.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UniConnect/src/components/hmis/hmis-sidebar.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UniConnect/src/components/hmis/stat-card.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UniConnect/src/lib/api-utils.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UniConnect/src/lib/permissions.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UniConnect/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/UniConnect/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UniConnect/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/UniConnect/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UniConnect/prisma/schema.prisma" beforeDir="false" afterPath="$PROJECT_DIR$/UniConnect/prisma/schema.prisma" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UniConnect/src/app/admin/blogs/new/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/UniConnect/src/app/admin/blogs/new/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UniConnect/src/app/admin/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/UniConnect/src/app/admin/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UniConnect/src/app/api/blogs/route.ts" beforeDir="false" afterPath="$PROJECT_DIR$/UniConnect/src/app/api/blogs/route.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UniConnect/src/app/blog/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/UniConnect/src/app/blog/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UniConnect/src/app/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/UniConnect/src/app/layout.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UniConnect/src/app/merit-calculator/MeritForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/UniConnect/src/app/merit-calculator/MeritForm.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UniConnect/src/components/navbar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/UniConnect/src/components/navbar.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UniConnect/src/lib/validations/blog.ts" beforeDir="false" afterPath="$PROJECT_DIR$/UniConnect/src/lib/validations/blog.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UniConnect/src/components/ui/dropdown-menu.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/UniConnect/src/components/ui/dropdown-menu.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UniConnect/src/lib/auth.ts" beforeDir="false" afterPath="$PROJECT_DIR$/UniConnect/src/lib/auth.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UniConnect/src/proxy.ts" beforeDir="false" afterPath="$PROJECT_DIR$/UniConnect/src/proxy.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
