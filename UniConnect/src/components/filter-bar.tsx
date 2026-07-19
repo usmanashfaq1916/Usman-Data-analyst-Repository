@@ -7,18 +7,32 @@ import { Button } from "@/components/ui/button";
 
 interface FilterBarProps {
   provinces: string[];
+  cities: string[];
+  degreeLevels: string[];
   currentProvince: string;
   currentCity: string;
   currentType: string;
   currentQuery: string;
+  currentDegree: string;
+  currentMinFee: string;
+  currentMaxFee: string;
+  currentHasHostel: string;
+  currentHasScholarship: string;
 }
 
 export function FilterBar({
   provinces,
+  cities,
+  degreeLevels,
   currentProvince,
   currentCity,
   currentType,
   currentQuery,
+  currentDegree,
+  currentMinFee,
+  currentMaxFee,
+  currentHasHostel,
+  currentHasScholarship,
 }: FilterBarProps) {
   const router = useRouter();
 
@@ -29,10 +43,28 @@ export function FilterBar({
     if (currentCity && key !== "city") params.set("city", currentCity);
     if (currentType && key !== "type") params.set("type", currentType);
     if (currentQuery && key !== "q") params.set("q", currentQuery);
+    if (currentDegree && key !== "degree") params.set("degree", currentDegree);
+    if (currentMinFee && key !== "minFee") params.set("minFee", currentMinFee);
+    if (currentMaxFee && key !== "maxFee") params.set("maxFee", currentMaxFee);
+    if (currentHasHostel && key !== "hasHostel")
+      params.set("hasHostel", currentHasHostel);
+    if (currentHasScholarship && key !== "hasScholarship")
+      params.set("hasScholarship", currentHasScholarship);
     if (value) params.set(key, value);
     const qs = params.toString();
     router.push(`/universities${qs ? `?${qs}` : ""}`);
   }
+
+  const hasAnyFilter =
+    currentProvince ||
+    currentCity ||
+    currentType ||
+    currentQuery ||
+    currentDegree ||
+    currentMinFee ||
+    currentMaxFee ||
+    currentHasHostel ||
+    currentHasScholarship;
 
   return (
     <div className="flex flex-wrap gap-3 rounded-lg border border-border bg-card p-4">
@@ -65,6 +97,19 @@ export function FilterBar({
       </select>
 
       <select
+        value={currentCity}
+        onChange={(e) => updateFilter("city", e.target.value)}
+        className="h-9 rounded-lg border border-border bg-card px-3 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-secondary"
+      >
+        <option value="">All Cities</option>
+        {cities.map((c) => (
+          <option key={c} value={c}>
+            {c}
+          </option>
+        ))}
+      </select>
+
+      <select
         value={currentType}
         onChange={(e) => updateFilter("type", e.target.value)}
         className="h-9 rounded-lg border border-border bg-card px-3 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-secondary"
@@ -75,7 +120,72 @@ export function FilterBar({
         <option value="Military">Military</option>
       </select>
 
-      {(currentProvince || currentCity || currentType || currentQuery) && (
+      <select
+        value={currentDegree}
+        onChange={(e) => updateFilter("degree", e.target.value)}
+        className="h-9 rounded-lg border border-border bg-card px-3 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-secondary"
+      >
+        <option value="">All Degrees</option>
+        {degreeLevels.map((d) => (
+          <option key={d} value={d}>
+            {d}
+          </option>
+        ))}
+      </select>
+
+      <div className="flex items-center gap-1">
+        <input
+          type="number"
+          placeholder="Min Fee"
+          defaultValue={currentMinFee}
+          onChange={(e) => {
+            const timeout = setTimeout(() => {
+              updateFilter("minFee", e.target.value);
+            }, 300);
+            return () => clearTimeout(timeout);
+          }}
+          className="h-9 w-20 rounded-lg border border-border bg-card px-2 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-secondary"
+        />
+        <span className="text-muted-foreground">-</span>
+        <input
+          type="number"
+          placeholder="Max Fee"
+          defaultValue={currentMaxFee}
+          onChange={(e) => {
+            const timeout = setTimeout(() => {
+              updateFilter("maxFee", e.target.value);
+            }, 300);
+            return () => clearTimeout(timeout);
+          }}
+          className="h-9 w-20 rounded-lg border border-border bg-card px-2 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-secondary"
+        />
+      </div>
+
+      <label className="flex items-center gap-1.5 text-sm text-foreground cursor-pointer">
+        <input
+          type="checkbox"
+          checked={currentHasHostel === "true"}
+          onChange={(e) =>
+            updateFilter("hasHostel", e.target.checked ? "true" : "")
+          }
+          className="h-4 w-4 rounded border-border accent-secondary"
+        />
+        Hostel
+      </label>
+
+      <label className="flex items-center gap-1.5 text-sm text-foreground cursor-pointer">
+        <input
+          type="checkbox"
+          checked={currentHasScholarship === "true"}
+          onChange={(e) =>
+            updateFilter("hasScholarship", e.target.checked ? "true" : "")
+          }
+          className="h-4 w-4 rounded border-border accent-secondary"
+        />
+        Scholarships
+      </label>
+
+      {hasAnyFilter && (
         <Button
           variant="ghost"
           size="sm"

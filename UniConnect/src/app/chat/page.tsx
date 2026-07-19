@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
-import { Sparkles, Send, GraduationCap, BookOpen, Calculator, CalendarDays } from "lucide-react";
+import { useState, useRef, useEffect, useCallback } from "react";
+import { Sparkles, Send, GraduationCap, BookOpen, Calculator, CalendarDays, History, Trash2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ChatMessage } from "@/components/chat-message";
@@ -12,6 +12,12 @@ interface Message {
   content: string;
 }
 
+interface SavedChat {
+  id: string;
+  title: string;
+  updatedAt: string;
+}
+
 const SUGGESTIONS = [
   { label: "University Programs", icon: GraduationCap, query: "List top universities in Pakistan and their best programs" },
   { label: "Scholarships", icon: BookOpen, query: "What scholarships are available for Pakistani students in 2026?" },
@@ -19,37 +25,104 @@ const SUGGESTIONS = [
   { label: "Admission Dates", icon: CalendarDays, query: "When do university admissions open and close in Pakistan?" },
 ];
 
+const WELCOME_MESSAGE: Message = {
+  role: "assistant",
+  content:
+    "Welcome to **UniConnect AI Chat**! 🎓\n\nI'm trained on the complete UniConnect database with **259 Pakistani universities**, their programs, scholarships, and admission details.\n\n**I can help you with:**\n- Finding the right university and program\n- Scholarship opportunities and eligibility\n- Merit calculation and aggregate formulas\n- Admission deadlines and requirements\n- Career guidance and study abroad info\n\nChoose a topic below or type your question!",
+};
+
 export default function ChatPage() {
-  const [messages, setMessages] = useState<Message[]>([
-    {
-      role: "assistant",
-      content:
-        "Welcome to **UniConnect AI Chat**! 🎓\n\nI'm trained on the complete UniConnect database with **259 Pakistani universities**, their programs, scholarships, and admission details.\n\n**I can help you with:**\n- Finding the right university and program\n- Scholarship opportunities and eligibility\n- Merit calculation and aggregate formulas\n- Admission deadlines and requirements\n- Career guidance and study abroad info\n\nChoose a topic below or type your question!",
-    },
-  ]);
+  const [messages, setMessages] = useState<Message[]>([WELCOME_MESSAGE]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
+  const [chatId, setChatId] = useState<string | null>(null);
+  const [pastChats, setPastChats] = useState<SavedChat[]>([]);
+  const [showHistory, setShowHistory] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
+  useEffect(() => {
+    fetch("/api/chats")
+      .then((res) => res.json())
+      .then((data) => {
+        if (Array.isArray(data)) setPastChats(data);
+      })
+      .catch(() => {});
+  }, []);
+
+  const saveMessages = useCallback(
+    async (msgs: Message[], existingChatId?: string | null) => {
+      const chatMessages = msgs.slice(1).map((m) => ({ role: m.role, content: m.content }));
+      try {
+        if (existingChatId) {
+          await fetch(`/api/chats/${existingChatId}`, {
+            method: "PATCH",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ messages: chatMessages }),
+          });
+        } else {
+          const res = await fetch("/api/chats", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              title: chatMessages[0]?.content?.slice(0, 80) || "AI Chat",
+              messages: chatMessages,
+            }),
+          });
+          if (res.ok) {
+            const data = await res.json();
+            setChatId(data.id);
+          }
+        }
+      } catch {
+        // Silently fail - saving is a nice-to-have
+      }
+    },
+    []
+  );
+
+  const loadChat = async (id: string) => {
+    try {
+      const res = await fetch(`/api/chats/${id}`);
+      if (!res.ok) return;
+      const chat = await res.json();
+      const savedMessages: Message[] = JSON.parse(chat.messages || "[]");
+      setMessages([WELCOME_MESSAGE, ...savedMessages]);
+      setChatId(id);
+      setShowHistory(false);
+    } catch {
+      // ignore
+    }
+  };
+
+  const startNewChat = () => {
+    setMessages([WELCOME_MESSAGE]);
+    setChatId(null);
+    setShowHistory(false);
+  };
+
   const handleSend = async (msg?: string) => {
     const userMsg = msg || input.trim();
     if (!userMsg || loading) return;
     setInput("");
-    setMessages((prev) => [...prev, { role: "user", content: userMsg }]);
+    const newMessages = [...messages, { role: "user", content: userMsg } as Message];
+    setMessages(newMessages);
     setLoading(true);
     try {
       const history = messages.slice(1).map((m) => ({ role: m.role, content: m.content }));
       const reply = await sendChatMessage(userMsg, history);
-      setMessages((prev) => [...prev, { role: "assistant", content: reply }]);
+      const finalMessages = [...newMessages, { role: "assistant", content: reply } as Message];
+      setMessages(finalMessages);
+      await saveMessages(finalMessages, chatId);
     } catch {
-      setMessages((prev) => [
-        ...prev,
-        { role: "assistant", content: "Sorry, I'm having trouble connecting to the AI service. Please try again later." },
-      ]);
+      const errorMessages = [
+        ...newMessages,
+        { role: "assistant", content: "Sorry, I'm having trouble connecting to the AI service. Please try again later." } as Message,
+      ];
+      setMessages(errorMessages);
     } finally {
       setLoading(false);
     }
@@ -63,6 +136,45 @@ export default function ChatPage() {
           Ask anything about Pakistani university admissions, scholarships, and programs
         </p>
       </div>
+
+      <div className="mb-4 flex items-center justify-between">
+        <div className="flex gap-2">
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => setShowHistory(!showHistory)}
+          >
+            <History className="mr-1 h-4 w-4" />
+            History
+          </Button>
+          {chatId && (
+            <Button variant="ghost" size="sm" onClick={startNewChat}>
+              <Trash2 className="mr-1 h-4 w-4" />
+              New Chat
+            </Button>
+          )}
+        </div>
+      </div>
+
+      {showHistory && pastChats.length > 0 && (
+        <div className="mb-4 rounded-lg border border-border bg-card p-3">
+          <p className="mb-2 text-xs font-medium text-muted-foreground">Past Conversations</p>
+          <div className="space-y-1">
+            {pastChats.map((chat) => (
+              <button
+                key={chat.id}
+                onClick={() => loadChat(chat.id)}
+                className="flex w-full items-center justify-between rounded-md px-2 py-1.5 text-left text-sm hover:bg-accent"
+              >
+                <span className="truncate max-w-[250px]">{chat.title}</span>
+                <span className="text-xs text-muted-foreground">
+                  {new Date(chat.updatedAt).toLocaleDateString("en-PK", { day: "numeric", month: "short" })}
+                </span>
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
 
       <div className="mb-6 grid grid-cols-2 gap-2 sm:grid-cols-4">
         {SUGGESTIONS.map((s) => (

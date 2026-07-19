@@ -2,7 +2,7 @@ import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/db";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Bookmark, GraduationCap, Bell, Calendar, User, TrendingUp } from "lucide-react";
+import { Bookmark, GraduationCap, Bell, Calendar, User, TrendingUp, MessageCircle, Compass } from "lucide-react";
 import Link from "next/link";
 
 export const dynamic = "force-dynamic";
@@ -13,7 +13,7 @@ export default async function DashboardPage() {
 
   if (!userId) return null;
 
-  const [savedCount, applicationCount, unreadNotifications, upcomingDeadlines, user] = await Promise.all([
+  const [savedCount, applicationCount, unreadNotifications, upcomingDeadlines, user, recentChats, careerPlan] = await Promise.all([
     prisma.savedUniversity.count({ where: { userId } }),
     prisma.application.count({ where: { userId } }),
     prisma.notification.count({ where: { userId, isRead: false } }),
@@ -26,6 +26,16 @@ export default async function DashboardPage() {
     prisma.user.findUnique({
       where: { id: userId },
       select: { name: true, email: true, phone: true, city: true, province: true, cnic: true },
+    }),
+    prisma.chat.findMany({
+      where: { userId },
+      orderBy: { updatedAt: "desc" },
+      take: 5,
+      select: { id: true, title: true, updatedAt: true },
+    }),
+    prisma.careerPlan.findUnique({
+      where: { userId },
+      select: { careerGoal: true, updatedAt: true },
     }),
   ]);
 
@@ -124,6 +134,80 @@ export default async function DashboardPage() {
             <Link href="/dashboard/profile" className="text-sm text-secondary hover:underline">
               Complete Profile &rarr;
             </Link>
+          </CardContent>
+        </Card>
+      </div>
+
+      <div className="grid gap-6 lg:grid-cols-2">
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between">
+            <CardTitle className="text-lg">Recent AI Chats</CardTitle>
+            <Link href="/chat" className="text-xs text-secondary hover:underline">
+              View All
+            </Link>
+          </CardHeader>
+          <CardContent>
+            {recentChats.length === 0 ? (
+              <div className="flex flex-col items-center gap-2 py-6 text-center">
+                <MessageCircle className="h-8 w-8 text-muted-foreground" />
+                <p className="text-sm text-muted-foreground">No chat history yet</p>
+                <Link href="/chat" className="text-sm text-secondary hover:underline">
+                  Start a conversation
+                </Link>
+              </div>
+            ) : (
+              <div className="space-y-2">
+                {recentChats.map((chat) => (
+                  <Link
+                    key={chat.id}
+                    href="/chat"
+                    className="flex items-center justify-between rounded-lg border border-border p-3 hover:bg-accent"
+                  >
+                    <div className="flex items-center gap-2">
+                      <MessageCircle className="h-4 w-4 text-secondary" />
+                      <span className="text-sm font-medium truncate max-w-[200px]">
+                        {chat.title}
+                      </span>
+                    </div>
+                    <span className="text-xs text-muted-foreground">
+                      {chat.updatedAt.toLocaleDateString("en-PK", { day: "numeric", month: "short" })}
+                    </span>
+                  </Link>
+                ))}
+              </div>
+            )}
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between">
+            <CardTitle className="text-lg">Career Roadmap</CardTitle>
+            <Link href="/career" className="text-xs text-secondary hover:underline">
+              View Details
+            </Link>
+          </CardHeader>
+          <CardContent>
+            {careerPlan ? (
+              <div className="flex items-center gap-3">
+                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-secondary/10">
+                  <Compass className="h-5 w-5 text-secondary" />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <p className="text-sm font-medium truncate">{careerPlan.careerGoal}</p>
+                  <p className="text-xs text-muted-foreground">
+                    Last updated {careerPlan.updatedAt.toLocaleDateString("en-PK", { day: "numeric", month: "short", year: "numeric" })}
+                  </p>
+                </div>
+              </div>
+            ) : (
+              <div className="flex flex-col items-center gap-2 py-6 text-center">
+                <Compass className="h-8 w-8 text-muted-foreground" />
+                <p className="text-sm text-muted-foreground">No career plan yet</p>
+                <Link href="/career" className="text-sm text-secondary hover:underline">
+                  Generate your career roadmap
+                </Link>
+              </div>
+            )}
           </CardContent>
         </Card>
       </div>

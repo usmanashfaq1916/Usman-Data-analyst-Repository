@@ -10,6 +10,8 @@ export interface UniversityWithMeta {
   logoUrl: string | null;
   ranking: number | null;
   programCount?: number;
+  hostels?: { isActive: boolean }[];
+  scholarships?: { isActive: boolean }[];
 }
 
 export interface ProgramWithUniversity {

@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Building2, MapPin, ExternalLink } from "lucide-react";
+import { Building2, MapPin, ExternalLink, Bed, Award } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import type { UniversityWithMeta } from "@/lib/types";
@@ -61,6 +61,18 @@ export function UniversityCard({
             {university.programCount !== undefined && (
               <span className="text-xs text-muted-foreground">
                 {university.programCount} programs
+              </span>
+            )}
+          </div>
+          <div className="flex items-center gap-2 text-xs text-muted-foreground">
+            {university.hostels && university.hostels.length > 0 && (
+              <span className="flex items-center gap-1" title="Hostel available">
+                <Bed className="h-3 w-3 text-secondary" /> Hostel
+              </span>
+            )}
+            {university.scholarships && university.scholarships.length > 0 && (
+              <span className="flex items-center gap-1" title="Scholarships available">
+                <Award className="h-3 w-3 text-secondary" /> Scholarships
               </span>
             )}
           </div>
