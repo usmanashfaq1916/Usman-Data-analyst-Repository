@@ -573,7 +573,6 @@ model FAQ {
   @@index([order])
 }
 
-<<<<<<< HEAD
 // ─── HMIS Models ─────────────────────────────────────────────
 
 model Institute {
@@ -1269,7 +1268,7 @@ model NoticeBoard {
   @@index([priority])
   @@index([isActive])
   @@index([publishedAt])
-=======
+
 model CareerPlan {
   id          String   @id @default(cuid())
   userId      String
@@ -1380,5 +1379,4 @@ model MentorProfile {
 
   @@index([isAvailable])
   @@index([expertise])
->>>>>>> 99688c0 (feat: AI chatbot, Vercel deployment, admin CRUD, community Q&A, career, PDF export)
 }
