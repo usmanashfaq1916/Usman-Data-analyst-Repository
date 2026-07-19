@@ -67,7 +67,16 @@ enum NotificationType {
   GENERAL
 }
 
-<<<<<<< HEAD
+enum BlogCategory {
+  ADMISSIONS
+  SCHOLARSHIPS
+  CAREER
+  TECHNOLOGY
+  STUDY_TIPS
+  AI
+  GENERAL
+}
+
 enum DayOfWeek {
   MONDAY
   TUESDAY
@@ -149,16 +158,6 @@ enum NoticePriority {
   NORMAL
   HIGH
   URGENT
-=======
-enum BlogCategory {
-  ADMISSIONS
-  SCHOLARSHIPS
-  CAREER
-  TECHNOLOGY
-  STUDY_TIPS
-  AI
-  GENERAL
->>>>>>> 99688c0 (feat: AI chatbot, Vercel deployment, admin CRUD, community Q&A, career, PDF export)
 }
 
 model User {
