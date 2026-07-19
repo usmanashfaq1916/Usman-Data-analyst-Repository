@@ -43,7 +43,7 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const { title, slug, content, excerpt, coverUrl, isPublished } = parsed.data;
+    const { title, slug, content, excerpt, coverUrl, category, isPublished } = parsed.data;
 
     const existing = await prisma.blog.findUnique({ where: { slug } });
     if (existing) {
@@ -57,6 +57,7 @@ export async function POST(req: NextRequest) {
         content,
         excerpt: excerpt || null,
         coverUrl: coverUrl || null,
+        category: category as any,
         authorId: req.headers.get("x-user-id") || "unknown",
         isPublished,
         publishedAt: isPublished ? new Date() : null,

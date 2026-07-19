@@ -2,6 +2,7 @@ import { prisma } from "@/lib/db";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Users, University, BookOpen, Calendar, FileText, HelpCircle } from "lucide-react";
 import Link from "next/link";
+import { AdminCharts } from "@/components/admin/charts";
 
 export const dynamic = "force-dynamic";
 
@@ -50,6 +51,11 @@ export default async function AdminDashboardPage() {
             </Link>
           );
         })}
+      </div>
+
+      <div className="pt-4">
+        <h2 className="mb-4 text-lg font-semibold">Analytics</h2>
+        <AdminCharts />
       </div>
     </div>
   );

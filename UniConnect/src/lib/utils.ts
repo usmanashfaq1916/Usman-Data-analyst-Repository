@@ -22,7 +22,8 @@ export function slugify(text: string): string {
     .trim();
 }
 
-export function getInitials(name: string): string {
+export function getInitials(name: string | null | undefined): string {
+  if (!name) return "?";
   return name
     .split(" ")
     .map((n) => n[0])

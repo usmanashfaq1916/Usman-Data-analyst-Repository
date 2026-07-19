@@ -6,6 +6,7 @@ export const createBlogSchema = z.object({
   content: z.string().min(10, "Content must be at least 10 characters"),
   excerpt: z.string().optional(),
   coverUrl: z.string().url("Must be a valid URL").optional().or(z.literal("")),
+  category: z.enum(["ADMISSIONS", "SCHOLARSHIPS", "CAREER", "TECHNOLOGY", "STUDY_TIPS", "AI", "GENERAL"]).default("GENERAL"),
   isPublished: z.boolean().default(false),
   publishedAt: z.string().datetime().nullable().optional(),
 });

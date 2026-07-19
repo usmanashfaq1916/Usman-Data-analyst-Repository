@@ -1,9 +1,10 @@
 import { prisma } from "@/lib/db";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Calendar, MapPin, GraduationCap, ArrowRight, Search } from "lucide-react";
+import { Calendar, MapPin, GraduationCap } from "lucide-react";
 import Link from "next/link";
 import { EmptyState } from "@/components/shared/empty-state";
+import { ScholarshipFilterBar } from "@/components/scholarship-filter-bar";
 
 export const dynamic = "force-dynamic";
 
@@ -66,44 +67,15 @@ export default async function ScholarshipsPage({ searchParams }: PageProps) {
         </p>
       </div>
 
-      <div className="flex flex-wrap gap-3 rounded-lg border border-border bg-card p-4">
-        <div className="relative flex-1 min-w-[200px]">
-          <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-          <input
-            type="text"
-            placeholder="Search scholarships..."
-            defaultValue={params.q || ""}
-            className="h-9 w-full rounded-lg border border-border bg-background pl-9 pr-3 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-secondary"
-          />
-        </div>
-        <select
-          defaultValue={params.type || ""}
-          className="h-9 rounded-lg border border-border bg-card px-3 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-secondary"
-        >
-          <option value="">All Types</option>
-          {types.map((t) => (
-            <option key={t.type} value={t.type}>{t.type}</option>
-          ))}
-        </select>
-        <select
-          defaultValue={params.degree || ""}
-          className="h-9 rounded-lg border border-border bg-card px-3 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-secondary"
-        >
-          <option value="">All Degrees</option>
-          {degrees.filter(d => d.degreeLevel).map((d) => (
-            <option key={d.degreeLevel} value={d.degreeLevel!}>{d.degreeLevel}</option>
-          ))}
-        </select>
-        <select
-          defaultValue={params.country || ""}
-          className="h-9 rounded-lg border border-border bg-card px-3 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-secondary"
-        >
-          <option value="">All Countries</option>
-          {countries.filter(c => c.country).map((c) => (
-            <option key={c.country} value={c.country!}>{c.country}</option>
-          ))}
-        </select>
-      </div>
+      <ScholarshipFilterBar
+        types={types.map((t) => t.type)}
+        degrees={degrees.filter((d) => d.degreeLevel).map((d) => d.degreeLevel!)}
+        countries={countries.filter((c) => c.country).map((c) => c.country!)}
+        currentQuery={params.q || ""}
+        currentType={params.type || ""}
+        currentDegree={params.degree || ""}
+        currentCountry={params.country || ""}
+      />
 
       {scholarships.length === 0 ? (
         <EmptyState

@@ -503,11 +503,11 @@ async function main() {
   const universities = parseSeedSQL();
   console.log(`Parsed ${universities.length} universities`);
 
-  for (const uni of universities) {
-    await prisma.university.upsert({
-      where: { id: uni.id },
-      update: {},
-      create: {
+  const existingIds = new Set((await prisma.university.findMany({ select: { id: true } })).map((u) => u.id));
+  const newUniversities = universities.filter((u) => !existingIds.has(u.id));
+  if (newUniversities.length > 0) {
+    await prisma.university.createMany({
+      data: newUniversities.map((uni) => ({
         id: uni.id,
         name: uni.name,
         slug: uni.slug,
@@ -518,10 +518,12 @@ async function main() {
         admissionUrl: uni.admissionUrl || null,
         isActive: true,
         isFeatured: false,
-      },
+      })),
     });
+    console.log(`Created ${newUniversities.length} new universities`);
+  } else {
+    console.log(`All ${universities.length} universities already exist`);
   }
-  console.log(`Created ${universities.length} universities`);
 
   // 3. Mark featured universities
   const featuredSlugs = [
@@ -623,9 +625,17 @@ async function main() {
   // 7. Seed scholarships for featured universities (delete existing first)
   await prisma.scholarship.deleteMany();
   const scholarshipData = [
-    { slug: "national-university-of-sciences-and-technology-pakistan", name: "NUST Merit Scholarship", type: "Merit Based", amount: 50000, deadline: new Date(2026, 8, 30), eligibility: "Top 5% in entry test" },
-    { slug: "lahore-university-of-management-sciences", name: "LUMS Need-Based Scholarship", type: "Need Based", amount: 500000, deadline: new Date(2026, 6, 15), eligibility: "Family income below PKR 500,000/year" },
-    { slug: "aga-khan-university", name: "AKU Financial Assistance", type: "Need Based", amount: 800000, deadline: new Date(2026, 5, 30), eligibility: "Demonstrated financial need" },
+    { slug: "national-university-of-sciences-and-technology-pakistan", name: "NUST Merit Scholarship", type: "Merit Based", amount: 50000, deadline: new Date(2026, 8, 30), eligibility: "Top 5% in entry test", isMeritBased: true },
+    { slug: "national-university-of-sciences-and-technology-pakistan", name: "NUST Financial Assistance", type: "Need Based", amount: 100000, deadline: new Date(2026, 7, 15), eligibility: "Family income below PKR 300,000/year", isNeedBased: true },
+    { slug: "comsats-university", name: "COMSATS Merit Scholarship", type: "Merit Based", amount: 40000, deadline: new Date(2026, 8, 31), eligibility: "Top 10% in entry test", isMeritBased: true },
+    { slug: "comsats-university", name: "COMSATS Need-Based Support", type: "Need Based", amount: 60000, deadline: new Date(2026, 7, 20), eligibility: "Family income below PKR 400,000/year", isNeedBased: true },
+    { slug: "quaid-i-azam-university", name: "QAU Merit Scholarship", type: "Merit Based", amount: 30000, deadline: new Date(2026, 9, 15), eligibility: "CGPA 3.5 or above", isMeritBased: true },
+    { slug: "lahore-university-of-management-sciences", name: "LUMS Need-Based Scholarship", type: "Need Based", amount: 500000, deadline: new Date(2026, 6, 15), eligibility: "Family income below PKR 500,000/year", isNeedBased: true },
+    { slug: "lahore-university-of-management-sciences", name: "LUMS Merit Award", type: "Merit Based", amount: 250000, deadline: new Date(2026, 6, 30), eligibility: "Top 5% in LUMS admission test", isMeritBased: true },
+    { slug: "national-university-of-computer-and-emerging-sciences", name: "FAST Merit Scholarship", type: "Merit Based", amount: 45000, deadline: new Date(2026, 8, 15), eligibility: "Top 5 students in each program", isMeritBased: true },
+    { slug: "aga-khan-university", name: "AKU Financial Assistance", type: "Need Based", amount: 800000, deadline: new Date(2026, 5, 30), eligibility: "Demonstrated financial need", isNeedBased: true },
+    { slug: "dow-university-of-health-sciences", name: "DUHS Merit Scholarship", type: "Merit Based", amount: 35000, deadline: new Date(2026, 9, 30), eligibility: "Top 3% in annual exams", isMeritBased: true },
+    { slug: "ned-university-of-engineering-and-technology", name: "NED Alumni Scholarship", type: "Merit Based", amount: 25000, deadline: new Date(2026, 10, 15), eligibility: "Outstanding academic performance", isMeritBased: true },
   ];
 
   let scholarshipCount = 0;
@@ -640,12 +650,45 @@ async function main() {
         amount: sch.amount,
         deadline: sch.deadline,
         eligibility: sch.eligibility,
+        isMeritBased: sch.isMeritBased || false,
+        isNeedBased: sch.isNeedBased || false,
         isActive: true,
       },
     });
     scholarshipCount++;
   }
   console.log(`Created ${scholarshipCount} scholarships`);
+
+  // 7b. Seed sample reviews (delete existing first)
+  await prisma.review.deleteMany();
+  const reviewData = [
+    { slug: "national-university-of-sciences-and-technology-pakistan", rating: 5, title: "Excellent Engineering University", content: "NUST is the best engineering university in Pakistan. The campus is beautiful and the faculty is world-class." },
+    { slug: "comsats-university", rating: 4, title: "Great IT Programs", content: "COMSATs has excellent computer science programs. Modern labs and experienced teachers." },
+    { slug: "quaid-i-azam-university", rating: 5, title: "Top Research University", content: "QAU has the best research environment. The library is amazing and the faculty is very supportive." },
+    { slug: "lahore-university-of-management-sciences", rating: 5, title: "World-Class Business School", content: "LUMS provides an excellent learning environment. The campus is state-of-the-art." },
+    { slug: "university-of-the-punjab", rating: 4, title: "Historic University", content: "Oldest university in Pakistan. Great for arts and sciences. Affordable fee structure." },
+  ];
+
+  for (const rev of reviewData) {
+    const uni = universities.find((u) => u.slug === rev.slug || u.slug.includes(rev.slug));
+    if (!uni) continue;
+    const existingReview = await prisma.review.findFirst({
+      where: { userId: admin.id, universityId: uni.id },
+    });
+    if (!existingReview) {
+      await prisma.review.create({
+        data: {
+          userId: admin.id,
+          universityId: uni.id,
+          rating: rev.rating,
+          title: rev.title,
+          content: rev.content,
+          isApproved: true,
+        },
+      });
+    }
+  }
+  console.log(`Created ${reviewData.length} reviews`);
 
   // 8. Seed blogs (delete existing first for idempotency)
   await prisma.blog.deleteMany();
@@ -666,6 +709,68 @@ async function main() {
     blogCount++;
   }
   console.log(`Created ${blogCount} blog posts`);
+
+  // 9. Seed a test student user
+  const studentPassword = await bcrypt.hash("student123", 12);
+  await prisma.user.upsert({
+    where: { email: "student@test.pk" },
+    update: {},
+    create: {
+      name: "Test Student",
+      email: "student@test.pk",
+      password: studentPassword,
+      role: "STUDENT",
+      phone: "0300-1234567",
+      city: "Lahore",
+      province: "Punjab",
+      emailVerified: new Date(),
+    },
+  });
+  console.log("Test student created: student@test.pk / student123");
+
+  // 10. Seed sample community questions
+  await prisma.answer.deleteMany();
+  await prisma.question.deleteMany();
+  const studentUser = await prisma.user.findUnique({ where: { email: "student@test.pk" } });
+  if (studentUser && universities.length > 0) {
+    const nust = universities.find((u) => u.slug.includes("national-university-of-sciences"));
+    const lums = universities.find((u) => u.slug.includes("lahore-university-of-management"));
+    const fast = universities.find((u) => u.slug.includes("national-university-of-computer"));
+    const questions = [
+      {
+        title: "What is the minimum aggregate for NUST Computer Science?",
+        content: "I scored 85% in matric and 78% in FSc. What NET score do I need to get into NUST for BS Computer Science? Also, how is the hostel facility there?",
+        tags: "nust,admissions,computer-science",
+        authorId: studentUser.id,
+        answers: [
+          { content: "For NUST CS, you need approximately 70% aggregate. With your scores: Matric (85×10%)=8.5, FSc (78×15%)=11.7, so you need NET score of about 66% (66×75%=49.5) to reach ~70%. The hostels are good - separate for boys/girls with WiFi and mess.", authorId: admin.id, isAccepted: true },
+        ],
+      },
+      {
+        title: "How does LUMS financial aid work?",
+        content: "I want to apply to LUMS but the fee is very high. Can someone explain how their need-based financial aid works? What documents are required?",
+        tags: "lums,financial-aid,scholarships",
+        authorId: studentUser.id,
+        answers: [
+          { content: "LUMS offers need-based financial aid up to 100% tuition waiver. You need to submit: family income certificate, tax returns (last 3 years), property details, and a financial affidavit. Apply early as funds are limited. They also have merit scholarships for top students.", authorId: admin.id, isAccepted: false },
+        ],
+      },
+      {
+        title: "FAST vs NUST for Computer Science - which is better?",
+        content: "I'm trying to decide between FAST-NUCES and NUST for BS Computer Science. Which one has better faculty, job prospects, and campus life?",
+        tags: "fast,nust,computer-science,comparison",
+        authorId: studentUser.id,
+        answers: [],
+      },
+    ];
+    for (const q of questions) {
+      const created = await prisma.question.create({ data: { title: q.title, content: q.content, tags: q.tags, authorId: q.authorId } });
+      for (const a of q.answers) {
+        await prisma.answer.create({ data: { content: a.content, questionId: created.id, authorId: a.authorId, isAccepted: a.isAccepted } });
+      }
+    }
+    console.log(`Created ${questions.length} sample questions`);
+  }
 
   // Summary
   const totalUniversities = await prisma.university.count();

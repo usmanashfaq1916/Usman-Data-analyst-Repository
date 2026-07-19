@@ -1,29 +1,83 @@
-import { auth } from "@/lib/auth";
-import { prisma } from "@/lib/db";
+"use client";
+
+import { useEffect, useState } from "react";
+import { User, Mail, Phone, MapPin, CreditCard, Save, Loader2 } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { User, Mail, Phone, MapPin, CreditCard } from "lucide-react";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Button } from "@/components/ui/button";
 
-export const dynamic = "force-dynamic";
+interface UserProfile {
+  id: string;
+  name: string | null;
+  email: string;
+  phone: string | null;
+  city: string | null;
+  province: string | null;
+  cnic: string | null;
+  image: string | null;
+  role: string;
+}
 
-export default async function ProfilePage() {
-  const session = await auth();
-  const userId = (session?.user as any)?.id;
+export default function ProfilePage() {
+  const [profile, setProfile] = useState<UserProfile | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [saving, setSaving] = useState(false);
+  const [message, setMessage] = useState("");
 
-  const user = await prisma.user.findUnique({
-    where: { id: userId },
-    select: { name: true, email: true, phone: true, city: true, province: true, cnic: true, role: true, createdAt: true },
-  });
+  useEffect(() => {
+    fetchProfile();
+  }, []);
 
-  if (!user) return null;
+  const fetchProfile = async () => {
+    try {
+      const res = await fetch("/api/profile");
+      const data = await res.json();
+      setProfile(data.data);
+    } catch {
+      setProfile(null);
+    } finally {
+      setLoading(false);
+    }
+  };
 
-  const fields = [
-    { label: "Full Name", value: user.name || "Not set", icon: User },
-    { label: "Email", value: user.email, icon: Mail },
-    { label: "Phone", value: user.phone || "Not set", icon: Phone },
-    { label: "City", value: user.city || "Not set", icon: MapPin },
-    { label: "Province", value: user.province || "Not set", icon: MapPin },
-    { label: "CNIC", value: user.cnic || "Not set", icon: CreditCard },
-  ];
+  const handleSave = async () => {
+    if (!profile) return;
+    setSaving(true);
+    setMessage("");
+    try {
+      const res = await fetch("/api/profile", {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: profile.name,
+          phone: profile.phone,
+          city: profile.city,
+          province: profile.province,
+          cnic: profile.cnic,
+        }),
+      });
+      if (res.ok) {
+        setMessage("Profile updated successfully");
+      } else {
+        setMessage("Failed to update profile");
+      }
+    } catch {
+      setMessage("Something went wrong");
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  if (loading) {
+    return (
+      <div className="flex justify-center py-12">
+        <Loader2 className="h-8 w-8 animate-spin text-primary" />
+      </div>
+    );
+  }
+
+  if (!profile) return null;
 
   return (
     <div className="space-y-6">
@@ -36,21 +90,47 @@ export default async function ProfilePage() {
         <CardHeader>
           <CardTitle>Personal Information</CardTitle>
         </CardHeader>
-        <CardContent>
+        <CardContent className="space-y-4">
           <div className="grid gap-4 sm:grid-cols-2">
-            {fields.map((field) => {
-              const Icon = field.icon;
-              return (
-                <div key={field.label} className="flex items-center gap-3 rounded-lg border border-border p-3">
-                  <Icon className="h-5 w-5 text-muted-foreground" />
-                  <div>
-                    <p className="text-xs text-muted-foreground">{field.label}</p>
-                    <p className="text-sm font-medium">{field.value}</p>
-                  </div>
-                </div>
-              );
-            })}
+            <div className="space-y-2">
+              <Label htmlFor="name">Full Name</Label>
+              <Input id="name" value={profile.name || ""} onChange={(e) => setProfile({ ...profile, name: e.target.value })} />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="email">Email</Label>
+              <Input id="email" value={profile.email} disabled className="bg-muted" />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="phone">Phone</Label>
+              <Input id="phone" value={profile.phone || ""} onChange={(e) => setProfile({ ...profile, phone: e.target.value })} />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="cnic">CNIC</Label>
+              <Input id="cnic" value={profile.cnic || ""} onChange={(e) => setProfile({ ...profile, cnic: e.target.value })} />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="city">City</Label>
+              <Input id="city" value={profile.city || ""} onChange={(e) => setProfile({ ...profile, city: e.target.value })} />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="province">Province</Label>
+              <Input id="province" value={profile.province || ""} onChange={(e) => setProfile({ ...profile, province: e.target.value })} />
+            </div>
           </div>
+          {message && <p className="text-sm text-green-600">{message}</p>}
+          <Button onClick={handleSave} disabled={saving}>
+            {saving ? (
+              <>
+                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                Saving...
+              </>
+            ) : (
+              <>
+                <Save className="mr-2 h-4 w-4" />
+                Save Changes
+              </>
+            )}
+          </Button>
         </CardContent>
       </Card>
 
@@ -61,11 +141,7 @@ export default async function ProfilePage() {
         <CardContent className="space-y-2">
           <div className="flex justify-between text-sm">
             <span className="text-muted-foreground">Role</span>
-            <span className="font-medium">{user.role}</span>
-          </div>
-          <div className="flex justify-between text-sm">
-            <span className="text-muted-foreground">Member since</span>
-            <span className="font-medium">{user.createdAt.toLocaleDateString("en-PK", { day: "numeric", month: "long", year: "numeric" })}</span>
+            <span className="font-medium">{profile.role}</span>
           </div>
         </CardContent>
       </Card>

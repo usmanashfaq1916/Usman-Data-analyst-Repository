@@ -5,6 +5,7 @@ import { useSession } from "next-auth/react";
 import { Menu, X, LayoutDashboard, LogOut } from "lucide-react";
 import { useState } from "react";
 import { ModeToggle } from "@/components/mode-toggle";
+import { NotificationDropdown } from "@/components/notification-dropdown";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -22,6 +23,7 @@ const NAV_LINKS = [
   { href: "/merit-calculator", label: "Merit Calculator" },
   { href: "/admission-alerts", label: "Alerts" },
   { href: "/blog", label: "Blog" },
+  { href: "/chat", label: "AI Chat" },
 ];
 
 export function Navbar() {
@@ -61,6 +63,7 @@ export function Navbar() {
 
         <div className="flex items-center gap-2">
           <ModeToggle />
+          {session?.user && <NotificationDropdown />}
 
           {session?.user ? (
             <DropdownMenu>

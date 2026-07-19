@@ -4,12 +4,29 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Calendar, User } from "lucide-react";
 import { EmptyState } from "@/components/shared/empty-state";
+import { BlogCategoryFilter } from "@/components/blog-category-filter";
 
 export const dynamic = "force-dynamic";
 
-export default async function BlogPage() {
+const CATEGORY_LABELS: Record<string, string> = {
+  ADMISSIONS: "Admissions",
+  SCHOLARSHIPS: "Scholarships",
+  CAREER: "Career",
+  TECHNOLOGY: "Technology",
+  STUDY_TIPS: "Study Tips",
+  AI: "AI",
+  GENERAL: "General",
+};
+
+export default async function BlogPage(props: { searchParams?: Promise<{ category?: string }> }) {
+  const searchParams = await props.searchParams;
+  const category = searchParams?.category;
+
+  const where: any = { isPublished: true };
+  if (category) where.category = category;
+
   const blogs = await prisma.blog.findMany({
-    where: { isPublished: true },
+    where,
     orderBy: { publishedAt: "desc" },
     include: { author: { select: { name: true } } },
   });
@@ -23,11 +40,12 @@ export default async function BlogPage() {
         </p>
       </div>
 
+      <BlogCategoryFilter />
+
       {blogs.length === 0 ? (
-        <EmptyState
-          title="No posts yet"
-          description="Check back later for new articles."
-        />
+        <div className="py-12 text-center text-muted-foreground">
+          No posts found in this category.
+        </div>
       ) : (
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {blogs.map((blog) => (
@@ -43,6 +61,11 @@ export default async function BlogPage() {
                   </div>
                 )}
                 <CardHeader>
+                  <div className="mb-2">
+                    <Badge variant="secondary" className="text-xs">
+                      {blog.category}
+                    </Badge>
+                  </div>
                   <CardTitle className="line-clamp-2 text-lg">{blog.title}</CardTitle>
                   {blog.excerpt && (
                     <p className="line-clamp-2 text-sm text-muted-foreground">

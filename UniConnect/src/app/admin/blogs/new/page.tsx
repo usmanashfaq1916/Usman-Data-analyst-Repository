@@ -14,6 +14,7 @@ export default function NewBlogPage() {
   const [content, setContent] = useState("");
   const [excerpt, setExcerpt] = useState("");
   const [coverUrl, setCoverUrl] = useState("");
+  const [category, setCategory] = useState("GENERAL");
   const [isPublished, setIsPublished] = useState(false);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
@@ -38,7 +39,7 @@ export default function NewBlogPage() {
       const res = await fetch("/api/blogs", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ title, slug, content, excerpt, coverUrl, isPublished }),
+        body: JSON.stringify({ title, slug, content, excerpt, coverUrl, category, isPublished }),
       });
 
       const data = await res.json();
@@ -116,6 +117,24 @@ export default function NewBlogPage() {
             required
             placeholder="Use Markdown formatting: ## headings, **bold**, *italic*, - lists"
           />
+        </div>
+
+        <div className="space-y-2">
+          <Label htmlFor="category">Category</Label>
+          <select
+            id="category"
+            className="w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm"
+            value={category}
+            onChange={(e) => setCategory(e.target.value)}
+          >
+            <option value="ADMISSIONS">Admissions</option>
+            <option value="SCHOLARSHIPS">Scholarships</option>
+            <option value="CAREER">Career</option>
+            <option value="TECHNOLOGY">Technology</option>
+            <option value="STUDY_TIPS">Study Tips</option>
+            <option value="AI">AI</option>
+            <option value="GENERAL">General</option>
+          </select>
         </div>
 
         <div className="space-y-2">
