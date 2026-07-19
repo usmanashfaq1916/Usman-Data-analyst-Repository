@@ -23,15 +23,15 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-app.include_router(chat.router, prefix="/api", tags=["Chat"])
-app.include_router(merit.router, prefix="/api", tags=["Merit"])
-app.include_router(recommend.router, prefix="/api", tags=["Recommend"])
-app.include_router(sop.router, prefix="/api", tags=["SOP"])
-app.include_router(resume.router, prefix="/api", tags=["Resume"])
-app.include_router(scholarship_recommend.router, prefix="/api", tags=["Scholarships"])
-app.include_router(career.router, prefix="/api", tags=["Career"])
+app.include_router(chat.router, prefix="/ai", tags=["Chat"])
+app.include_router(merit.router, prefix="/ai", tags=["Merit"])
+app.include_router(recommend.router, prefix="/ai", tags=["Recommend"])
+app.include_router(sop.router, prefix="/ai", tags=["SOP"])
+app.include_router(resume.router, prefix="/ai", tags=["Resume"])
+app.include_router(scholarship_recommend.router, prefix="/ai", tags=["Scholarships"])
+app.include_router(career.router, prefix="/ai", tags=["Career"])
 
 
-@app.get("/api/health")
+@app.get("/ai/health")
 async def health_check():
     return {"status": "ok", "service": "UniConnect AI API"}
