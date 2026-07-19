@@ -185,17 +185,14 @@ model User {
   reviews           Review[]
   notifications     Notification[]
   blogs             Blog[]
-<<<<<<< HEAD
   employee          Employee?
   studentProfile    StudentProfile?
-=======
   careerPlans       CareerPlan[]
   questions         Question[]
   answers           Answer[]
   mentorProfile     MentorProfile?
   studyGroupMemberships StudyGroupMember[]
   createdStudyGroups StudyGroup[]
->>>>>>> 99688c0 (feat: AI chatbot, Vercel deployment, admin CRUD, community Q&A, career, PDF export)
 
   @@index([email])
   @@index([role])
