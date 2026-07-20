@@ -1,8 +1,8 @@
 import { prisma } from "@/lib/db";
 import Link from "next/link";
-import { Search, BookOpen, GraduationCap, MapPin } from "lucide-react";
-import { Input } from "@/components/ui/input";
+import { BookOpen, GraduationCap, MapPin } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import { ProgramFilters } from "@/components/program-filters";
 import type { Metadata } from "next";
 
 export const dynamic = "force-dynamic";
@@ -52,49 +52,13 @@ export default async function ProgramsPage(props: Props) {
         </p>
       </div>
 
-      <div className="flex flex-wrap gap-3 rounded-lg border border-border bg-card p-4">
-        <div className="relative flex-1 min-w-[200px]">
-          <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
-          <form>
-            <Input
-              name="q"
-              placeholder="Search programs..."
-              defaultValue={q}
-              className="h-9 pl-9 text-sm"
-            />
-          </form>
-        </div>
-        <select
-          name="field"
-          defaultValue={fieldFilter}
-          onChange={(e) => {
-            const params = new URLSearchParams(window.location.search);
-            params.set("field", e.target.value);
-            window.location.search = params.toString();
-          }}
-          className="h-9 rounded-lg border border-border bg-card px-3 text-sm text-foreground"
-        >
-          <option value="">All Fields</option>
-          {fields.map((f) => (
-            <option key={f.field} value={f.field}>{f.field}</option>
-          ))}
-        </select>
-        <select
-          name="degree"
-          defaultValue={degreeFilter}
-          onChange={(e) => {
-            const params = new URLSearchParams(window.location.search);
-            params.set("degree", e.target.value);
-            window.location.search = params.toString();
-          }}
-          className="h-9 rounded-lg border border-border bg-card px-3 text-sm text-foreground"
-        >
-          <option value="">All Levels</option>
-          {degreeLevels.map((d) => (
-            <option key={d.degreeLevel} value={d.degreeLevel}>{d.degreeLevel}</option>
-          ))}
-        </select>
-      </div>
+      <ProgramFilters
+        q={q}
+        fieldFilter={fieldFilter}
+        degreeFilter={degreeFilter}
+        fields={fields.map((f) => f.field)}
+        degreeLevels={degreeLevels.map((d) => d.degreeLevel)}
+      />
 
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {programs.map((program) => (

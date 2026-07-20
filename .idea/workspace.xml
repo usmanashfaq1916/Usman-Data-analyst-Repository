@@ -5,7 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="26c670dd-0235-4bc2-96f3-ac9356c41abe" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/UniConnect/src/components/scholarship-categories.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/UniConnect/src/components/scholarship-categories.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Python class/Numpy introduction.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Python class/Numpy introduction.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UniConnect/next.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/UniConnect/next.config.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UniConnect/src/app/programs/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/UniConnect/src/app/programs/page.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

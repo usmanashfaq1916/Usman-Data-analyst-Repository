@@ -4,6 +4,7 @@ const nextConfig: NextConfig = {
   turbopack: {
     root: __dirname,
   },
+  serverExternalPackages: ["pg", "@prisma/adapter-pg"],
   images: {
     remotePatterns: [
       { protocol: "https", hostname: "res.cloudinary.com" },
