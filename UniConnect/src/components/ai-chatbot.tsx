@@ -64,10 +64,11 @@ export function AiChatbot() {
     <>
       <button
         onClick={() => setOpen(!open)}
-        className="fixed bottom-6 right-6 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-secondary text-white shadow-lg transition-transform hover:scale-105 active:scale-95"
-        aria-label="Toggle AI Chat"
+        className="fixed bottom-6 right-6 z-50 flex h-14 items-center justify-center gap-2 rounded-2xl bg-secondary px-4 text-white shadow-lg transition-transform hover:scale-105 active:scale-95"
+        aria-label="Toggle UniBot"
       >
         {open ? <X className="h-6 w-6" /> : <MessageCircle className="h-6 w-6" />}
+        {!open && <span className="text-sm font-medium">UniBot</span>}
       </button>
 
       {open && (
