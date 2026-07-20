@@ -1,5 +1,3 @@
-const AI_API_URL = process.env.NEXT_PUBLIC_AI_API_URL || "";
-
 interface ChatResponse {
   reply: string;
 }
@@ -8,7 +6,7 @@ export async function sendChatMessage(
   message: string,
   history: { role: string; content: string }[] = []
 ): Promise<string> {
-  const res = await fetch(`${AI_API_URL}/ai/chat`, {
+  const res = await fetch(`/api/ai/chat`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ message, history }),
@@ -25,7 +23,7 @@ export async function predictMerit(data: {
   formula?: string;
   preferredPrograms?: string[];
 }) {
-  const res = await fetch(`${AI_API_URL}/ai/merit/predict`, {
+  const res = await fetch(`/api/ai/merit/predict`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(data),
@@ -44,7 +42,7 @@ export async function recommendUniversities(data: {
   province?: string;
   universityType?: string;
 }) {
-  const res = await fetch(`${AI_API_URL}/ai/recommend/universities`, {
+  const res = await fetch(`/api/ai/recommend/universities`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(data),
@@ -60,7 +58,7 @@ export async function generateSOP(data: {
   studentProfile: string;
   type?: string;
 }) {
-  const res = await fetch(`${AI_API_URL}/ai/sop/generate`, {
+  const res = await fetch(`/api/ai/sop/generate`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(data),
@@ -77,7 +75,7 @@ export async function generateResume(data: {
   experience: string;
   targetRole: string;
 }) {
-  const res = await fetch(`${AI_API_URL}/ai/resume/generate`, {
+  const res = await fetch(`/api/ai/resume/generate`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(data),
@@ -96,7 +94,7 @@ export async function recommendScholarships(data: {
   country?: string;
   budget?: string;
 }) {
-  const res = await fetch(`${AI_API_URL}/ai/scholarships/recommend`, {
+  const res = await fetch(`/api/ai/scholarships/recommend`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(data),
@@ -113,7 +111,7 @@ export async function generateCareerRoadmap(data: {
   experience?: string;
   preferredCity?: string;
 }) {
-  const res = await fetch(`${AI_API_URL}/ai/career/roadmap`, {
+  const res = await fetch(`/api/ai/career/roadmap`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(data),
