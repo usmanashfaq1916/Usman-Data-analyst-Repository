@@ -68,7 +68,7 @@ export function AiChatbot() {
         aria-label="Toggle UniBot"
       >
         {open ? <X className="h-6 w-6" /> : <MessageCircle className="h-6 w-6" />}
-        {!open && <span className="text-sm font-medium">UniBot</span>}
+        <span className="text-sm font-medium">UniBot</span>
       </button>
 
       {open && (
