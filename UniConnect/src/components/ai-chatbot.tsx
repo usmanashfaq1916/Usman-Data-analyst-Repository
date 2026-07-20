@@ -29,7 +29,7 @@ export function AiChatbot() {
     {
       role: "assistant",
       content:
-        "👋 Welcome to **UniConnect AI**! I'm your guide to Pakistani university admissions. I retrieve information from our verified database of Pakistani universities, programs, scholarships, and merit criteria.\n\nAsk me about:\n\n- **Universities & programs** — details, eligibility, fees\n- **Scholarships** — HEC, merit, need-based, international\n- **Merit calculations** — aggregate formulas, cutoff scores\n- **Admission deadlines** — opening/closing dates\n- **Career guidance** — scope, salary, demand\n- **Comparisons** — universities, programs, features\n\nI provide information based on verified data from the UniConnect database. How can I assist you today?",
+        "👋 Welcome to **UniGuide AI**! I'm your admission counselor. To give you personalized recommendations, could you tell me about your academic background?\n\n- What qualification do you have? (FSC Pre Engineering, FSC Pre Medical, ICS, A Levels)\n- What are your marks?\n- Which field interests you? (Computer Science, Engineering, Medical, Business)\n- Which city?\n\nI'll then recommend universities, check admission chances, show fee comparisons, and guide you through the entire process.",
     },
   ]);
   const [input, setInput] = useState("");
@@ -75,7 +75,7 @@ export function AiChatbot() {
         <div className="fixed bottom-24 right-6 z-50 flex h-[520px] w-[380px] flex-col rounded-2xl border border-border bg-white shadow-2xl dark:bg-card dark:text-card-foreground">
           <div className="flex items-center gap-2 border-b border-border px-4 py-3">
             <MessageCircle className="h-5 w-5 text-secondary" />
-            <span className="font-semibold">UniConnect AI</span>
+            <span className="font-semibold">UniGuide AI</span>
           </div>
 
           <div className="flex-1 overflow-y-auto p-3 space-y-3">

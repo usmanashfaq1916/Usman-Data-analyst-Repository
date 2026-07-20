@@ -28,7 +28,7 @@ const SUGGESTIONS = [
 const WELCOME_MESSAGE: Message = {
   role: "assistant",
   content:
-    "Welcome to **UniConnect AI Chat**! 🎓\n\nI'm trained on the complete UniConnect database with **259 Pakistani universities**, their programs, scholarships, and admission details.\n\n**I can help you with:**\n- Finding the right university and program\n- Scholarship opportunities and eligibility\n- Merit calculation and aggregate formulas\n- Admission deadlines and requirements\n- Career guidance and study abroad info\n\nChoose a topic below or type your question!",
+    "Welcome to **UniGuide AI**! 🎓\n\nI'm your admission counselor trained on the complete UniConnect database.\n\n**I can help you with:**\n- Finding the right university and program\n- Scholarship opportunities and eligibility\n- Merit calculation and aggregate formulas\n- Admission deadlines and requirements\n- Career guidance and study abroad info\n\nTo get started, could you share your academic background — your qualification, marks, and preferred field?",
 };
 
 export default function ChatPage() {
@@ -131,7 +131,7 @@ export default function ChatPage() {
   return (
     <div className="mx-auto max-w-4xl px-4 py-8">
       <div className="mb-8 text-center">
-        <h1 className="text-3xl font-bold text-primary">UniConnect AI Chat</h1>
+        <h1 className="text-3xl font-bold text-primary">UniGuide AI</h1>
         <p className="mt-2 text-muted-foreground">
           Ask anything about Pakistani university admissions, scholarships, and programs
         </p>
@@ -192,7 +192,7 @@ export default function ChatPage() {
       <div className="flex h-[600px] flex-col rounded-2xl border border-border bg-white shadow-lg dark:bg-card">
         <div className="flex items-center gap-2 border-b border-border px-6 py-4">
           <Sparkles className="h-5 w-5 text-secondary" />
-          <span className="font-semibold">UniConnect AI Assistant</span>
+          <span className="font-semibold">UniGuide AI</span>
         </div>
 
         <div className="flex-1 overflow-y-auto p-6 space-y-4">
