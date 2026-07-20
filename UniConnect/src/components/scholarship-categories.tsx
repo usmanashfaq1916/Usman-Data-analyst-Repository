@@ -2,6 +2,7 @@
 
 import { useRouter, useSearchParams } from "next/navigation";
 import { Award, Landmark, BookOpen, Heart, Building2, Globe } from "lucide-react";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 const CATEGORIES = [
   { value: "HEC", label: "HEC", icon: Award },
@@ -17,9 +18,9 @@ export function ScholarshipCategories() {
   const searchParams = useSearchParams();
   const active = searchParams.get("type") || "";
 
-  function handleClick(value: string) {
+  function handleValueChange(value: string) {
     const params = new URLSearchParams(searchParams.toString());
-    if (params.get("type") === value) {
+    if (params.get("type") === value || !value) {
       params.delete("type");
     } else {
       params.set("type", value);
@@ -28,27 +29,18 @@ export function ScholarshipCategories() {
   }
 
   return (
-    <div className="flex flex-wrap gap-2" role="tablist" aria-label="Scholarship categories">
-      {CATEGORIES.map((cat) => {
-        const Icon = cat.icon;
-        const isActive = active === cat.value;
-        return (
-          <button
-            key={cat.value}
-            onClick={() => handleClick(cat.value)}
-            role="tab"
-            aria-selected={isActive}
-            className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-medium transition-colors ${
-              isActive
-                ? "bg-secondary text-white shadow-sm"
-                : "bg-card border border-border text-muted-foreground hover:bg-accent hover:text-accent-foreground"
-            }`}
-          >
-            <Icon className="h-3.5 w-3.5" />
-            {cat.label}
-          </button>
-        );
-      })}
-    </div>
+    <Tabs value={active} onValueChange={handleValueChange} className="w-full">
+      <TabsList className="h-auto flex-wrap gap-1 p-1">
+        {CATEGORIES.map((cat) => {
+          const Icon = cat.icon;
+          return (
+            <TabsTrigger key={cat.value} value={cat.value} className="gap-1.5 text-xs data-[state=active]:shadow-sm">
+              <Icon className="h-3.5 w-3.5" />
+              {cat.label}
+            </TabsTrigger>
+          );
+        })}
+      </TabsList>
+    </Tabs>
   );
 }
