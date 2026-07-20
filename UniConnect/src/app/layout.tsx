@@ -10,9 +10,29 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "UniConnect — One Portal. Every Pakistani University.",
+  title: {
+    default: "UniConnect Pakistan — Largest University Admission Platform",
+    template: "%s — UniConnect Pakistan",
+  },
   description:
-    "Search universities and programs, calculate admission merit, and track deadlines — all in one place.",
+    "Search hundreds of Pakistani universities, compare degree programs, calculate merit, discover scholarships, and get AI-powered admission guidance — all in one place.",
+  keywords: ["Pakistani universities", "admission", "merit calculator", "scholarships Pakistan", "degree programs", "university comparison", "NUST", "LUMS", "UET", "HEC"],
+  openGraph: {
+    type: "website",
+    locale: "en_PK",
+    siteName: "UniConnect Pakistan",
+    title: "UniConnect Pakistan — Largest University Admission Platform",
+    description: "Search hundreds of universities, compare programs, calculate merit, discover scholarships.",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "UniConnect Pakistan",
+    description: "Pakistan's largest university admission platform.",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function RootLayout({

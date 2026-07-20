@@ -5,6 +5,7 @@ import { prisma } from "@/lib/db";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { AdmissionTimeline } from "@/components/admission-timeline";
 
 export const dynamic = "force-dynamic";
 
@@ -126,9 +127,14 @@ export default async function UniversityDetailPage({ params }: PageProps) {
 
         <Card>
           <CardHeader>
-            <h2 className="text-lg font-semibold text-primary">
-              Admission Deadlines
-            </h2>
+            <div className="flex items-center justify-between">
+              <h2 className="text-lg font-semibold text-primary">
+                Admission Deadlines
+              </h2>
+              <Link href="/admission-alerts" className="text-xs text-secondary hover:underline">
+                View all
+              </Link>
+            </div>
           </CardHeader>
           <CardContent>
             {university.admissions.length === 0 ? (
@@ -136,67 +142,44 @@ export default async function UniversityDetailPage({ params }: PageProps) {
                 No admission dates announced yet.
               </p>
             ) : (
-              <div className="divide-y divide-border">
+              <div className="space-y-6">
                 {university.admissions.map((admission) => {
                   const daysLeft = Math.ceil(
                     (admission.closeDate.getTime() - now.getTime()) /
                       (1000 * 60 * 60 * 24),
                   );
-
                   return (
-                    <div
-                      key={admission.id}
-                      className="flex items-center justify-between py-3"
-                    >
-                      <div className="space-y-1">
-                        <div className="flex items-center gap-2">
-                          <Badge
-                            variant={
-                              (
-                                {
-                                  OPEN: "success",
-                                  CLOSING_SOON: "warning",
-                                  UPCOMING: "secondary",
-                                  CLOSED: "destructive",
-                                } as Record<string, "success" | "warning" | "secondary" | "destructive">
-                              )[admission.status]
-                            }
-                          >
-                            {admission.status === "CLOSING_SOON"
-                              ? "Closing Soon"
-                              : admission.status === "OPEN"
-                                ? "Open"
-                                : admission.status === "UPCOMING"
-                                  ? "Upcoming"
-                                  : "Closed"}
-                          </Badge>
-                        </div>
-                        <div className="flex items-center gap-3 text-xs text-muted-foreground">
-                          <span className="flex items-center gap-1">
-                            <Calendar className="h-3 w-3" />
-                            Opens:{" "}
-                            {admission.openDate.toLocaleDateString("en-PK", {
-                              day: "numeric",
-                              month: "short",
-                              year: "numeric",
-                            })}
+                    <div key={admission.id} className="space-y-3">
+                      <div className="flex items-center justify-between">
+                        <Badge
+                          variant={
+                            ({
+                              OPEN: "success",
+                              CLOSING_SOON: "warning",
+                              UPCOMING: "secondary",
+                              CLOSED: "destructive",
+                            } as Record<string, "success" | "warning" | "secondary" | "destructive">)[admission.status]
+                          }
+                        >
+                          {admission.status === "CLOSING_SOON"
+                            ? "Closing Soon"
+                            : admission.status === "OPEN"
+                              ? "Open"
+                              : admission.status === "UPCOMING"
+                                ? "Upcoming"
+                                : "Closed"}
+                        </Badge>
+                        {admission.status !== "CLOSED" && daysLeft > 0 && (
+                          <span className="text-sm font-semibold text-warning">
+                            {daysLeft}d left
                           </span>
-                          <span className="flex items-center gap-1">
-                            <Calendar className="h-3 w-3" />
-                            Closes:{" "}
-                            {admission.closeDate.toLocaleDateString("en-PK", {
-                              day: "numeric",
-                              month: "short",
-                              year: "numeric",
-                            })}
-                          </span>
-                        </div>
+                        )}
                       </div>
-                      {admission.status !== "CLOSED" && daysLeft > 0 && (
-                        <span className="whitespace-nowrap text-sm font-semibold text-warning">
-                          {daysLeft}d left
-                        </span>
-                      )}
+                      <AdmissionTimeline
+                        openDate={admission.openDate}
+                        closeDate={admission.closeDate}
+                        status={admission.status}
+                      />
                     </div>
                   );
                 })}

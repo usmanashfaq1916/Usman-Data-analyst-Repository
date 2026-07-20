@@ -21,6 +21,10 @@ const ROLE_ROUTE_MAP: Record<string, string[]> = {
   "/hmis/parent": ["SUPER_ADMIN", "PARENT"],
 };
 
+const rateLimitMap = new Map<string, { count: number; resetTime: number }>();
+const RATE_LIMIT = 60;
+const RATE_WINDOW_MS = 60 * 1000;
+
 export default auth(function middleware(req: NextRequest & { auth: any }) {
   const { pathname } = req.nextUrl;
   const isLoggedIn = !!req.auth?.user;
@@ -59,14 +63,57 @@ export default auth(function middleware(req: NextRequest & { auth: any }) {
     return NextResponse.redirect(new URL("/", req.url));
   }
 
-  if (isApiRoute && !isLoggedIn) {
-    return new NextResponse(JSON.stringify({ error: "Unauthorized" }), {
-      status: 401,
-      headers: { "Content-Type": "application/json" },
-    });
+  if (isApiRoute) {
+    if (["POST", "PUT", "PATCH", "DELETE"].includes(req.method)) {
+      const origin = req.headers.get("origin");
+      const host = req.headers.get("host");
+      if (origin && host && !origin.includes(host) && !origin.includes("localhost") && !origin.includes("vercel.app") && !origin.includes("uniconnect")) {
+        return new NextResponse(JSON.stringify({ error: "CSRF validation failed" }), {
+          status: 403,
+          headers: { "Content-Type": "application/json" },
+        });
+      }
+    }
+
+    const ip = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || req.headers.get("x-real-ip") || "unknown";
+    const now = Date.now();
+    const entry = rateLimitMap.get(ip);
+
+    if (entry) {
+      if (now > entry.resetTime) {
+        rateLimitMap.set(ip, { count: 1, resetTime: now + RATE_WINDOW_MS });
+      } else if (entry.count >= RATE_LIMIT) {
+        return new NextResponse(JSON.stringify({ error: "Too many requests. Please try again later." }), {
+          status: 429,
+          headers: { "Content-Type": "application/json", "Retry-After": String(Math.ceil((entry.resetTime - now) / 1000)) },
+        });
+      } else {
+        entry.count++;
+      }
+    } else {
+      rateLimitMap.set(ip, { count: 1, resetTime: now + RATE_WINDOW_MS });
+    }
+
+    if (rateLimitMap.size > 10000) {
+      const cutoff = now - RATE_WINDOW_MS;
+      for (const [key, val] of rateLimitMap) {
+        if (val.resetTime < cutoff) rateLimitMap.delete(key);
+      }
+    }
+
+    if (!isLoggedIn) {
+      return new NextResponse(JSON.stringify({ error: "Unauthorized" }), {
+        status: 401,
+        headers: { "Content-Type": "application/json" },
+      });
+    }
   }
 
-  return NextResponse.next();
+  const response = NextResponse.next();
+  response.headers.set("X-Content-Type-Options", "nosniff");
+  response.headers.set("X-Frame-Options", "DENY");
+  response.headers.set("X-XSS-Protection", "1; mode=block");
+  return response;
 });
 
 export const config = {

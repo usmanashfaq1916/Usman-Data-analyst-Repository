@@ -9,9 +9,11 @@ export interface UniversityWithMeta {
   admissionUrl: string | null;
   logoUrl: string | null;
   ranking: number | null;
+  isHecRecognized?: boolean | null;
   programCount?: number;
   hostels?: { isActive: boolean }[];
   scholarships?: { isActive: boolean }[];
+  admissions?: { status: string }[];
 }
 
 export interface ProgramWithUniversity {

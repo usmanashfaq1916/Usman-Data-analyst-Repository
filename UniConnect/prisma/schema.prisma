@@ -183,9 +183,10 @@ model User {
   answers           Answer[]
   studyGroupMemberships StudyGroupMember[]
   createdStudyGroups StudyGroup[]
-  mentorProfile     MentorProfile?
+   mentorProfile     MentorProfile?
+   auditLogs         AuditLog[]
 
-  @@index([email])
+   @@index([email])
   @@index([role])
   @@index([instituteId])
 }
@@ -247,6 +248,7 @@ model University {
   email         String?
   isFeatured    Boolean        @default(false)
   isActive      Boolean        @default(true)
+  isHecRecognized Boolean      @default(true)
   createdAt     DateTime       @default(now())
   updatedAt     DateTime       @updatedAt
 
@@ -257,11 +259,12 @@ model University {
   scholarships Scholarship[]
   hostels      Hostel[]
   entryTests   EntryTest[]
-  meritLists   MeritList[]
-  reviews      Review[]
-  applications  Application[]
-   savedUniversities SavedUniversity[]
-   studyGroups       StudyGroup[]
+   meritLists   MeritList[]
+   meritFormulas MeritFormula[]
+   reviews      Review[]
+   applications  Application[]
+    savedUniversities SavedUniversity[]
+    studyGroups       StudyGroup[]
 
   @@index([name])
   @@index([slug])
@@ -316,14 +319,21 @@ model Program {
   semesterFee   Float?
   totalSeats    Int?
   isAvailable   Boolean     @default(true)
+  curriculum    String?
+  careerScope   String?
+  expectedSalary String?
+  skills        String?
+  futureDemand  String?
+  creditHours   Int?
   createdAt     DateTime    @default(now())
   updatedAt     DateTime    @updatedAt
 
   university   University    @relation(fields: [universityId], references: [id], onDelete: Cascade)
   department   Department?   @relation(fields: [departmentId], references: [id])
-  admissions   Admission[]
-  applications Application[]
-  meritLists   MeritList[]
+   admissions   Admission[]
+   applications Application[]
+   meritLists   MeritList[]
+   meritFormulas MeritFormula[]
 
   @@index([universityId])
   @@index([departmentId])
@@ -370,6 +380,8 @@ model Scholarship {
   degreeLevel   String?
   isMeritBased  Boolean  @default(false)
   isNeedBased   Boolean  @default(false)
+  gender        String?
+  minCgpa       Float?
   officialUrl   String?
   isActive      Boolean  @default(true)
   createdAt     DateTime @default(now())
@@ -547,6 +559,45 @@ model Blog {
   @@index([authorId])
   @@index([category])
   @@index([isPublished])
+}
+
+model MeritFormula {
+  id            String   @id @default(cuid())
+  universityId  String
+  programId     String?
+  name          String
+  matricWeight  Float    @default(0.25)
+  interWeight   Float    @default(0.45)
+  entryTestWeight Float  @default(0.30)
+  description   String?
+  isActive      Boolean  @default(true)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  university University @relation(fields: [universityId], references: [id], onDelete: Cascade)
+  program    Program?   @relation(fields: [programId], references: [id])
+
+  @@index([universityId])
+  @@index([programId])
+  @@index([isActive])
+}
+
+model AuditLog {
+  id        String   @id @default(cuid())
+  userId    String
+  action    String
+  entity    String
+  entityId  String?
+  metadata  String?
+  ipAddress String?
+  createdAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([action])
+  @@index([entity])
+  @@index([createdAt])
 }
 
 model FAQ {

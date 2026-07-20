@@ -17,6 +17,10 @@ const QUICK_ACTIONS = [
   "What scholarships are available?",
   "How to calculate merit for UET?",
   "When do admissions open?",
+  "Best universities for Computer Science in Pakistan",
+  "What documents are needed for university admission?",
+  "Compare LUMS and NUST",
+  "HEC scholarship programs 2026",
 ];
 
 export function AiChatbot() {
@@ -25,7 +29,7 @@ export function AiChatbot() {
     {
       role: "assistant",
       content:
-        "👋 Welcome to **UniConnect AI**! I'm your guide to Pakistani university admissions. Ask me about:\n\n- Universities & programs\n- Scholarships & fees\n- Merit calculations\n- Admission deadlines\n- Career guidance\n\nHow can I help you today?",
+        "👋 Welcome to **UniConnect AI**! I'm your guide to Pakistani university admissions. I retrieve information from our verified database of Pakistani universities, programs, scholarships, and merit criteria.\n\nAsk me about:\n\n- **Universities & programs** — details, eligibility, fees\n- **Scholarships** — HEC, merit, need-based, international\n- **Merit calculations** — aggregate formulas, cutoff scores\n- **Admission deadlines** — opening/closing dates\n- **Career guidance** — scope, salary, demand\n- **Comparisons** — universities, programs, features\n\nI provide information based on verified data from the UniConnect database. How can I assist you today?",
     },
   ]);
   const [input, setInput] = useState("");

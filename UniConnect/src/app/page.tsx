@@ -17,7 +17,10 @@ export default async function HomePage() {
     prisma.university.findMany({
       take: 6,
       orderBy: { name: "asc" },
-      include: { _count: { select: { programs: true } } },
+      include: {
+        _count: { select: { programs: true } },
+        admissions: { where: { status: { in: ["OPEN", "CLOSING_SOON", "UPCOMING"] } }, select: { status: true } },
+      },
     }),
     prisma.admission.findMany({
       where: { status: { in: ["OPEN", "CLOSING_SOON"] } },

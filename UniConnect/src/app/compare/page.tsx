@@ -1,12 +1,13 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { prisma } from "@/lib/db";
+import { useState, useEffect, lazy, Suspense } from "react";
 import { CompareSelector } from "@/components/compare-selector";
-import { CompareTable } from "@/components/compare-table";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
+import { LoadingSpinner } from "@/components/shared/empty-state";
+
+const CompareTable = lazy(() => import("@/components/compare-table").then(m => ({ default: m.CompareTable })));
 
 interface University {
   id: string;
@@ -76,7 +77,9 @@ export default function ComparePage() {
           <div className="h-8 w-8 animate-spin rounded-full border-4 border-muted border-t-secondary" />
         </div>
       ) : (
-        <CompareTable universities={universities} />
+        <Suspense fallback={<LoadingSpinner />}>
+          <CompareTable universities={universities} />
+        </Suspense>
       )}
     </div>
   );

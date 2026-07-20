@@ -2,17 +2,5 @@
   "framework": "nextjs",
   "buildCommand": "npx prisma generate && next build",
   "outputDirectory": ".next",
-  "installCommand": "npm install",
-  "functions": {
-    "api/index.py": {
-      "maxDuration": 300,
-      "excludeFiles": "backend/**"
-    }
-  },
-  "rewrites": [
-    {
-      "source": "/ai/:path*",
-      "destination": "/api/index.py"
-    }
-  ]
+  "installCommand": "npm install"
 }

@@ -1,10 +1,11 @@
 import { prisma } from "@/lib/db";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Calendar, MapPin, GraduationCap } from "lucide-react";
+import { Calendar, MapPin, GraduationCap, Users } from "lucide-react";
 import Link from "next/link";
 import { EmptyState } from "@/components/shared/empty-state";
 import { ScholarshipFilterBar } from "@/components/scholarship-filter-bar";
+import { ScholarshipCategories } from "@/components/scholarship-categories";
 
 export const dynamic = "force-dynamic";
 
@@ -14,6 +15,9 @@ interface PageProps {
     type?: string;
     degree?: string;
     country?: string;
+    gender?: string;
+    minCgpa?: string;
+    province?: string;
   }>;
 }
 
@@ -21,9 +25,12 @@ export default async function ScholarshipsPage({ searchParams }: PageProps) {
   const params = await searchParams;
   const where: Record<string, unknown> = { isActive: true };
 
-  if (params.type) where.type = params.type;
+  if (params.type) where.type = { contains: params.type, mode: "insensitive" };
   if (params.country) where.country = params.country;
   if (params.degree) where.degreeLevel = params.degree;
+  if (params.gender) where.gender = params.gender;
+  if (params.minCgpa) where.minCgpa = { lte: parseFloat(params.minCgpa) };
+  if (params.province) where.university = { province: params.province };
   if (params.q) {
     where.OR = [
       { name: { contains: params.q, mode: "insensitive" } },
@@ -37,26 +44,32 @@ export default async function ScholarshipsPage({ searchParams }: PageProps) {
     include: { university: { select: { name: true, slug: true, city: true, province: true } } },
   });
 
-  const types = await prisma.scholarship.findMany({
-    where: { isActive: true },
-    select: { type: true },
-    distinct: ["type"],
-    orderBy: { type: "asc" },
-  });
-
-  const countries = await prisma.scholarship.findMany({
-    where: { isActive: true },
-    select: { country: true },
-    distinct: ["country"],
-    orderBy: { country: "asc" },
-  });
-
-  const degrees = await prisma.scholarship.findMany({
-    where: { isActive: true },
-    select: { degreeLevel: true },
-    distinct: ["degreeLevel"],
-    orderBy: { degreeLevel: "asc" },
-  });
+  const [types, countries, degrees, provinces] = await Promise.all([
+    prisma.scholarship.findMany({
+      where: { isActive: true },
+      select: { type: true },
+      distinct: ["type"],
+      orderBy: { type: "asc" },
+    }),
+    prisma.scholarship.findMany({
+      where: { isActive: true },
+      select: { country: true },
+      distinct: ["country"],
+      orderBy: { country: "asc" },
+    }),
+    prisma.scholarship.findMany({
+      where: { isActive: true },
+      select: { degreeLevel: true },
+      distinct: ["degreeLevel"],
+      orderBy: { degreeLevel: "asc" },
+    }),
+    prisma.university.findMany({
+      where: { scholarships: { some: { isActive: true } } },
+      select: { province: true },
+      distinct: ["province"],
+      orderBy: { province: "asc" },
+    }),
+  ]);
 
   return (
     <div className="space-y-6">
@@ -67,14 +80,20 @@ export default async function ScholarshipsPage({ searchParams }: PageProps) {
         </p>
       </div>
 
+      <ScholarshipCategories />
+
       <ScholarshipFilterBar
         types={types.map((t) => t.type)}
         degrees={degrees.filter((d) => d.degreeLevel).map((d) => d.degreeLevel!)}
         countries={countries.filter((c) => c.country).map((c) => c.country!)}
+        provinces={provinces.map((p) => p.province)}
         currentQuery={params.q || ""}
         currentType={params.type || ""}
         currentDegree={params.degree || ""}
         currentCountry={params.country || ""}
+        currentGender={params.gender || ""}
+        currentMinCgpa={params.minCgpa || ""}
+        currentProvince={params.province || ""}
       />
 
       {scholarships.length === 0 ? (
@@ -111,6 +130,8 @@ export default async function ScholarshipsPage({ searchParams }: PageProps) {
                     {s.isMeritBased && <Badge variant="secondary" className="text-xs">Merit-Based</Badge>}
                     {s.isNeedBased && <Badge variant="secondary" className="text-xs">Need-Based</Badge>}
                     {s.degreeLevel && <Badge variant="outline" className="text-xs">{s.degreeLevel}</Badge>}
+                    {s.gender && <Badge variant="outline" className="text-xs"><Users className="mr-0.5 h-3 w-3" />{s.gender}</Badge>}
+                    {s.minCgpa && <Badge variant="outline" className="text-xs">CGPA {s.minCgpa}+</Badge>}
                   </div>
                   {s.deadline && (
                     <div className="flex items-center gap-1 text-xs text-muted-foreground">
