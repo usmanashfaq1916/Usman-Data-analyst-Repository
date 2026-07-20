@@ -7,7 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Loader2 } from "lucide-react";
+import { SkeletonCard } from "@/components/shared/skeleton-card";
 
 const CATEGORIES = ["ADMISSIONS", "SCHOLARSHIPS", "CAREER", "TECHNOLOGY", "STUDY_TIPS", "AI", "GENERAL"];
 
@@ -63,7 +63,7 @@ export default function EditBlogPage() {
     }
   };
 
-  if (loading) return <div className="flex justify-center py-12"><Loader2 className="h-8 w-8 animate-spin text-primary" /></div>;
+  if (loading) return <div className="p-8"><SkeletonCard /></div>;
 
   return (
     <div className="mx-auto max-w-2xl space-y-6">

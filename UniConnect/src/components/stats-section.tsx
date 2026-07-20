@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { University, BookOpen, Award, Users, ClipboardCheck, Bot } from "lucide-react";
 
@@ -11,28 +11,31 @@ interface StatProps {
   admissionAlerts?: number;
 }
 
-function AnimatedNumber({ target, duration = 2000 }: { target: number; duration?: number }) {
-  const [count, setCount] = useState(0);
+function StatValue({ target, label }: { target: number; label: string }) {
   const ref = useRef<HTMLSpanElement>(null);
   const inView = useInView(ref, { once: true });
+  const started = useRef(false);
 
   useEffect(() => {
-    if (!inView) return;
-    let start = 0;
-    const increment = target / (duration / 16);
+    if (!inView || started.current || target === 0) return;
+    started.current = true;
+    const el = ref.current;
+    if (!el) return;
+    let current = 0;
+    const increment = target / (2000 / 16);
     const timer = setInterval(() => {
-      start += increment;
-      if (start >= target) {
-        setCount(target);
+      current += increment;
+      if (current >= target) {
+        el.textContent = target.toLocaleString();
         clearInterval(timer);
       } else {
-        setCount(Math.floor(start));
+        el.textContent = Math.floor(current).toLocaleString();
       }
     }, 16);
     return () => clearInterval(timer);
-  }, [target, duration, inView]);
+  }, [target, inView]);
 
-  return <span ref={ref}>{count.toLocaleString()}</span>;
+  return <span ref={ref}>{target.toLocaleString()}</span>;
 }
 
 export function StatsSection({ universities, programs, scholarships, admissionAlerts = 100 }: StatProps) {
@@ -49,6 +52,7 @@ export function StatsSection({ universities, programs, scholarships, admissionAl
     <section className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
       {stats.map((stat, i) => {
         const Icon = stat.icon;
+        const showFallback = stat.value === 0 && stat.label !== "24/7 AI Assistant" && stat.label !== "Students Assisted";
         return (
           <motion.div
             key={stat.label}
@@ -61,8 +65,10 @@ export function StatsSection({ universities, programs, scholarships, admissionAl
             <p className="mt-2 text-2xl font-bold text-foreground">
               {stat.noPlus ? (
                 <span>Available</span>
+              ) : showFallback ? (
+                <span className="text-muted-foreground">—</span>
               ) : (
-                <><AnimatedNumber target={stat.value} />+</>
+                <><StatValue target={stat.value} label={stat.label} />+</>
               )}
             </p>
             <p className="mt-1 text-xs text-muted-foreground">{stat.label}</p>

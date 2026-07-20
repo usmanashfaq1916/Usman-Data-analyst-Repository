@@ -9,6 +9,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { formatDate } from "@/lib/utils";
 import { useSession } from "next-auth/react";
+import { SkeletonCard } from "@/components/shared/skeleton-card";
 
 interface Question {
   id: string;
@@ -83,8 +84,10 @@ export default function CommunityPage() {
       </form>
 
       {loading ? (
-        <div className="flex justify-center py-12">
-          <Loader2 className="h-8 w-8 animate-spin text-primary" />
+        <div className="space-y-4">
+          {Array.from({ length: 5 }).map((_, i) => (
+            <SkeletonCard key={i} />
+          ))}
         </div>
       ) : questions.length === 0 ? (
         <div className="flex flex-col items-center py-12 text-center">

@@ -4,12 +4,15 @@ import { Badge } from "@/components/ui/badge";
 import { Calendar, ArrowRight } from "lucide-react";
 
 export async function ScholarshipHighlight() {
-  const scholarships = await prisma.scholarship.findMany({
+  const now = new Date();
+  const scholarships = (await prisma.scholarship.findMany({
     where: { isActive: true },
-    take: 3,
+    take: 10,
     include: { university: true },
     orderBy: { createdAt: "desc" },
-  });
+  }))
+    .filter((s) => !s.deadline || s.deadline > now)
+    .slice(0, 3);
 
   if (scholarships.length === 0) return null;
 

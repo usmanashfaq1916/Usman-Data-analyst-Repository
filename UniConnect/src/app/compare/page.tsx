@@ -5,7 +5,7 @@ import { CompareSelector } from "@/components/compare-selector";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
-import { LoadingSpinner } from "@/components/shared/empty-state";
+import { SkeletonTable } from "@/components/shared/skeleton-card";
 
 const CompareTable = lazy(() => import("@/components/compare-table").then(m => ({ default: m.CompareTable })));
 
@@ -73,11 +73,9 @@ export default function ComparePage() {
       )}
 
       {loading ? (
-        <div className="flex justify-center py-12">
-          <div className="h-8 w-8 animate-spin rounded-full border-4 border-muted border-t-secondary" />
-        </div>
+        <SkeletonTable />
       ) : (
-        <Suspense fallback={<LoadingSpinner />}>
+        <Suspense fallback={<SkeletonTable />}>
           <CompareTable universities={universities} />
         </Suspense>
       )}

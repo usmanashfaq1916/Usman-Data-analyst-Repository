@@ -57,8 +57,9 @@ export function Footer() {
           ))}
         </div>
 
-        <div className="mt-8 border-t border-border pt-6 text-center text-sm text-muted-foreground">
-          &copy; {new Date().getFullYear()} UniConnect. All rights reserved.
+        <div className="mt-8 border-t border-border pt-6 text-center text-sm text-muted-foreground space-y-1">
+          <p>Data verified against HEC recognized institutions list as of July 2026.</p>
+          <p>&copy; {new Date().getFullYear()} UniConnect. All rights reserved.</p>
         </div>
       </div>
     </footer>

@@ -11,6 +11,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { formatDate, getInitials } from "@/lib/utils";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
+import { SkeletonCard } from "@/components/shared/skeleton-card";
 
 interface Answer {
   id: string;
@@ -81,8 +82,14 @@ export default function QuestionDetailPage() {
 
   if (loading) {
     return (
-      <div className="flex justify-center py-12">
-        <Loader2 className="h-8 w-8 animate-spin text-primary" />
+      <div className="mx-auto max-w-3xl px-4 py-8 space-y-4">
+        <div className="h-4 w-24 rounded bg-muted animate-pulse" />
+        <div className="h-8 w-3/4 rounded bg-muted animate-pulse" />
+        <div className="h-4 w-1/2 rounded bg-muted animate-pulse" />
+        <div className="space-y-2 mt-6">
+          <SkeletonCard />
+          <SkeletonCard />
+        </div>
       </div>
     );
   }
