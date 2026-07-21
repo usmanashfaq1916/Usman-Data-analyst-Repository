@@ -1,0 +1,5 @@
+AccountNumber,FName,LName,Password,Address,Class,City,Balance
+1001,Ali,Khan,1234,Model Town,BSCS,Lahore,5000.0
+1002,Ahmed,Ali,5678,DHA,BBA,Karachi,8000.0
+1003,Sara,Noor,9999,Gulberg,BSIT,Islamabad,12000.0
+Ahmad,Muhammad Ahmad,Humayoun,Ahmad@123,Lahore,CS,Lahore,7000.0
