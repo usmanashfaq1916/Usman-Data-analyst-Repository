@@ -1,0 +1,10 @@
+{
+    "username": "ahmad",
+    "email": "ahmad@example.com",
+    "active": true,
+    "scores": [
+        85,
+        92,
+        78
+    ]
+}
