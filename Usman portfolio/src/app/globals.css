@@ -22,6 +22,15 @@ body {
   font-family: var(--font-sans);
 }
 
+@media (min-width: 768px) {
+  body {
+    cursor: none;
+  }
+  a, button, input, textarea, [role="button"] {
+    cursor: none;
+  }
+}
+
 /* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 8px;

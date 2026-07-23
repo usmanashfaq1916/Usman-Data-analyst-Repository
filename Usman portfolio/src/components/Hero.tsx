@@ -4,6 +4,7 @@ import { motion } from 'framer-motion'
 import { ArrowDown, Download, Send } from 'lucide-react'
 import Image from 'next/image'
 import { GitHubIcon, LinkedInIcon, EmailIcon, WhatsAppIcon } from './OfficialIcons'
+import TypingEffect from './TypingEffect'
 
 const socials = [
   { icon: GitHubIcon, href: 'https://github.com/usmanashfaq1916' },
@@ -97,11 +98,19 @@ export default function Hero() {
               Transforming Raw Data Into{' '}
               <span className="text-primary">Actionable Business Insights.</span>
             </motion.h1>
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.15 }}
+              className="mt-4 text-base md:text-lg text-muted min-h-[1.8em]"
+            >
+              <TypingEffect />
+            </motion.div>
             <motion.p
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="mt-4 text-lg md:text-xl text-muted leading-relaxed max-w-2xl"
+              className="mt-2 text-lg md:text-xl text-muted leading-relaxed max-w-2xl"
             >
               Messy spreadsheets cost teams time and bad decisions. I fix that. I help small businesses
               and startups turn scattered data into dashboards and reports they actually use — using

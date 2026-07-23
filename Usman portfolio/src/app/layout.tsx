@@ -2,6 +2,10 @@ import type { Metadata } from "next";
 import { Inter, Poppins } from "next/font/google";
 import "./globals.css";
 import ChatBot from "@/components/ChatBot";
+import Cursor from "@/components/Cursor";
+import ParticleBackground from "@/components/ParticleBackground";
+import ScrollProgress from "@/components/ScrollProgress";
+import NavDots from "@/components/NavDots";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -95,7 +99,11 @@ export default function RootLayout({
         />
       </head>
       <body className="bg-surface text-text font-sans antialiased">
+        <ScrollProgress />
+        <ParticleBackground />
         {children}
+        <Cursor />
+        <NavDots />
         <ChatBot />
       </body>
     </html>
