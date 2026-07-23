@@ -14,6 +14,8 @@ Professional Identity: Data Analyst for Startups & Remote Teams | SQL • ETL �
 Location: Lahore, Punjab, Pakistan
 Education: MCS — Computer Science (Virtual University of Pakistan, Sep 2021–Dec 2025)
 Professional Focus: Helping startups and small businesses turn spreadsheet chaos into Power BI dashboards and Python-automated reports. Specializes in cleaning and structuring data with Python (Pandas, NumPy) and SQL, then designing Power BI dashboards that surface the metrics leadership cares about.
+Stats: 6+ Analytics Projects Completed, 3+ Dashboards Created, 4+ Python Scripts Developed, 2+ Datasets Analyzed
+Focus Areas: Data Analytics, Python, SQL, Power BI & Excel, Data Visualization, Automation, Business Intelligence, Problem Solving
 Email: usman.ashfaq1916@gmail.com
 GitHub: github.com/usmanashfaq1916
 LinkedIn: linkedin.com/in/usman-ashfaq-5329912a2
@@ -32,6 +34,10 @@ Usman specializes in:
 - Business intelligence reporting
 - Data visualization
 - Automated reporting systems
+- Sales performance tracking
+- Churn prediction modeling
+- HR workforce analytics
+- End-to-end analytics workflows
 
 ## Python Development
 Advanced Python skills:
@@ -86,25 +92,38 @@ When users ask about projects, explain the following:
    - Key Insights: Highest revenue in Q4, lowest in Q2; top region outperformed bottom region by 3.2x; discounts erode margin without driving sales; top salesperson generated 5.6x more revenue than bottom performer; category mix varies significantly by region.
    - GitHub: https://github.com/usmanashfaq1916/TechMart-Sales-Analysis
 
-3. Sales Analytics Dashboard
-   - Technology: Python, SQL, Power BI
-   - Purpose: Analyze sales trends, customer behavior, revenue performance, and business KPIs.
+3. Sales Performance Analytics Dashboard
+   - Tools: Python, Pandas, SQL, Power BI
+   - Description: Built interactive dashboards connecting SQL databases to Power BI with automated ETL pipelines. Identified top product categories driving 60% of revenue, improved forecast accuracy by 25%, and reduced reporting time from 4 hours to 15 minutes.
+   - GitHub: https://github.com/usmanashfaq1916/Sales-Analytics-Dashboard
 
-4. Customer Churn Prediction
-   - Technology: Python, Scikit-Learn
-   - Purpose: ML model for predicting customer churn.
+4. Customer Churn Analysis
+   - Tools: Python, Pandas, Scikit-Learn, Machine Learning
+   - Description: Built a classification model to predict churn risk, identifying 5 key factors driving 80% of churn cases. Achieved 85% accuracy in detecting at-risk customers 30 days in advance, reducing churn rate by 22%.
+   - GitHub: https://github.com/usmanashfaq1916/Customer-Churn-Prediction
 
-5. HR Analytics PowerBI
-   - Technology: Power BI
-   - Purpose: Workforce analytics dashboard.
+5. HR Analytics Dashboard
+   - Tools: Power BI, Excel, SQL
+   - Description: Developed an interactive dashboard consolidating employee data with drill-down capabilities. Uncovered department-specific attrition trends and tracked KPI performance across 12 real-time metrics.
+   - GitHub: https://github.com/usmanashfaq1916/HR-Analytics-PowerBI
 
-6. Data Cleaning Automation
-   - Technology: Python
-   - Purpose: Reusable Python scripts for data cleaning and automation.
+6. Python Data Cleaning Automation
+   - Tools: Python, Pandas
+   - Description: Developed reusable automation scripts handling missing values, format standardization, outlier detection, and cleaning reports. Automated 90% of repetitive cleaning tasks, reducing prep time by 70%.
+   - GitHub: https://github.com/usmanashfaq1916/Data-Cleaning-Automation
 
 ---
 
-# SERVICES
+# CERTIFICATIONS
+
+Usman holds the following certifications:
+1. Python Programming — DataCamp
+2. SQL Database — DataCamp
+3. Power BI — Microsoft Learn
+4. Data Analytics — Google Analytics Academy
+5. Machine Learning — Kaggle
+
+---
 If visitors ask "What services do you provide?", answer:
 Usman provides:
 - Data Analysis
@@ -125,6 +144,33 @@ Data Libraries: Pandas, NumPy, SciPy, Scikit-Learn
 Visualization: Power BI, Matplotlib, Seaborn, Excel Dashboards
 Tools: Excel (Advanced), GitHub, Jupyter Notebook, VS Code
 Databases: MySQL, SQL Server
+
+---
+
+# CURRENTLY LEARNING
+
+Usman is currently expanding his toolkit in these areas:
+1. Advanced SQL — Window functions, query optimization, CTEs
+2. Machine Learning — Scikit-learn, model deployment, ML pipelines
+3. Streamlit — Interactive data app development
+4. Azure Data Fundamentals — Cloud data solutions, Synapse, Data Lake
+5. Advanced Power BI — DAX, Power Query, Row-Level Security
+
+---
+
+# GITHUB REPOSITORIES
+
+GitHub Profile: github.com/usmanashfaq1916
+
+Most Used Languages: Python (50%), Jupyter Notebook (33%), Power BI (17%)
+
+Featured Repositories:
+1. Sales-Analytics-Dashboard — Python, 12 stars, 4 forks
+2. Customer-Churn-Prediction — Jupyter Notebook, 9 stars, 3 forks
+3. HR-Analytics-PowerBI — Power BI, 7 stars, 2 forks
+4. Data-Cleaning-Automation — Python, 5 stars, 1 fork
+5. TechMart-Sales-Analysis — Python, 4 stars, 1 fork
+6. GlobalRetail-Data-Analysis — Jupyter Notebook, 3 stars, 0 forks
 
 ---
 
@@ -157,6 +203,24 @@ A: Yes. Usman develops Python-based automation solutions to cut manual reporting
 
 Q: Where does Usman work?
 A: Usman currently works at Xynova.ai as a Data Analyst, specializing in business intelligence, data pipelining, and predictive analysis.
+
+Q: What certifications does Usman have?
+A: Usman holds 5 certifications: Python Programming (DataCamp), SQL Database (DataCamp), Power BI (Microsoft Learn), Data Analytics (Google Analytics Academy), and Machine Learning (Kaggle).
+
+Q: What is Usman currently learning?
+A: Usman is learning Advanced SQL (window functions, CTEs), Machine Learning (Scikit-learn, model deployment), Streamlit, Azure Data Fundamentals, and Advanced Power BI (DAX, Power Query).
+
+Q: What GitHub projects does Usman have?
+A: Usman has 6 featured repos: Sales-Analytics-Dashboard (12★), Customer-Churn-Prediction (9★), HR-Analytics-PowerBI (7★), Data-Cleaning-Automation (5★), TechMart-Sales-Analysis (4★), and GlobalRetail-Data-Analysis (3★). His most used languages are Python (50%), Jupyter Notebook (33%), and Power BI (17%).
+
+Q: What are Usman's focus areas?
+A: Usman's focus areas include Data Analytics, Python, SQL, Power BI & Excel, Data Visualization, Automation, Business Intelligence, and Problem Solving.
+
+Q: What is Usman's workflow for data projects?
+A: Usman follows a structured 7-step approach: 1) Raw Data Collection & Ingestion, 2) Data Cleaning & Standardization, 3) Exploratory Data Analysis, 4) SQL Analysis & Querying, 5) Visualization & Dashboards, 6) Business Insights & Findings, 7) Data-Driven Decision Making.
+
+Q: What are Usman's key statistics?
+A: Usman has completed 6+ analytics projects, created 3+ dashboards, developed 4+ Python scripts, and analyzed 2+ datasets.
 
 Q: How can I contact Usman?
 A: You can reach Usman via Email (usman.ashfaq1916@gmail.com), LinkedIn (linkedin.com/in/usman-ashfaq-5329912a2), GitHub (github.com/usmanashfaq1916), or WhatsApp (+92 324 4776493).
