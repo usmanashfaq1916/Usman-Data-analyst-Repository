@@ -73,7 +73,7 @@ export default function ResumePage() {
         {/* Header */}
         <div className="bg-gradient-to-r from-[#0B1120] to-[#151F36] px-8 py-10 print:px-6 print:py-8">
           <h1 className="text-3xl font-extrabold text-white font-heading">Usman Ashfaq</h1>
-          <p className="text-lg text-blue-300 font-medium mt-1">Data Analyst | Python Developer | SQL | Power BI Specialist</p>
+          <p className="text-lg text-blue-300 font-medium mt-1">Data Analyst for Startups &amp; Remote Teams | SQL • ETL • Business Intelligence</p>
           <div className="flex flex-wrap gap-x-6 gap-y-1 mt-4 text-sm text-gray-300">
             <span>usman.ashfaq1916@gmail.com</span>
             <span>github.com/usmanashfaq1916</span>
@@ -89,10 +89,11 @@ export default function ResumePage() {
               Professional Summary
             </h2>
             <p className="text-sm text-gray-700 leading-relaxed">
-              Data Analyst with hands-on expertise in Python, SQL, Power BI, and Excel. I specialize in analyzing
-              complex datasets, building automated data solutions, creating interactive dashboards, and delivering
-              meaningful insights that drive business decisions. Experienced in end-to-end analytics workflows —
-              from data cleaning and exploratory analysis to visualization and reporting.
+              Data Analyst helping startups and small businesses turn scattered data into dashboards and reports
+              they actually use. Over the past year, built end-to-end analytics workflows &mdash; cleaning and
+              structuring data with Python (Pandas, NumPy) and SQL, then designing Power BI dashboards that
+              surface the metrics leadership cares about. Automated recurring reporting processes, cutting
+              manual work by hours each week. Tools: Python, SQL, Power BI, Excel, ETL, Business Intelligence.
             </p>
           </section>
 
@@ -133,6 +134,22 @@ export default function ResumePage() {
             </div>
           </section>
 
+          {/* Experience */}
+          <section>
+            <h2 className="text-base font-bold text-[#0B1120] font-heading border-b-2 border-blue-600 pb-1 mb-3">
+              Experience
+            </h2>
+            <div>
+              <h3 className="text-sm font-bold text-gray-900">Data Analyst</h3>
+              <p className="text-sm text-blue-700 font-medium">Xynova.ai</p>
+              <p className="text-xs text-gray-500">January 2025 &ndash; Present &middot; Lahore</p>
+              <p className="text-sm text-gray-600 mt-1 leading-relaxed">
+                Data Expert specializing in business intelligence, data pipelining, and predictive analysis.
+                Translate raw data into high-impact visual narratives to support scalable IT and AI solutions.
+              </p>
+            </div>
+          </section>
+
           {/* Education & Certifications */}
           <div className="grid sm:grid-cols-2 gap-6">
             <section>
@@ -140,8 +157,9 @@ export default function ResumePage() {
                 Education
               </h2>
               <div>
-                <h3 className="text-sm font-bold text-gray-900">Master of Computer Science (MCS)</h3>
+                <h3 className="text-sm font-bold text-gray-900">MCS &mdash; Computer Science</h3>
                 <p className="text-sm text-gray-600">Virtual University of Pakistan</p>
+                <p className="text-xs text-gray-500">September 2021 &ndash; December 2025</p>
               </div>
             </section>
             <section>

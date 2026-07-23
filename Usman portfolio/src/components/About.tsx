@@ -39,15 +39,16 @@ export default function About() {
             className="space-y-4"
           >
             <p className="text-base md:text-lg text-muted leading-relaxed">
-              I specialize in end-to-end data analytics &mdash; from cleaning and structuring raw datasets
-              with Python and SQL to building interactive Power BI and Excel dashboards that drive
-              business decisions. Every analysis I deliver is designed to answer a specific question
-              and enable action.
+              I help startups and small businesses turn spreadsheet chaos into dashboards and reports
+              they actually use. Over the past year, I&apos;ve built end-to-end workflows &mdash; cleaning
+              and structuring data with Python (Pandas, NumPy) and SQL, then designing Power BI
+              dashboards that surface the metrics leadership cares about.
             </p>
             <p className="text-base md:text-lg text-muted leading-relaxed">
-              My recent work includes sales performance tracking, churn prediction modeling, HR workforce
-              analytics, and data cleaning automation &mdash; each project focused on replacing manual
-              reporting with scalable, insight-driven solutions.
+              Recent impact includes automating recurring reporting processes (cutting manual work by
+              hours each week), building Power BI dashboards for tracking sales pipeline and ops KPIs,
+              and streamlining data cleaning workflows across datasets of thousands of rows. If you&apos;re
+              drowning in spreadsheets and need reporting infrastructure &mdash; let&apos;s talk.
             </p>
           </motion.div>
 

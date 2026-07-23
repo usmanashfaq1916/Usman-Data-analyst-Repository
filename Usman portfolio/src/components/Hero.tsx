@@ -85,7 +85,7 @@ export default function Hero() {
               transition={{ duration: 0.5 }}
             >
               <span className="inline-block px-4 py-1.5 text-xs font-semibold text-accent bg-accent/5 border border-accent/20 rounded-full mb-5 tracking-wide uppercase">
-                Data Analyst | Python Developer | SQL | Power BI Specialist
+                Data Analyst for Startups &amp; Remote Teams | SQL • ETL • Business Intelligence
               </span>
             </motion.div>
             <motion.h1
@@ -103,8 +103,9 @@ export default function Hero() {
               transition={{ duration: 0.5, delay: 0.2 }}
               className="mt-4 text-lg md:text-xl text-muted leading-relaxed max-w-2xl"
             >
-              I specialize in analyzing complex datasets, building automated data solutions, creating
-              interactive dashboards, and delivering meaningful insights using Python, SQL, Power BI, and Excel.
+              Messy spreadsheets cost teams time and bad decisions. I fix that. I help small businesses
+              and startups turn scattered data into dashboards and reports they actually use — using
+              Python, SQL, Power BI, and Excel.
             </motion.p>
             <motion.div
               initial={{ opacity: 0, y: 30 }}

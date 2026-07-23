@@ -6,6 +6,7 @@ const navLinks = [
   { href: '#about', label: 'About' },
   { href: '#skills', label: 'Skills' },
   { href: '#projects', label: 'Projects' },
+  { href: '#experience', label: 'Experience' },
   { href: '#contact', label: 'Contact' },
 ]
 
@@ -21,7 +22,7 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row items-center justify-between gap-6 pb-8 border-b border-border">
           <div className="text-center md:text-left">
             <a href="#" className="text-lg font-bold text-primary font-heading">Usman Ashfaq</a>
-            <p className="text-xs text-muted mt-1">Data Analyst | Python Developer | SQL | Power BI Specialist</p>
+            <p className="text-xs text-muted mt-1">Data Analyst for Startups &amp; Remote Teams | SQL &bull; ETL &bull; Business Intelligence</p>
           </div>
 
           <nav className="flex items-center gap-6">

@@ -6,6 +6,7 @@ import Skills from '@/components/Skills'
 import Projects from '@/components/Projects'
 import Workflow from '@/components/Workflow'
 import Education from '@/components/Education'
+import Experience from '@/components/Experience'
 import Certifications from '@/components/Certifications'
 import Learning from '@/components/Learning'
 import Insights from '@/components/Insights'
@@ -26,6 +27,7 @@ export default function Home() {
         <Workflow />
         <Projects />
         <Education />
+        <Experience />
         <Certifications />
         <Contact />
         <Learning />
