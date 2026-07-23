@@ -29,11 +29,11 @@ export default function Home() {
         <Education />
         <Experience />
         <Certifications />
-        <Contact />
         <Learning />
         <Insights />
         <GitHubSection />
         <ResumeSection />
+        <Contact />
       </main>
       <Footer />
     </>

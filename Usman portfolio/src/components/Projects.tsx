@@ -145,6 +145,47 @@ function ProjectCard({ p, i }: { p: Project; i: number }) {
   )
 }
 
+const defaultProjects: Project[] = [
+  {
+    id: '1',
+    title: 'TechMart Sales Analysis',
+    problem: 'A mid-sized electronics retailer was facing declining sales and needed to understand patterns across regions, products, and time periods to make data-driven inventory and marketing decisions.',
+    dataset: '5,000 sales records from 2024, including transaction details, customer demographics, and product categories across 8 regions.',
+    tools: ['Python', 'Pandas', 'Matplotlib', 'Seaborn'],
+    solution: 'Performed comprehensive exploratory data analysis to uncover sales trends, regional performance gaps, and actionable business insights from thousands of transaction records.',
+    insights: [
+      'Sales show clear seasonal peaks in Q4 and troughs in Q2 — 40% variance between best and worst months',
+      'Top-performing region generated 3.2x more revenue than the lowest',
+      'Discounts show weak correlation with sales volume (r = 0.12) — discounts are not driving demand',
+      'Top salesperson generated 5.6x more revenue than the lowest performer',
+      'Category mix varies significantly by region — Electronics dominates in one region, Home & Garden in another',
+    ],
+    results: 'Identified key revenue drivers and seasonal patterns, enabling targeted marketing and inventory strategies projected to increase Q2 sales by 15-20%.',
+    code: 'https://github.com/usmanashfaq1916',
+    locallink: '/projects/techmart-sales-analysis',
+    screenshot: '/projects/techmart-trend.png',
+  },
+  {
+    id: '2',
+    title: 'GlobalRetail Data Analysis',
+    problem: 'A global retailer was struggling with declining profitability despite growing revenue, high return rates eating into margins, and a lack of customer segmentation for targeted marketing.',
+    dataset: '50,000 orders from 2024–2025, spanning 2,000 customers, $87.3M revenue, across multiple regions and product categories.',
+    tools: ['Python', 'Pandas', 'Jupyter Notebook', 'Machine Learning'],
+    solution: 'Conducted end-to-end analytics including data cleaning, time-series forecasting, profitability analysis, customer segmentation via RFM modeling, and return rate optimization strategies.',
+    insights: [
+      'Revenue declined 2.8% YoY despite increased order volume — profitability is eroding',
+      'Top 20% of customers generate ~29.5% of revenue, highlighting a moderate concentration risk',
+      'Return rate of 24.94% caused $4.5M in lost profit — Same Day shipping has the highest return risk',
+      'Discount-profit correlation of -0.365 — aggressive discounts are hurting margins significantly',
+      'RFM segmentation created 3 customer tiers (High, Medium, Low) enabling targeted retention strategies',
+    ],
+    results: 'Delivered 22+ visualizations, an interactive sales dashboard, and 3 actionable recommendations projected to recover $2M+ in lost profit annually.',
+    code: 'https://github.com/usmanashfaq1916',
+    locallink: '/projects/globalretail-data-analysis',
+    screenshot: '/projects/globalretail-cohort.png',
+  },
+]
+
 export default function Projects() {
   const [projects, setProjects] = useState<Project[]>([])
   const [loading, setLoading] = useState(true)
@@ -156,8 +197,14 @@ export default function Projects() {
         if (!res.ok) throw new Error('Failed')
         return res.json()
       })
-      .then(setProjects)
-      .catch(() => { setError(true); setLoading(false) })
+      .then((data) => {
+        if (data && data.length > 0) {
+          setProjects(data)
+        } else {
+          setProjects(defaultProjects)
+        }
+      })
+      .catch(() => { setProjects(defaultProjects) })
       .finally(() => setLoading(false))
   }, [])
 

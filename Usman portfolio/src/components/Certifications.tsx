@@ -50,6 +50,17 @@ function CertCard({ c, i }: { c: Cert; i: number }) {
   )
 }
 
+const defaultCerts: Cert[] = [
+  {
+    id: '1',
+    name: 'IBM Data Analyst Professional Certificate',
+    org: 'NAVTTC',
+    date: '2026',
+    verify_url: '',
+    display_order: 1,
+  },
+]
+
 export default function Certifications() {
   const [certs, setCerts] = useState<Cert[]>([])
   const [loading, setLoading] = useState(true)
@@ -61,8 +72,14 @@ export default function Certifications() {
         if (!res.ok) throw new Error('Failed')
         return res.json()
       })
-      .then(setCerts)
-      .catch(() => { setError(true); setLoading(false) })
+      .then((data) => {
+        if (data && data.length > 0) {
+          setCerts(data)
+        } else {
+          setCerts(defaultCerts)
+        }
+      })
+      .catch(() => { setCerts(defaultCerts) })
       .finally(() => setLoading(false))
   }, [])
 

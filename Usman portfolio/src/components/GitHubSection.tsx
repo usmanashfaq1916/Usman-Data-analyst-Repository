@@ -4,18 +4,19 @@ import { motion } from 'framer-motion'
 import { ExternalLink, GitFork, Star, Code2, BookOpen, BarChart3 } from 'lucide-react'
 
 const repos = [
-  { name: 'Sales-Analytics-Dashboard', lang: 'Python', stars: 12, forks: 4 },
-  { name: 'Customer-Churn-Prediction', lang: 'Jupyter Notebook', stars: 9, forks: 3 },
-  { name: 'HR-Analytics-PowerBI', lang: 'Power BI', stars: 7, forks: 2 },
-  { name: 'Data-Cleaning-Automation', lang: 'Python', stars: 5, forks: 1 },
-  { name: 'TechMart-Sales-Analysis', lang: 'Python', stars: 4, forks: 1 },
-  { name: 'GlobalRetail-Data-Analysis', lang: 'Jupyter Notebook', stars: 3, forks: 0 },
+  { name: 'Usman-Data-analyst-Repository', lang: 'HTML', stars: 0, forks: 0 },
+  { name: 'club', lang: 'Dart', stars: 0, forks: 0 },
+  { name: 'UniConnect', lang: 'TypeScript', stars: 0, forks: 0 },
+  { name: 'DataAnalysisClassJune2026', lang: 'Jupyter Notebook', stars: 0, forks: 0 },
+  { name: 'qec-website', lang: 'TypeScript', stars: 0, forks: 0 },
+  { name: 'hmis', lang: 'TypeScript', stars: 0, forks: 0 },
 ]
 
 const languageStats = [
-  { lang: 'Python', percentage: 50, color: 'bg-blue-500' },
-  { lang: 'Jupyter Notebook', percentage: 33, color: 'bg-orange-500' },
-  { lang: 'Power BI', percentage: 17, color: 'bg-yellow-500' },
+  { lang: 'TypeScript', percentage: 50, color: 'bg-blue-500' },
+  { lang: 'HTML', percentage: 17, color: 'bg-orange-500' },
+  { lang: 'Dart', percentage: 17, color: 'bg-cyan-500' },
+  { lang: 'Jupyter Notebook', percentage: 16, color: 'bg-yellow-500' },
 ]
 
 export default function GitHubSection() {
