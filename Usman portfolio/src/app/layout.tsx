@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Inter, Poppins } from "next/font/google";
 import "./globals.css";
 import ChatBot from "@/components/ChatBot";
-import Cursor from "@/components/Cursor";
 import ParticleBackground from "@/components/ParticleBackground";
 import ScrollProgress from "@/components/ScrollProgress";
 import NavDots from "@/components/NavDots";
@@ -102,7 +101,6 @@ export default function RootLayout({
         <ScrollProgress />
         <ParticleBackground />
         {children}
-        <Cursor />
         <NavDots />
         <ChatBot />
       </body>
