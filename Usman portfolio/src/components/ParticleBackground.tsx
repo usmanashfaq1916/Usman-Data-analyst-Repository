@@ -30,7 +30,7 @@ export default function ParticleBackground() {
         this.x = x
         this.y = y
         this.z = z
-        this.baseGlow = Math.random() * 0.3 + 0.1
+        this.baseGlow = Math.random() * 0.15 + 0.05
         this.pulseOffset = Math.random() * Math.PI * 2
       }
     }
@@ -61,8 +61,8 @@ export default function ParticleBackground() {
       horizonStars.push({
         x: Math.random() * 2000,
         y: Math.random() * 1200 * 0.6,
-        size: Math.random() * 1.2 + 0.2,
-        opacity: Math.random() * 0.3 + 0.05,
+        size: Math.random() * 0.8 + 0.2,
+        opacity: Math.random() * 0.15 + 0.03,
         twinkle: Math.random() * Math.PI * 2,
       })
     }
@@ -100,8 +100,8 @@ export default function ParticleBackground() {
       ctx.clearRect(0, 0, width, height)
 
       const bgGrad = ctx.createRadialGradient(width / 2, height * 0.3, 0, width / 2, height * 0.3, Math.max(width, height) * 0.7)
-      bgGrad.addColorStop(0, 'rgba(37, 99, 235, 0.04)')
-      bgGrad.addColorStop(0.4, 'rgba(16, 185, 129, 0.015)')
+      bgGrad.addColorStop(0, 'rgba(37, 99, 235, 0.03)')
+      bgGrad.addColorStop(0.4, 'rgba(5, 150, 105, 0.01)')
       bgGrad.addColorStop(1, 'rgba(0, 0, 0, 0)')
       ctx.fillStyle = bgGrad
       ctx.fillRect(0, 0, width, height)
@@ -111,11 +111,11 @@ export default function ParticleBackground() {
         const pulse = s.opacity * (0.4 + 0.6 * Math.sin(s.twinkle))
         ctx.beginPath()
         ctx.arc(s.x % width, s.y, s.size, 0, Math.PI * 2)
-        ctx.fillStyle = `rgba(148, 163, 184, ${pulse})`
+        ctx.fillStyle = `rgba(100, 116, 139, ${pulse})`
         ctx.fill()
       })
 
-      const gridAlpha = 0.12
+      const gridAlpha = 0.05
       for (let z = -GRID_DEPTH; z <= 0; z++) {
         const zWobble = Math.sin(z * 0.3 + time * 0.02) * 3
         for (let x = -GRID_SIZE; x < GRID_SIZE; x++) {
@@ -198,8 +198,8 @@ export default function ParticleBackground() {
       }
 
       const trail = ctx.createRadialGradient(mouseX, mouseY, 0, mouseX, mouseY, 120)
-      trail.addColorStop(0, 'rgba(37, 99, 235, 0.08)')
-      trail.addColorStop(0.5, 'rgba(16, 185, 129, 0.03)')
+      trail.addColorStop(0, 'rgba(37, 99, 235, 0.04)')
+      trail.addColorStop(0.5, 'rgba(5, 150, 105, 0.015)')
       trail.addColorStop(1, 'rgba(0, 0, 0, 0)')
       ctx.fillStyle = trail
       ctx.fillRect(0, 0, width, height)

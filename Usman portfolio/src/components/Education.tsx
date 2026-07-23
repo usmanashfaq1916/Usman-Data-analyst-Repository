@@ -28,7 +28,7 @@ export default function Education() {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="relative pl-10 border-l-2 border-primary/30"
           >
-            <div className="absolute left-[-9px] top-1 w-4 h-4 rounded-full bg-primary border-2 border-surface" />
+            <div className="absolute left-[-9px] top-1 w-4 h-4 rounded-full bg-primary border-2 border-white" />
             <div className="p-6 bg-card rounded-xl border border-border">
               <div className="flex items-center gap-3 mb-2">
                 <GraduationCap size={22} className="text-primary" />
