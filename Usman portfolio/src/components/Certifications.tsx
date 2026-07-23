@@ -53,14 +53,28 @@ function CertCard({ c, i }: { c: Cert; i: number }) {
 export default function Certifications() {
   const [certs, setCerts] = useState<Cert[]>([])
   const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(false)
 
   useEffect(() => {
     fetch('/api/certifications')
-      .then((res) => res.json())
+      .then((res) => {
+        if (!res.ok) throw new Error('Failed')
+        return res.json()
+      })
       .then(setCerts)
-      .catch(() => setLoading(false))
+      .catch(() => { setError(true); setLoading(false) })
       .finally(() => setLoading(false))
   }, [])
+
+  if (error) {
+    return (
+      <section id="certifications" className="py-24 md:py-32">
+        <div className="max-w-6xl mx-auto px-6 text-center">
+          <p className="text-muted">Failed to load certifications.</p>
+        </div>
+      </section>
+    )
+  }
 
   if (loading && certs.length === 0) {
     return (

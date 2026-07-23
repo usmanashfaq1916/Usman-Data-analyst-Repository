@@ -148,14 +148,28 @@ function ProjectCard({ p, i }: { p: Project; i: number }) {
 export default function Projects() {
   const [projects, setProjects] = useState<Project[]>([])
   const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(false)
 
   useEffect(() => {
     fetch('/api/projects')
-      .then((res) => res.json())
+      .then((res) => {
+        if (!res.ok) throw new Error('Failed')
+        return res.json()
+      })
       .then(setProjects)
-      .catch(() => setLoading(false))
+      .catch(() => { setError(true); setLoading(false) })
       .finally(() => setLoading(false))
   }, [])
+
+  if (error) {
+    return (
+      <section id="projects" className="py-24 md:py-32">
+        <div className="max-w-6xl mx-auto px-6 text-center">
+          <p className="text-muted">Failed to load projects.</p>
+        </div>
+      </section>
+    )
+  }
 
   if (loading && projects.length === 0) {
     return (

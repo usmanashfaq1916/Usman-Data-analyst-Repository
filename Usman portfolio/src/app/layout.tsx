@@ -15,23 +15,32 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "Usman Ashfaq | Data Analyst | Python Developer | SQL | Power BI Specialist",
+  title: "Usman Ashfaq | Data Analyst for Startups & Remote Teams | SQL • ETL • Business Intelligence",
   description:
-    "Data Analyst specializing in Python, SQL, Power BI, and Excel. I specialize in analyzing complex datasets, building automated data solutions, creating interactive dashboards, and delivering meaningful insights using Python, SQL, Power BI, and Excel.",
+    "Helping startups and small businesses turn spreadsheet chaos into Power BI dashboards and Python-automated reports. Data Analyst specializing in Python, SQL, Power BI, and Excel — building end-to-end analytics workflows from raw data to actionable insights.",
   openGraph: {
-    title: "Usman Ashfaq | Data Analyst | Python Developer | SQL | Power BI Specialist",
+    title: "Usman Ashfaq | Data Analyst for Startups & Remote Teams | SQL • ETL • Business Intelligence",
     description:
-      "Data Analyst specializing in Python, SQL, Power BI, and Excel. I specialize in analyzing complex datasets, building automated data solutions, creating interactive dashboards, and delivering meaningful insights using Python, SQL, Power BI, and Excel.",
+      "Helping startups and small businesses turn spreadsheet chaos into Power BI dashboards and Python-automated reports. Data Analyst specializing in Python, SQL, Power BI, and Excel.",
     type: "website",
     locale: "en_US",
     siteName: "Usman Ashfaq Portfolio",
     url: "https://usmanashfaq.vercel.app",
+    images: [
+      {
+        url: "/og",
+        width: 1200,
+        height: 630,
+        alt: "Usman Ashfaq — Data Analyst for Startups & Remote Teams",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Usman Ashfaq | Data Analyst | Python Developer | SQL | Power BI Specialist",
+    title: "Usman Ashfaq | Data Analyst for Startups & Remote Teams | SQL • ETL • Business Intelligence",
     description:
-      "Data Analyst specializing in Python, SQL, Power BI, and Excel. I specialize in analyzing complex datasets, building automated data solutions, creating interactive dashboards, and delivering meaningful insights using Python, SQL, Power BI, and Excel.",
+      "Helping startups and small businesses turn spreadsheet chaos into Power BI dashboards and Python-automated reports.",
+    images: ["/og"],
   },
   robots: {
     index: true,

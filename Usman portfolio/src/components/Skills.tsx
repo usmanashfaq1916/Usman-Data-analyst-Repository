@@ -88,14 +88,28 @@ function SkillCategory({ cat, ci }: { cat: Category; ci: number }) {
 export default function Skills() {
   const [categories, setCategories] = useState<Category[]>([])
   const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(false)
 
   useEffect(() => {
     fetch('/api/skills')
-      .then((res) => res.json())
+      .then((res) => {
+        if (!res.ok) throw new Error('Failed')
+        return res.json()
+      })
       .then(setCategories)
-      .catch(() => setLoading(false))
+      .catch(() => { setError(true); setLoading(false) })
       .finally(() => setLoading(false))
   }, [])
+
+  if (error) {
+    return (
+      <section id="skills" className="py-24 md:py-32 bg-card/50">
+        <div className="max-w-6xl mx-auto px-6 text-center">
+          <p className="text-muted">Failed to load skills.</p>
+        </div>
+      </section>
+    )
+  }
 
   if (loading && categories.length === 0) {
     return (

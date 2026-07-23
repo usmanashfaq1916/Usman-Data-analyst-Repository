@@ -7,14 +7,17 @@ const posts = [
   {
     title: 'Building a Sales Analytics Dashboard from Scratch',
     summary: 'How I connected SQL, Python, and Power BI to create a real-time sales performance tracker that cut reporting time by 90%.',
+    href: '/projects/techmart-sales-analysis',
   },
   {
     title: 'Using Machine Learning to Predict Customer Churn',
     summary: 'A walkthrough of the data preprocessing, feature engineering, and model selection process behind my churn prediction project.',
+    href: '/projects/globalretail-data-analysis',
   },
   {
     title: 'Automating Data Cleaning with Python',
     summary: 'Lessons learned from building reusable data cleaning scripts that handle missing values, outliers, and format inconsistencies.',
+    href: '/projects/techmart-sales-analysis',
   },
 ]
 
@@ -58,10 +61,10 @@ export default function Insights() {
                 {post.summary}
               </p>
               <a
-                href="#"
+                href={post.href}
                 className="mt-4 inline-flex items-center gap-1 text-xs font-medium text-primary hover:text-primary-dark transition-colors"
               >
-                Read more <ArrowRight size={14} />
+                View Case Study <ArrowRight size={14} />
               </a>
             </motion.div>
           ))}
