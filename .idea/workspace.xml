@@ -6,13 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="26c670dd-0235-4bc2-96f3-ac9356c41abe" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Python class/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Python class/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Python class/21-07-2026/01_Python_Foundations.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Python class/21-07-2026/01_Python_Foundations.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Python class/21-07-2026/03_Pandas_Data_Analysis.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Python class/21-07-2026/03_Pandas_Data_Analysis.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Python class/21-07-2026/04_File_Handling_and_IO.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Python class/21-07-2026/04_File_Handling_and_IO.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Python class/21-07-2026/StudentAgeData.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/Python class/21-07-2026/StudentAgeData.xlsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Python class/21-07-2026/bank.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Python class/21-07-2026/bank.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Python class/PandasIntro.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Python class/PandasIntro.ipynb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UniConnect/next.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/UniConnect/next.config.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UniConnect/src/app/programs/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/UniConnect/src/app/programs/page.tsx" afterDir="false" />
     </list>
@@ -53,8 +46,10 @@
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "codeWithMe.voiceChat.enabledByDefault": "false",
+    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
     "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
+    "junie.onboarding.icon.badge.shown": "true",
     "last_opened_file_path": "C:/Users/user/Documents/GitHub/Usman Data analyst Repository",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -62,6 +57,7 @@
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable",
+    "to.speed.mode.migration.done": "true",
     "ts.external.directory.path": "C:\\Users\\user\\Documents\\GitHub\\Usman Data analyst Repository\\QEC\\web\\node_modules\\typescript\\lib",
     "vue.rearranger.settings.migration": "true"
   }
@@ -117,7 +113,7 @@
       <workItem from="1784164624523" duration="3170000" />
       <workItem from="1784168248113" duration="19583000" />
       <workItem from="1784286281058" duration="852000" />
-      <workItem from="1784717446770" duration="3830000" />
+      <workItem from="1784717446770" duration="4811000" />
     </task>
     <servers />
   </component>
