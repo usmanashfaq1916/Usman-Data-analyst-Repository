@@ -3,11 +3,17 @@
 import { useEffect, useRef, useState } from 'react'
 
 export default function CountUp({ to, suffix = '', duration = 2000 }: { to: number; suffix?: string; duration?: number }) {
+  const [mounted, setMounted] = useState(false)
   const [count, setCount] = useState(0)
   const ref = useRef<HTMLSpanElement>(null)
   const started = useRef(false)
 
   useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  useEffect(() => {
+    if (!mounted) return
     const el = ref.current
     if (!el || started.current) return
     const observer = new IntersectionObserver(
@@ -28,7 +34,11 @@ export default function CountUp({ to, suffix = '', duration = 2000 }: { to: numb
     )
     observer.observe(el)
     return () => observer.disconnect()
-  }, [to, duration])
+  }, [to, duration, mounted])
+
+  if (!mounted) {
+    return <span>{to}{suffix}</span>
+  }
 
   return <span ref={ref}>{count}{suffix}</span>
 }

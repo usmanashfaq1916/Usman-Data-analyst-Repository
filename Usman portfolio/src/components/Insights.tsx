@@ -17,7 +17,7 @@ const posts = [
   {
     title: 'Automating Data Cleaning with Python',
     summary: 'Lessons learned from building reusable data cleaning scripts that handle missing values, outliers, and format inconsistencies.',
-    href: '/projects/techmart-sales-analysis',
+    href: '/projects/data-cleaning-python',
   },
 ]
 
