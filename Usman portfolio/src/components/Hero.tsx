@@ -96,7 +96,7 @@ export default function Hero() {
               className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-text font-heading leading-tight"
             >
               Transforming Raw Data Into{' '}
-              <span className="text-primary">Actionable Business Insights.</span>
+              <span className="text-primary">Actionable Business Decisions.</span>
             </motion.h1>
             <motion.div
               initial={{ opacity: 0, y: 30 }}
