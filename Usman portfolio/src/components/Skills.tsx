@@ -56,27 +56,13 @@ function SkillCategory({ cat, ci }: { cat: Category; ci: number }) {
           {cat.title}
         </h3>
       </div>
-      <div className="space-y-4">
+      <div className="space-y-2">
         {cat.skills.map((skill) => {
           const Icon = getIcon(skill.name)
           return (
-            <div key={skill.id}>
-              <div className="flex items-center justify-between mb-1.5">
-                <div className="flex items-center gap-2">
-                  <Icon size={14} className="text-muted flex-shrink-0" />
-                  <span className="text-sm font-medium text-text">{skill.name}</span>
-                </div>
-                <span className="text-xs text-muted">{skill.level}%</span>
-              </div>
-              <div className="w-full h-1.5 bg-surface rounded-full overflow-hidden">
-                <motion.div
-                  initial={{ width: 0 }}
-                  whileInView={{ width: `${skill.level}%` }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.8, delay: 0.2 }}
-                  className="h-full bg-gradient-to-r from-primary to-accent rounded-full"
-                />
-              </div>
+            <div key={skill.id} className="flex items-center gap-2">
+              <Icon size={14} className="text-muted flex-shrink-0" />
+              <span className="text-sm font-medium text-text">{skill.name}</span>
             </div>
           )
         })}
