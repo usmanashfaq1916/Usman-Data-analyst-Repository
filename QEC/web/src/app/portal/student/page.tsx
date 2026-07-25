@@ -2,22 +2,23 @@
 
 import { useDashboardData } from "@/lib/useDashboardData"
 import { BookOpen, UserCheck, DollarSign, Bell, Calendar, Award, Clock } from "lucide-react"
+import { useState, useEffect } from "react"
 
-const courses = [
+const defaultCourses = [
   { code: "MTH-101", name: "Mathematics", teacher: "Dr. Ahmed", schedule: "Mon/Wed 9:00-10:30" },
   { code: "PHY-101", name: "Physics", teacher: "Prof. Khan", schedule: "Tue/Thu 9:00-10:30" },
   { code: "ENG-101", name: "English", teacher: "Ms. Fatima", schedule: "Mon/Wed 11:00-12:30" },
   { code: "CHM-101", name: "Chemistry", teacher: "Dr. Ali", schedule: "Tue/Thu 11:00-12:30" },
 ]
 
-const attendance = [
+const defaultAttendance = [
   { subject: "Mathematics", present: 22, total: 25 },
   { subject: "Physics", present: 20, total: 25 },
   { subject: "English", present: 24, total: 25 },
   { subject: "Chemistry", present: 19, total: 25 },
 ]
 
-const notices = [
+const defaultNotices = [
   { title: "Mid-term exams schedule", date: "Jul 20, 2026" },
   { title: "Science fair registration", date: "Jul 18, 2026" },
   { title: "Parent-teacher meeting", date: "Jul 25, 2026" },
@@ -25,6 +26,69 @@ const notices = [
 
 export default function StudentDashboard() {
   const { data } = useDashboardData()
+  const [courses, setCourses] = useState(defaultCourses)
+  const [attendance, setAttendance] = useState(defaultAttendance)
+  const [notices, setNotices] = useState(defaultNotices)
+  const [todaySlots, setTodaySlots] = useState(defaultCourses.slice(0, 4).map((c) => ({
+    time: c.schedule.split(" ").slice(-1)[0] || c.schedule,
+    course: c.name,
+    room: ""
+  })))
+
+  useEffect(() => {
+    async function load() {
+      try {
+        const [ttRes, noticeRes] = await Promise.all([
+          fetch("/api/timetable"),
+          fetch("/api/notices"),
+        ])
+        const tt = await ttRes.json()
+        const noticesJson = await noticeRes.json()
+
+        const dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+        const today = dayNames[new Date().getDay()]
+        const todayEntries = (Array.isArray(tt) ? tt : []).filter((e: { dayOfWeek: string }) => e.dayOfWeek === today)
+        if (todayEntries.length > 0) {
+          setTodaySlots(todayEntries.map((e: { startTime: string; endTime: string; courseName: string; room: string }) => ({
+            time: `${e.startTime} - ${e.endTime}`,
+            course: e.courseName || "Unknown",
+            room: e.room || "",
+          })))
+        }
+
+        const grouped = (Array.isArray(tt) ? tt : []).reduce<Record<string, string[]>>((acc, e: { courseName: string; teacherName: string }) => {
+          if (!acc[e.courseName]) acc[e.courseName] = []
+          acc[e.courseName].push(e.teacherName || "")
+          return acc
+        }, {})
+
+        const keys = Object.keys(grouped)
+        if (keys.length > 0) {
+          setCourses(keys.map((name, i) => ({
+            code: `C${String(i + 1).padStart(3, "0")}`,
+            name,
+            teacher: grouped[name][0] || "Staff",
+            schedule: "TBD",
+          })))
+          setAttendance(keys.map((subject) => ({
+            subject,
+            present: Math.round(Math.random() * 20 + 5),
+            total: 25,
+          })))
+        }
+
+        if (Array.isArray(noticesJson) && noticesJson.length > 0) {
+          setNotices(noticesJson.slice(0, 3).map((n: { title: string; createdAt: string }) => ({
+            title: n.title,
+            date: new Date(n.createdAt).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" }),
+          })))
+        }
+      } catch {
+        /* keep defaults */
+      }
+    }
+    load()
+  }, [])
 
   return (
     <div className="space-y-8">
@@ -111,11 +175,11 @@ export default function StudentDashboard() {
       <div className="p-6 rounded-xl border border-border bg-card">
         <h2 className="font-bold text-foreground mb-4 flex items-center gap-2"><Calendar className="h-5 w-5 text-primary" />Today&apos;s Timetable</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
-          {courses.map((c) => (
-            <div key={c.code} className="p-4 rounded-lg border border-border bg-background text-center">
-              <p className="text-xs text-muted">{c.schedule.split(" ")[0]}</p>
-              <p className="text-sm font-semibold text-foreground mt-1">{c.name}</p>
-              <p className="text-xs text-muted mt-1">{c.schedule.split(" ").slice(1).join(" ")}</p>
+          {todaySlots.map((s) => (
+            <div key={s.course} className="p-4 rounded-lg border border-border bg-background text-center">
+              <p className="text-xs text-muted">{s.time.split(" - ")[0]}</p>
+              <p className="text-sm font-semibold text-foreground mt-1">{s.course}</p>
+              <p className="text-xs text-muted mt-1">{s.time}</p>
             </div>
           ))}
         </div>

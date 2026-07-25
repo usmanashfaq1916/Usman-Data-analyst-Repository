@@ -34,6 +34,24 @@ class ExamRemoteDataSource {
     throw ServerException(message: 'Exam not found');
   }
 
+  Future<ExamModel> updateExam(ExamModel exam) async {
+    final response = await _client.put(
+      '${ApiConstants.exams}/${exam.id}',
+      data: exam.toJson(),
+    );
+    if (response.statusCode == 200) {
+      return ExamModel.fromJson(response.data['exam'] ?? response.data);
+    }
+    throw ServerException(message: 'Failed to update exam');
+  }
+
+  Future<void> deleteExam(String id) async {
+    final response = await _client.delete('${ApiConstants.exams}/$id');
+    if (response.statusCode != 200 && response.statusCode != 204) {
+      throw ServerException(message: 'Failed to delete exam');
+    }
+  }
+
   Future<ExamModel> createExam(ExamModel exam) async {
     final response = await _client.post(ApiConstants.exams, data: exam.toJson());
     if (response.statusCode == 201 || response.statusCode == 200) {
@@ -61,6 +79,17 @@ class ExamRemoteDataSource {
     if (response.statusCode != 200 && response.statusCode != 201) {
       throw ServerException(message: 'Failed to submit marks');
     }
+  }
+
+  Future<String> generateReportCard(String studentId, String semesterId) async {
+    final response = await _client.post(
+      '${ApiConstants.reports}/report-card',
+      data: {'studentId': studentId, 'semesterId': semesterId},
+    );
+    if (response.statusCode == 200) {
+      return response.data['url'] ?? response.data['reportCard'] ?? '';
+    }
+    throw ServerException(message: 'Failed to generate report card');
   }
 
   Future<void> publishResults(String examId) async {

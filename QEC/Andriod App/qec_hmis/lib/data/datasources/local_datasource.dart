@@ -1,25 +1,22 @@
 import 'dart:convert';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import '../models/user_model.dart';
 
 class LocalDataSource {
-  final FlutterSecureStorage _secureStorage;
+  final SharedPreferences _prefs;
   static const String _userKey = 'cached_user';
   static const String _themeKey = 'theme_mode';
   static const String _rememberMeKey = 'remember_me';
 
-  LocalDataSource(this._secureStorage);
+  LocalDataSource(this._prefs);
 
   Future<void> cacheUser(UserModel user) async {
-    await _secureStorage.write(
-      key: _userKey,
-      value: jsonEncode(user.toJson()),
-    );
+    await _prefs.setString(_userKey, jsonEncode(user.toJson()));
   }
 
   Future<UserModel?> getCachedUser() async {
-    final json = await _secureStorage.read(key: _userKey);
+    final json = _prefs.getString(_userKey);
     if (json != null) {
       return UserModel.fromJson(jsonDecode(json));
     }
@@ -27,50 +24,50 @@ class LocalDataSource {
   }
 
   Future<void> clearUser() async {
-    await _secureStorage.delete(key: _userKey);
+    await _prefs.remove(_userKey);
   }
 
   Future<void> saveTokens({
     required String accessToken,
     required String refreshToken,
   }) async {
-    await _secureStorage.write(key: 'access_token', value: accessToken);
-    await _secureStorage.write(key: 'refresh_token', value: refreshToken);
+    await _prefs.setString('access_token', accessToken);
+    await _prefs.setString('refresh_token', refreshToken);
   }
 
   Future<String?> getAccessToken() async {
-    return _secureStorage.read(key: 'access_token');
+    return _prefs.getString('access_token');
   }
 
   Future<String?> getRefreshToken() async {
-    return _secureStorage.read(key: 'refresh_token');
+    return _prefs.getString('refresh_token');
   }
 
   Future<void> clearTokens() async {
-    await _secureStorage.delete(key: 'access_token');
-    await _secureStorage.delete(key: 'refresh_token');
+    await _prefs.remove('access_token');
+    await _prefs.remove('refresh_token');
   }
 
   Future<void> setThemeMode(bool isDark) async {
-    await _secureStorage.write(key: _themeKey, value: isDark.toString());
+    await _prefs.setString(_themeKey, isDark.toString());
   }
 
   Future<bool> getThemeMode() async {
-    final value = await _secureStorage.read(key: _themeKey);
+    final value = _prefs.getString(_themeKey);
     return value == 'true';
   }
 
   Future<void> setRememberMe(bool value) async {
-    await _secureStorage.write(key: _rememberMeKey, value: value.toString());
+    await _prefs.setString(_rememberMeKey, value.toString());
   }
 
   Future<bool> getRememberMe() async {
-    final value = await _secureStorage.read(key: _rememberMeKey);
+    final value = _prefs.getString(_rememberMeKey);
     return value == 'true';
   }
 
   Future<void> clearAll() async {
-    await _secureStorage.deleteAll();
+    await _prefs.clear();
   }
 
   Future<void> cacheData(String key, dynamic data) async {

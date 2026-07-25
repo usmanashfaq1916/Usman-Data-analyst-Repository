@@ -76,6 +76,13 @@ class DashboardRepositoryImpl implements DashboardRepository {
 
   @override
   Future<Either<Failure, List<ChartData>>> getGenderRatio() async {
-    return const Left(ServerFailure(message: 'Not implemented'));
+    try {
+      final models = await _remoteDataSource.getGenderRatio();
+      return Right(models.map((m) => m.toEntity()).toList());
+    } on ServerException catch (e) {
+      return Left(ServerFailure(message: e.message));
+    } catch (e) {
+      return Left(ServerFailure(message: e.toString()));
+    }
   }
 }

@@ -51,6 +51,17 @@ class DashboardRemoteDataSource {
     throw ServerException(message: 'Failed to fetch chart data');
   }
 
+  Future<List<ChartDataModel>> getGenderRatio() async {
+    final response = await _client.get(
+      '${ApiConstants.dashboardChart}/gender-ratio',
+    );
+    if (response.statusCode == 200) {
+      final List data = response.data['data'] ?? response.data['chart'] ?? [];
+      return data.map((json) => ChartDataModel.fromJson(json)).toList();
+    }
+    throw ServerException(message: 'Failed to fetch gender ratio');
+  }
+
   Future<List<ChartDataModel>> getAttendanceChart({int days = 30}) async {
     final response = await _client.get(
       '${ApiConstants.dashboardChart}/attendance',

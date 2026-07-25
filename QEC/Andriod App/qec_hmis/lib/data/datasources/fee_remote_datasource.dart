@@ -28,6 +28,22 @@ class FeeRemoteDataSource {
     throw ServerException(message: 'Failed to fetch fees');
   }
 
+  Future<FeeModel> getFee(String id) async {
+    final response = await _client.get('${ApiConstants.fees}/$id');
+    if (response.statusCode == 200) {
+      return FeeModel.fromJson(response.data['fee'] ?? response.data);
+    }
+    throw ServerException(message: 'Fee not found');
+  }
+
+  Future<FeeModel> createFee(FeeModel fee) async {
+    final response = await _client.post(ApiConstants.fees, data: fee.toJson());
+    if (response.statusCode == 201 || response.statusCode == 200) {
+      return FeeModel.fromJson(response.data['fee'] ?? response.data);
+    }
+    throw ServerException(message: 'Failed to create fee');
+  }
+
   Future<FeeModel> collectFee(String feeId, double amount, String paymentMethod) async {
     final response = await _client.post(
       '${ApiConstants.fees}/$feeId/collect',
@@ -57,6 +73,36 @@ class FeeRemoteDataSource {
       return FeeCollectionModel.fromJson(response.data['stats'] ?? response.data);
     }
     throw ServerException(message: 'Failed to get fee stats');
+  }
+
+  Future<String> generateChallan(String feeId) async {
+    final response = await _client.post(
+      '${ApiConstants.fees}/$feeId/challan',
+    );
+    if (response.statusCode == 200) {
+      return response.data['url'] ?? response.data['challan'] ?? '';
+    }
+    throw ServerException(message: 'Failed to generate challan');
+  }
+
+  Future<void> applyDiscount(String feeId, double discount, String reason) async {
+    final response = await _client.post(
+      '${ApiConstants.fees}/$feeId/discount',
+      data: {'discount': discount, 'reason': reason},
+    );
+    if (response.statusCode != 200) {
+      throw ServerException(message: 'Failed to apply discount');
+    }
+  }
+
+  Future<void> applyScholarship(String studentId, double percentage) async {
+    final response = await _client.post(
+      '${ApiConstants.students}/$studentId/scholarship',
+      data: {'percentage': percentage},
+    );
+    if (response.statusCode != 200) {
+      throw ServerException(message: 'Failed to apply scholarship');
+    }
   }
 
   Future<List<FeeModel>> getStudentFees(String studentId) async {

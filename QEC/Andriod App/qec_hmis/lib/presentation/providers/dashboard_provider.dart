@@ -1,5 +1,4 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../../core/network/dio_client.dart';
 import '../../data/datasources/dashboard_remote_datasource.dart';
 import '../../data/repositories/dashboard_repository_impl.dart';
 import '../../domain/entities/dashboard_stats.dart';

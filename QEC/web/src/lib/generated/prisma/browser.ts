@@ -107,3 +107,53 @@ export type GalleryItem = Prisma.GalleryItemModel
  * 
  */
 export type Download = Prisma.DownloadModel
+/**
+ * Model Attendance
+ * 
+ */
+export type Attendance = Prisma.AttendanceModel
+/**
+ * Model Exam
+ * 
+ */
+export type Exam = Prisma.ExamModel
+/**
+ * Model ExamResult
+ * 
+ */
+export type ExamResult = Prisma.ExamResultModel
+/**
+ * Model Fee
+ * 
+ */
+export type Fee = Prisma.FeeModel
+/**
+ * Model TimetableEntry
+ * 
+ */
+export type TimetableEntry = Prisma.TimetableEntryModel
+/**
+ * Model Notice
+ * 
+ */
+export type Notice = Prisma.NoticeModel
+/**
+ * Model Book
+ * 
+ */
+export type Book = Prisma.BookModel
+/**
+ * Model BusRoute
+ * 
+ */
+export type BusRoute = Prisma.BusRouteModel
+/**
+ * Model Hostel
+ * 
+ */
+export type Hostel = Prisma.HostelModel
+/**
+ * Model Room
+ * 
+ */
+export type Room = Prisma.RoomModel

@@ -32,7 +32,7 @@ class AuthRemoteDataSource {
 
   Future<void> sendOtp(String phone) async {
     final response = await _client.post(
-      ApiConstants.verifyOtp,
+      ApiConstants.sendOtp,
       data: {'phone': phone},
     );
     if (response.statusCode != 200) {
@@ -58,6 +58,16 @@ class AuthRemoteDataSource {
     );
     if (response.statusCode != 200) {
       throw AuthException(message: response.data['message'] ?? 'Failed');
+    }
+  }
+
+  Future<void> resetPassword(String token, String password) async {
+    final response = await _client.post(
+      ApiConstants.resetPassword,
+      data: {'token': token, 'password': password},
+    );
+    if (response.statusCode != 200) {
+      throw AuthException(message: response.data['message'] ?? 'Failed to reset password');
     }
   }
 

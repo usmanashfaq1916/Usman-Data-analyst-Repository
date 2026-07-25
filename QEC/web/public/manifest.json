@@ -63,19 +63,44 @@
   "screenshots": [],
   "related_applications": [],
   "prefer_related_applications": false,
+  "display_override": ["window-controls-overlay", "standalone", "minimal-ui"],
+  "edge_side_panel": {
+    "preferred_width": 480
+  },
   "shortcuts": [
+    {
+      "name": "Student Portal",
+      "short_name": "Student",
+      "description": "View courses, attendance, marks, and fees",
+      "url": "/portal/student",
+      "icons": [{ "src": "/icons/icon-96.png", "sizes": "96x96" }]
+    },
+    {
+      "name": "Teacher Portal",
+      "short_name": "Teacher",
+      "description": "Manage classes, attendance, and marks",
+      "url": "/portal/teacher",
+      "icons": [{ "src": "/icons/icon-96.png", "sizes": "96x96" }]
+    },
+    {
+      "name": "Parent Portal",
+      "short_name": "Parent",
+      "description": "Track children progress and fees",
+      "url": "/portal/parent",
+      "icons": [{ "src": "/icons/icon-96.png", "sizes": "96x96" }]
+    },
+    {
+      "name": "Management",
+      "short_name": "Admin",
+      "description": "Institutional overview and administration",
+      "url": "/portal/management",
+      "icons": [{ "src": "/icons/icon-96.png", "sizes": "96x96" }]
+    },
     {
       "name": "Admissions",
       "short_name": "Apply",
       "description": "Apply online for admission",
       "url": "/admissions",
-      "icons": [{ "src": "/icons/icon-96.png", "sizes": "96x96" }]
-    },
-    {
-      "name": "Portal",
-      "short_name": "Portal",
-      "description": "Student/Teacher/Parent Portal",
-      "url": "/login",
       "icons": [{ "src": "/icons/icon-96.png", "sizes": "96x96" }]
     }
   ]

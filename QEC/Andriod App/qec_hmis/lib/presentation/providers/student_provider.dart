@@ -1,5 +1,4 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../../core/network/dio_client.dart';
 import '../../data/datasources/student_remote_datasource.dart';
 import '../../data/repositories/student_repository_impl.dart';
 import '../../domain/entities/student.dart';
@@ -100,6 +99,26 @@ class StudentNotifier extends StateNotifier<StudentState> {
   Future<String?> generateQrCode(String studentId) async {
     final result = await _repository.generateQrCode(studentId);
     return result.fold((failure) => null, (qr) => qr);
+  }
+
+  Future<void> createStudent(String rollNumber) async {
+    state = state.copyWith(isLoading: true, error: null);
+    final student = Student(
+      id: '',
+      userId: '',
+      rollNumber: rollNumber,
+      admissionDate: DateTime.now(),
+      createdAt: DateTime.now(),
+      status: 'ACTIVE',
+    );
+    final result = await _repository.createStudent(student);
+    result.fold(
+      (failure) => state = state.copyWith(isLoading: false, error: failure.message),
+      (_) {
+        state = state.copyWith(isLoading: false);
+        loadStudents(refresh: true);
+      },
+    );
   }
 }
 

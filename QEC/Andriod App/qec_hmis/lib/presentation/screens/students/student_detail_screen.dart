@@ -193,6 +193,7 @@ class _StudentDetailScreenState extends ConsumerState<StudentDetailScreen> {
   }
 
   Widget _buildActionButtons(BuildContext context, String studentId) {
+    final student = ref.watch(studentProvider).selectedStudent;
     return Row(
       children: [
         Expanded(
@@ -213,7 +214,7 @@ class _StudentDetailScreenState extends ConsumerState<StudentDetailScreen> {
         const SizedBox(width: 12),
         Expanded(
           child: ElevatedButton.icon(
-            onPressed: () => _showQrCode(context, null),
+            onPressed: () => _showQrCode(context, student),
             icon: const Icon(Icons.qr_code, size: 18),
             label: const Text('QR'),
           ),

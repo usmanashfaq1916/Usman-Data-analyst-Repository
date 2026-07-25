@@ -6,6 +6,7 @@ import { SessionProvider } from "@/components/SessionProvider"
 import { Navbar } from "@/components/Navbar"
 import { Footer } from "@/components/Footer"
 import { PWAInstallBanner } from "@/components/PWAInstallBanner"
+import { SWUpdateBanner } from "@/components/SWUpdateBanner"
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -83,6 +84,7 @@ export default function RootLayout({
             <main className="flex-1">{children}</main>
             <Footer />
             <PWAInstallBanner />
+            <SWUpdateBanner />
           </SessionProvider>
         </ThemeProvider>
       </body>

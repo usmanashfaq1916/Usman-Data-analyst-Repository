@@ -1,5 +1,4 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../../core/network/dio_client.dart';
 import '../../data/datasources/exam_remote_datasource.dart';
 import '../../data/repositories/exam_repository_impl.dart';
 import '../../domain/entities/exam.dart';

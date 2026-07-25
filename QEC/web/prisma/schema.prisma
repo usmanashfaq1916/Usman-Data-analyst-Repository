@@ -266,3 +266,187 @@ model Download {
 
   @@map("downloads")
 }
+
+model Attendance {
+  id         String   @id @default(cuid())
+  studentId  String
+  studentName String?
+  rollNumber String?
+  date       DateTime
+  status     String
+  courseId   String?
+  courseName String?
+  markedBy   String?
+  remarks    String?
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@index([date])
+  @@index([studentId])
+  @@map("attendance")
+}
+
+model Exam {
+  id        String   @id @default(cuid())
+  name      String
+  type      String
+  courseId  String?
+  courseName String?
+  classId   String?
+  totalMarks Int     @default(100)
+  passMarks  Int     @default(40)
+  examDate  DateTime
+  startTime String?
+  endTime   String?
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  results ExamResult[]
+
+  @@index([examDate])
+  @@map("exams")
+}
+
+model ExamResult {
+  id         String   @id @default(cuid())
+  examId     String
+  studentId  String
+  studentName String?
+  rollNumber String?
+  marks      Float
+  grade      String?
+  remarks    String?
+  totalMarks Int      @default(100)
+  createdAt  DateTime @default(now())
+
+  exam Exam @relation(fields: [examId], references: [id], onDelete: Cascade)
+
+  @@unique([examId, studentId])
+  @@map("exam_results")
+}
+
+model Fee {
+  id          String   @id @default(cuid())
+  studentId   String
+  studentName String?
+  rollNumber  String?
+  type        String
+  amount      Float
+  paidAmount  Float    @default(0)
+  status      String   @default("PENDING")
+  dueDate     DateTime?
+  paidAt      DateTime?
+  paymentMethod String?
+  campusId    String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([studentId])
+  @@index([status])
+  @@map("fees")
+}
+
+model TimetableEntry {
+  id         String   @id @default(cuid())
+  dayOfWeek  String
+  startTime  String
+  endTime    String
+  courseName String?
+  teacherName String?
+  room       String?
+  classId    String?
+  section    String?
+  campusId   String?
+  createdAt  DateTime @default(now())
+
+  @@index([dayOfWeek])
+  @@index([classId])
+  @@map("timetable_entries")
+}
+
+model Notice {
+  id        String   @id @default(cuid())
+  title     String
+  content   String   @db.Text
+  category  String   @default("GENERAL")
+  targetRole String?
+  authorId  String?
+  authorName String?
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([category])
+  @@index([targetRole])
+  @@map("notices")
+}
+
+model Book {
+  id               String   @id @default(cuid())
+  title            String
+  author           String
+  isbn             String?
+  publisher        String?
+  publishYear      Int?
+  category         String?
+  quantity         Int      @default(1)
+  availableQuantity Int     @default(1)
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  @@index([title])
+  @@index([isbn])
+  @@map("books")
+}
+
+model BusRoute {
+  id           String   @id @default(cuid())
+  routeName    String
+  vehicleNumber String
+  driverName   String
+  driverPhone  String?
+  stops        String[]
+  totalSeats   Int      @default(50)
+  occupiedSeats Int     @default(0)
+  isActive     Boolean  @default(true)
+  description  String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@map("bus_routes")
+}
+
+model Hostel {
+  id         String   @id @default(cuid())
+  name       String
+  type       String?
+  totalRooms Int      @default(0)
+  totalBeds  Int      @default(0)
+  wardenName String?
+  wardenPhone String?
+  campusId   String?
+  address    String?
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  rooms Room[]
+
+  @@map("hostels")
+}
+
+model Room {
+  id          String   @id @default(cuid())
+  hostelId    String
+  roomNumber  String
+  totalBeds   Int      @default(2)
+  occupiedBeds Int     @default(0)
+  floor       Int?
+  type        String?
+  createdAt   DateTime @default(now())
+
+  hostel Hostel @relation(fields: [hostelId], references: [id], onDelete: Cascade)
+
+  @@unique([hostelId, roomNumber])
+  @@map("rooms")
+}

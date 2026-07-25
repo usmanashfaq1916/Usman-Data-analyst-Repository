@@ -68,7 +68,17 @@ export const ModelName = {
   SARReport: 'SARReport',
   Accreditation: 'Accreditation',
   GalleryItem: 'GalleryItem',
-  Download: 'Download'
+  Download: 'Download',
+  Attendance: 'Attendance',
+  Exam: 'Exam',
+  ExamResult: 'ExamResult',
+  Fee: 'Fee',
+  TimetableEntry: 'TimetableEntry',
+  Notice: 'Notice',
+  Book: 'Book',
+  BusRoute: 'BusRoute',
+  Hostel: 'Hostel',
+  Room: 'Room'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -328,6 +338,179 @@ export const DownloadScalarFieldEnum = {
 } as const
 
 export type DownloadScalarFieldEnum = (typeof DownloadScalarFieldEnum)[keyof typeof DownloadScalarFieldEnum]
+
+
+export const AttendanceScalarFieldEnum = {
+  id: 'id',
+  studentId: 'studentId',
+  studentName: 'studentName',
+  rollNumber: 'rollNumber',
+  date: 'date',
+  status: 'status',
+  courseId: 'courseId',
+  courseName: 'courseName',
+  markedBy: 'markedBy',
+  remarks: 'remarks',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type AttendanceScalarFieldEnum = (typeof AttendanceScalarFieldEnum)[keyof typeof AttendanceScalarFieldEnum]
+
+
+export const ExamScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  type: 'type',
+  courseId: 'courseId',
+  courseName: 'courseName',
+  classId: 'classId',
+  totalMarks: 'totalMarks',
+  passMarks: 'passMarks',
+  examDate: 'examDate',
+  startTime: 'startTime',
+  endTime: 'endTime',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ExamScalarFieldEnum = (typeof ExamScalarFieldEnum)[keyof typeof ExamScalarFieldEnum]
+
+
+export const ExamResultScalarFieldEnum = {
+  id: 'id',
+  examId: 'examId',
+  studentId: 'studentId',
+  studentName: 'studentName',
+  rollNumber: 'rollNumber',
+  marks: 'marks',
+  grade: 'grade',
+  remarks: 'remarks',
+  totalMarks: 'totalMarks',
+  createdAt: 'createdAt'
+} as const
+
+export type ExamResultScalarFieldEnum = (typeof ExamResultScalarFieldEnum)[keyof typeof ExamResultScalarFieldEnum]
+
+
+export const FeeScalarFieldEnum = {
+  id: 'id',
+  studentId: 'studentId',
+  studentName: 'studentName',
+  rollNumber: 'rollNumber',
+  type: 'type',
+  amount: 'amount',
+  paidAmount: 'paidAmount',
+  status: 'status',
+  dueDate: 'dueDate',
+  paidAt: 'paidAt',
+  paymentMethod: 'paymentMethod',
+  campusId: 'campusId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type FeeScalarFieldEnum = (typeof FeeScalarFieldEnum)[keyof typeof FeeScalarFieldEnum]
+
+
+export const TimetableEntryScalarFieldEnum = {
+  id: 'id',
+  dayOfWeek: 'dayOfWeek',
+  startTime: 'startTime',
+  endTime: 'endTime',
+  courseName: 'courseName',
+  teacherName: 'teacherName',
+  room: 'room',
+  classId: 'classId',
+  section: 'section',
+  campusId: 'campusId',
+  createdAt: 'createdAt'
+} as const
+
+export type TimetableEntryScalarFieldEnum = (typeof TimetableEntryScalarFieldEnum)[keyof typeof TimetableEntryScalarFieldEnum]
+
+
+export const NoticeScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  content: 'content',
+  category: 'category',
+  targetRole: 'targetRole',
+  authorId: 'authorId',
+  authorName: 'authorName',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type NoticeScalarFieldEnum = (typeof NoticeScalarFieldEnum)[keyof typeof NoticeScalarFieldEnum]
+
+
+export const BookScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  author: 'author',
+  isbn: 'isbn',
+  publisher: 'publisher',
+  publishYear: 'publishYear',
+  category: 'category',
+  quantity: 'quantity',
+  availableQuantity: 'availableQuantity',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type BookScalarFieldEnum = (typeof BookScalarFieldEnum)[keyof typeof BookScalarFieldEnum]
+
+
+export const BusRouteScalarFieldEnum = {
+  id: 'id',
+  routeName: 'routeName',
+  vehicleNumber: 'vehicleNumber',
+  driverName: 'driverName',
+  driverPhone: 'driverPhone',
+  stops: 'stops',
+  totalSeats: 'totalSeats',
+  occupiedSeats: 'occupiedSeats',
+  isActive: 'isActive',
+  description: 'description',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type BusRouteScalarFieldEnum = (typeof BusRouteScalarFieldEnum)[keyof typeof BusRouteScalarFieldEnum]
+
+
+export const HostelScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  type: 'type',
+  totalRooms: 'totalRooms',
+  totalBeds: 'totalBeds',
+  wardenName: 'wardenName',
+  wardenPhone: 'wardenPhone',
+  campusId: 'campusId',
+  address: 'address',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type HostelScalarFieldEnum = (typeof HostelScalarFieldEnum)[keyof typeof HostelScalarFieldEnum]
+
+
+export const RoomScalarFieldEnum = {
+  id: 'id',
+  hostelId: 'hostelId',
+  roomNumber: 'roomNumber',
+  totalBeds: 'totalBeds',
+  occupiedBeds: 'occupiedBeds',
+  floor: 'floor',
+  type: 'type',
+  createdAt: 'createdAt'
+} as const
+
+export type RoomScalarFieldEnum = (typeof RoomScalarFieldEnum)[keyof typeof RoomScalarFieldEnum]
 
 
 export const SortOrder = {

@@ -212,10 +212,12 @@ class _AddStudentForm extends ConsumerStatefulWidget {
 class _AddStudentFormState extends ConsumerState<_AddStudentForm> {
   final _formKey = GlobalKey<FormState>();
   final _rollNoController = TextEditingController();
+  final _nameController = TextEditingController();
 
   @override
   void dispose() {
     _rollNoController.dispose();
+    _nameController.dispose();
     super.dispose();
   }
 
@@ -240,6 +242,16 @@ class _AddStudentFormState extends ConsumerState<_AddStudentForm> {
             ),
             const SizedBox(height: 20),
             TextFormField(
+              controller: _nameController,
+              decoration: const InputDecoration(
+                labelText: 'Student Name',
+                prefixIcon: Icon(Icons.person),
+              ),
+              validator: (v) =>
+                  v?.isEmpty ?? true ? 'Name is required' : null,
+            ),
+            const SizedBox(height: 16),
+            TextFormField(
               controller: _rollNoController,
               decoration: const InputDecoration(
                 labelText: 'Roll Number',
@@ -248,12 +260,15 @@ class _AddStudentFormState extends ConsumerState<_AddStudentForm> {
               validator: (v) =>
                   v?.isEmpty ?? true ? 'Roll number is required' : null,
             ),
-            const SizedBox(height: 16),
+            const SizedBox(height: 24),
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
+                    ref.read(studentProvider.notifier).createStudent(
+                      _rollNoController.text.trim(),
+                    );
                     Navigator.pop(context);
                   }
                 },

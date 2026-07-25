@@ -94,7 +94,14 @@ class StudentRepositoryImpl implements StudentRepository {
     String studentId,
     String campusId,
   ) async {
-    return const Left(ServerFailure(message: 'Not implemented'));
+    try {
+      final model = await _remoteDataSource.transferCampus(studentId, campusId);
+      return Right(model.toEntity());
+    } on ServerException catch (e) {
+      return Left(ServerFailure(message: e.message, statusCode: e.statusCode));
+    } catch (e) {
+      return Left(ServerFailure(message: e.toString()));
+    }
   }
 
   @override
@@ -102,7 +109,14 @@ class StudentRepositoryImpl implements StudentRepository {
     String studentId,
     String classId,
   ) async {
-    return const Left(ServerFailure(message: 'Not implemented'));
+    try {
+      final model = await _remoteDataSource.promoteStudent(studentId, classId);
+      return Right(model.toEntity());
+    } on ServerException catch (e) {
+      return Left(ServerFailure(message: e.message, statusCode: e.statusCode));
+    } catch (e) {
+      return Left(ServerFailure(message: e.toString()));
+    }
   }
 
   @override

@@ -9,6 +9,7 @@ class ApiConstants {
 
   static const String login = '/auth/login';
   static const String register = '/auth/register';
+  static const String sendOtp = '/auth/send-otp';
   static const String verifyOtp = '/auth/verify-otp';
   static const String forgotPassword = '/auth/forgot-password';
   static const String resetPassword = '/auth/reset-password';
@@ -20,6 +21,9 @@ class ApiConstants {
   static const String teachers = '/teachers';
   static const String staff = '/staff';
   static const String parents = '/parents';
+  static const String library = '/library';
+  static const String transport = '/transport';
+  static const String hostel = '/hostel';
 
   static const String dashboard = '/dashboard';
   static const String dashboardStats = '/dashboard/stats';

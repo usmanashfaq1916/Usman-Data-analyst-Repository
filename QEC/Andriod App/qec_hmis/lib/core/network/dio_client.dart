@@ -1,17 +1,17 @@
 import 'package:dio/dio.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../constants/api_constants.dart';
 import '../constants/app_constants.dart';
 
 class DioClient {
   late final Dio _dio;
-  final FlutterSecureStorage _storage;
+  final SharedPreferences _prefs;
   final String _baseUrl;
 
   DioClient({
-    FlutterSecureStorage? storage,
+    required SharedPreferences prefs,
     String? baseUrl,
-  }) : _storage = storage ?? const FlutterSecureStorage(),
+  }) : _prefs = prefs,
        _baseUrl = baseUrl ?? ApiConstants.baseUrl {
     _dio = Dio(
       BaseOptions(
@@ -35,7 +35,7 @@ class DioClient {
   Interceptor _authInterceptor() {
     return InterceptorsWrapper(
       onRequest: (options, handler) async {
-        final token = await _storage.read(key: 'access_token');
+        final token = _prefs.getString('access_token');
         if (token != null) {
           options.headers['Authorization'] = 'Bearer $token';
         }
@@ -57,7 +57,7 @@ class DioClient {
 
   Future<bool> _refreshToken() async {
     try {
-      final refreshToken = await _storage.read(key: 'refresh_token');
+      final refreshToken = _prefs.getString('refresh_token');
       if (refreshToken == null) return false;
       final response = await Dio(
         BaseOptions(baseUrl: _baseUrl),
@@ -66,8 +66,8 @@ class DioClient {
         data: {'refreshToken': refreshToken},
       );
       if (response.statusCode == 200) {
-        await _storage.write(key: 'access_token', value: response.data['accessToken']);
-        await _storage.write(key: 'refresh_token', value: response.data['refreshToken']);
+        await _prefs.setString('access_token', response.data['accessToken'] ?? '');
+        await _prefs.setString('refresh_token', response.data['refreshToken'] ?? '');
         return true;
       }
       return false;
@@ -77,7 +77,7 @@ class DioClient {
   }
 
   Future<Response> _retry(RequestOptions requestOptions) async {
-    final token = await _storage.read(key: 'access_token');
+    final token = _prefs.getString('access_token');
     final options = Options(
       method: requestOptions.method,
       headers: {

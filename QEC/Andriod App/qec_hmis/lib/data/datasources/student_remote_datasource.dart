@@ -69,6 +69,28 @@ class StudentRemoteDataSource {
     }
   }
 
+  Future<StudentModel> transferCampus(String studentId, String campusId) async {
+    final response = await _client.post(
+      '${ApiConstants.students}/$studentId/transfer',
+      data: {'campusId': campusId},
+    );
+    if (response.statusCode == 200) {
+      return StudentModel.fromJson(response.data['student'] ?? response.data);
+    }
+    throw ServerException(message: 'Failed to transfer campus');
+  }
+
+  Future<StudentModel> promoteStudent(String studentId, String classId) async {
+    final response = await _client.post(
+      '${ApiConstants.students}/$studentId/promote',
+      data: {'classId': classId},
+    );
+    if (response.statusCode == 200) {
+      return StudentModel.fromJson(response.data['student'] ?? response.data);
+    }
+    throw ServerException(message: 'Failed to promote student');
+  }
+
   Future<String> generateQrCode(String studentId) async {
     final response = await _client.post(
       '${ApiConstants.students}/$studentId/qr',

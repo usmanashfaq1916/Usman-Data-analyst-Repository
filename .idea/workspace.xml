@@ -5,7 +5,43 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="26c670dd-0235-4bc2-96f3-ac9356c41abe" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Python class/revision upto dict.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Python class/revision upto dict.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/QEC/Andriod App/google-services.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/QEC/Andriod App/qec_hmis/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/QEC/Andriod App/qec_hmis/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/QEC/Andriod App/qec_hmis/lib/app.dart" beforeDir="false" afterPath="$PROJECT_DIR$/QEC/Andriod App/qec_hmis/lib/app.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/QEC/Andriod App/qec_hmis/lib/core/constants/api_constants.dart" beforeDir="false" afterPath="$PROJECT_DIR$/QEC/Andriod App/qec_hmis/lib/core/constants/api_constants.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/QEC/Andriod App/qec_hmis/lib/core/network/dio_client.dart" beforeDir="false" afterPath="$PROJECT_DIR$/QEC/Andriod App/qec_hmis/lib/core/network/dio_client.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/QEC/Andriod App/qec_hmis/lib/data/datasources/attendance_remote_datasource.dart" beforeDir="false" afterPath="$PROJECT_DIR$/QEC/Andriod App/qec_hmis/lib/data/datasources/attendance_remote_datasource.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/QEC/Andriod App/qec_hmis/lib/data/datasources/auth_remote_datasource.dart" beforeDir="false" afterPath="$PROJECT_DIR$/QEC/Andriod App/qec_hmis/lib/data/datasources/auth_remote_datasource.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/QEC/Andriod App/qec_hmis/lib/data/datasources/dashboard_remote_datasource.dart" beforeDir="false" afterPath="$PROJECT_DIR$/QEC/Andriod App/qec_hmis/lib/data/datasources/dashboard_remote_datasource.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/QEC/Andriod App/qec_hmis/lib/data/datasources/exam_remote_datasource.dart" beforeDir="false" afterPath="$PROJECT_DIR$/QEC/Andriod App/qec_hmis/lib/data/datasources/exam_remote_datasource.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/QEC/Andriod App/qec_hmis/lib/data/datasources/fee_remote_datasource.dart" beforeDir="false" afterPath="$PROJECT_DIR$/QEC/Andriod App/qec_hmis/lib/data/datasources/fee_remote_datasource.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/QEC/Andriod App/qec_hmis/lib/data/datasources/local_datasource.dart" beforeDir="false" afterPath="$PROJECT_DIR$/QEC/Andriod App/qec_hmis/lib/data/datasources/local_datasource.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/QEC/Andriod App/qec_hmis/lib/data/datasources/student_remote_datasource.dart" beforeDir="false" afterPath="$PROJECT_DIR$/QEC/Andriod App/qec_hmis/lib/data/datasources/student_remote_datasource.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/QEC/Andriod App/qec_hmis/lib/data/repositories/attendance_repository_impl.dart" beforeDir="false" afterPath="$PROJECT_DIR$/QEC/Andriod App/qec_hmis/lib/data/repositories/attendance_repository_impl.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/QEC/Andriod App/qec_hmis/lib/data/repositories/auth_repository_impl.dart" beforeDir="false" afterPath="$PROJECT_DIR$/QEC/Andriod App/qec_hmis/lib/data/repositories/auth_repository_impl.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/QEC/Andriod App/qec_hmis/lib/data/repositories/dashboard_repository_impl.dart" beforeDir="false" afterPath="$PROJECT_DIR$/QEC/Andriod App/qec_hmis/lib/data/repositories/dashboard_repository_impl.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/QEC/Andriod App/qec_hmis/lib/data/repositories/exam_repository_impl.dart" beforeDir="false" afterPath="$PROJECT_DIR$/QEC/Andriod App/qec_hmis/lib/data/repositories/exam_repository_impl.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/QEC/Andriod App/qec_hmis/lib/data/repositories/fee_repository_impl.dart" beforeDir="false" afterPath="$PROJECT_DIR$/QEC/Andriod App/qec_hmis/lib/data/repositories/fee_repository_impl.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/QEC/Andriod App/qec_hmis/lib/data/repositories/student_repository_impl.dart" beforeDir="false" afterPath="$PROJECT_DIR$/QEC/Andriod App/qec_hmis/lib/data/repositories/student_repository_impl.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/QEC/Andriod App/qec_hmis/lib/firebase_options.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/QEC/Andriod App/qec_hmis/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/QEC/Andriod App/qec_hmis/lib/main.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/QEC/Andriod App/qec_hmis/lib/presentation/providers/attendance_provider.dart" beforeDir="false" afterPath="$PROJECT_DIR$/QEC/Andriod App/qec_hmis/lib/presentation/providers/attendance_provider.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/QEC/Andriod App/qec_hmis/lib/presentation/providers/auth_provider.dart" beforeDir="false" afterPath="$PROJECT_DIR$/QEC/Andriod App/qec_hmis/lib/presentation/providers/auth_provider.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/QEC/Andriod App/qec_hmis/lib/presentation/providers/dashboard_provider.dart" beforeDir="false" afterPath="$PROJECT_DIR$/QEC/Andriod App/qec_hmis/lib/presentation/providers/dashboard_provider.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/QEC/Andriod App/qec_hmis/lib/presentation/providers/exam_provider.dart" beforeDir="false" afterPath="$PROJECT_DIR$/QEC/Andriod App/qec_hmis/lib/presentation/providers/exam_provider.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/QEC/Andriod App/qec_hmis/lib/presentation/providers/fee_provider.dart" beforeDir="false" afterPath="$PROJECT_DIR$/QEC/Andriod App/qec_hmis/lib/presentation/providers/fee_provider.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/QEC/Andriod App/qec_hmis/lib/presentation/providers/providers.dart" beforeDir="false" afterPath="$PROJECT_DIR$/QEC/Andriod App/qec_hmis/lib/presentation/providers/providers.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/QEC/Andriod App/qec_hmis/lib/presentation/providers/student_provider.dart" beforeDir="false" afterPath="$PROJECT_DIR$/QEC/Andriod App/qec_hmis/lib/presentation/providers/student_provider.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/QEC/Andriod App/qec_hmis/lib/presentation/screens/auth/login_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/QEC/Andriod App/qec_hmis/lib/presentation/screens/auth/login_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/QEC/Andriod App/qec_hmis/lib/presentation/screens/exams/exam_list_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/QEC/Andriod App/qec_hmis/lib/presentation/screens/exams/exam_list_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/QEC/Andriod App/qec_hmis/lib/presentation/screens/fees/fee_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/QEC/Andriod App/qec_hmis/lib/presentation/screens/fees/fee_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/QEC/Andriod App/qec_hmis/lib/presentation/screens/students/student_detail_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/QEC/Andriod App/qec_hmis/lib/presentation/screens/students/student_detail_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/QEC/Andriod App/qec_hmis/lib/presentation/screens/students/student_list_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/QEC/Andriod App/qec_hmis/lib/presentation/screens/students/student_list_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/QEC/Andriod App/qec_hmis/lib/presentation/widgets/loading_widget.dart" beforeDir="false" afterPath="$PROJECT_DIR$/QEC/Andriod App/qec_hmis/lib/presentation/widgets/loading_widget.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/QEC/Andriod App/qec_hmis/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/QEC/Andriod App/qec_hmis/pubspec.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UniConnect/next.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/UniConnect/next.config.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UniConnect/src/app/programs/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/UniConnect/src/app/programs/page.tsx" afterDir="false" />
     </list>
@@ -25,6 +61,65 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="NextEditCompletionFeaturesState">
+    <decayedCancelled>
+      <entry key="MS100" value="1.0000710896964398" />
+      <entry key="MS500" value="1.1480339514817042" />
+      <entry key="S2" value="1.6202877122692665" />
+      <entry key="S5" value="1.8429436477821612" />
+      <entry key="S10" value="2.265638790411763" />
+      <entry key="S30" value="5.543272630770274" />
+      <entry key="S60" value="10.162182743175828" />
+      <entry key="M2" value="17.428270490716258" />
+      <entry key="M5" value="28.156404233234564" />
+      <entry key="M10" value="36.29447938869584" />
+      <entry key="M15" value="44.69066685205331" />
+      <entry key="M30" value="72.5069521993276" />
+      <entry key="H1" value="114.91965408898164" />
+      <entry key="H2" value="170.44696710792192" />
+      <entry key="H4" value="244.44825008603422" />
+      <entry key="D1" value="633.6575641183912" />
+      <entry key="W1" value="906.1523176370561" />
+    </decayedCancelled>
+    <decayedSelected>
+      <entry key="MS100" value="1.537014171625576E-26" />
+      <entry key="MS500" value="6.875995350729652E-6" />
+      <entry key="S2" value="0.051222831079704954" />
+      <entry key="S5" value="0.31785718407534874" />
+      <entry key="S10" value="0.6984317764348987" />
+      <entry key="S30" value="1.6331037954345988" />
+      <entry key="S60" value="2.175805576400988" />
+      <entry key="M2" value="2.5439446661406744" />
+      <entry key="M5" value="2.8149769128610114" />
+      <entry key="M10" value="3.3132585978677356" />
+      <entry key="M15" value="4.473383275014195" />
+      <entry key="M30" value="9.111762430417372" />
+      <entry key="H1" value="16.601314835595453" />
+      <entry key="H2" value="27.353785491764476" />
+      <entry key="H4" value="43.14633827982562" />
+      <entry key="D1" value="136.41647832131275" />
+      <entry key="W1" value="202.57916613868872" />
+    </decayedSelected>
+    <decayedShown>
+      <entry key="MS100" value="9.644099520876841E-5" />
+      <entry key="MS500" value="0.17057523451215376" />
+      <entry key="S2" value="0.9899127050091628" />
+      <entry key="S5" value="1.713395884197162" />
+      <entry key="S10" value="2.6096753733828844" />
+      <entry key="S30" value="6.886475450439541" />
+      <entry key="S60" value="12.099277197000319" />
+      <entry key="M2" value="19.782884350394934" />
+      <entry key="M5" value="30.855673920151922" />
+      <entry key="M10" value="39.5357440827069" />
+      <entry key="M15" value="49.10672089429884" />
+      <entry key="M30" value="81.57409545502071" />
+      <entry key="H1" value="131.48597414770802" />
+      <entry key="H2" value="197.7746787602732" />
+      <entry key="H4" value="287.575604105516" />
+      <entry key="D1" value="770.0652432714749" />
+      <entry key="W1" value="1108.7296621309079" />
+    </decayedShown>
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 8,
   &quot;fromUser&quot;: false
@@ -34,34 +129,34 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "Python.Foundation 1.executor": "Run",
-    "Python.Tea or Coffee.executor": "Run",
-    "Python.analysis.executor": "Run",
-    "Python.generate_notebook.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "codeWithMe.voiceChat.enabledByDefault": "false",
-    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "git-widget-placeholder": "main",
-    "ignore.virus.scanning.warn.message": "true",
-    "junie.onboarding.icon.badge.shown": "true",
-    "last_opened_file_path": "C:/Users/user/Documents/GitHub/Usman Data analyst Repository",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable",
-    "to.speed.mode.migration.done": "true",
-    "ts.external.directory.path": "C:\\Users\\user\\Documents\\GitHub\\Usman Data analyst Repository\\QEC\\web\\node_modules\\typescript\\lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;Python.Foundation 1.executor&quot;: &quot;Run&quot;,
+    &quot;Python.Tea or Coffee.executor&quot;: &quot;Run&quot;,
+    &quot;Python.analysis.executor&quot;: &quot;Run&quot;,
+    &quot;Python.generate_notebook.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
+    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/user/Documents/GitHub/Usman Data analyst Repository&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;,
+    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\user\\Documents\\GitHub\\Usman Data analyst Repository\\QEC\\web\\node_modules\\typescript\\lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -113,7 +208,8 @@
       <workItem from="1784164624523" duration="3170000" />
       <workItem from="1784168248113" duration="19583000" />
       <workItem from="1784286281058" duration="852000" />
-      <workItem from="1784717446770" duration="4811000" />
+      <workItem from="1784717446770" duration="48473000" />
+      <workItem from="1784969981232" duration="3776000" />
     </task>
     <servers />
   </component>

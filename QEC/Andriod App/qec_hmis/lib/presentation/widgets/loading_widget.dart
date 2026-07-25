@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
-import '../../core/theme/app_colors.dart';
 
 class LoadingWidget extends StatelessWidget {
   final double? height;

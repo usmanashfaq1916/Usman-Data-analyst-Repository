@@ -89,9 +89,17 @@ class AttendanceRepositoryImpl implements AttendanceRepository {
     required DateTime startDate,
     required DateTime endDate,
   }) async {
-    return getAttendance(
-      date: DateTime.now(),
-      courseId: null,
-    );
+    try {
+      final models = await _remoteDataSource.getAttendance(
+        studentId: studentId,
+        startDate: startDate,
+        endDate: endDate,
+      );
+      return Right(models.map((m) => m.toEntity()).toList());
+    } on ServerException catch (e) {
+      return Left(ServerFailure(message: e.message, statusCode: e.statusCode));
+    } catch (e) {
+      return Left(ServerFailure(message: e.toString()));
+    }
   }
 }

@@ -9,14 +9,20 @@ class AttendanceRemoteDataSource {
   AttendanceRemoteDataSource(this._client);
 
   Future<List<AttendanceModel>> getAttendance({
-    required DateTime date,
+    DateTime? date,
     String? classId,
     String? courseId,
+    String? studentId,
+    DateTime? startDate,
+    DateTime? endDate,
   }) async {
     final params = <String, dynamic>{
-      'date': _formatDate(date),
+      if (date != null) 'date': _formatDate(date),
       if (classId != null) 'classId': classId,
       if (courseId != null) 'courseId': courseId,
+      if (studentId != null) 'studentId': studentId,
+      if (startDate != null) 'startDate': _formatDate(startDate),
+      if (endDate != null) 'endDate': _formatDate(endDate),
     };
     final response = await _client.get(ApiConstants.attendance, queryParameters: params);
     if (response.statusCode == 200) {

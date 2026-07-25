@@ -71,12 +71,40 @@ class ExamRepositoryImpl implements ExamRepository {
 
   @override
   Future<Either<Failure, Exam>> updateExam(Exam exam) async {
-    return const Left(ServerFailure(message: 'Not implemented'));
+    try {
+      final model = await _remoteDataSource.updateExam(
+        ExamModel(
+          id: exam.id,
+          name: exam.name,
+          type: exam.type,
+          courseId: exam.courseId,
+          courseName: exam.courseName,
+          totalMarks: exam.totalMarks,
+          passMarks: exam.passMarks,
+          examDate: exam.examDate.toIso8601String(),
+          startTime: exam.startTime?.toIso8601String(),
+          endTime: exam.endTime?.toIso8601String(),
+          isActive: exam.isActive,
+        ),
+      );
+      return Right(model.toEntity());
+    } on ServerException catch (e) {
+      return Left(ServerFailure(message: e.message, statusCode: e.statusCode));
+    } catch (e) {
+      return Left(ServerFailure(message: e.toString()));
+    }
   }
 
   @override
   Future<Either<Failure, void>> deleteExam(String id) async {
-    return const Left(ServerFailure(message: 'Not implemented'));
+    try {
+      await _remoteDataSource.deleteExam(id);
+      return const Right(null);
+    } on ServerException catch (e) {
+      return Left(ServerFailure(message: e.message, statusCode: e.statusCode));
+    } catch (e) {
+      return Left(ServerFailure(message: e.toString()));
+    }
   }
 
   @override
@@ -135,6 +163,13 @@ class ExamRepositoryImpl implements ExamRepository {
     String studentId,
     String semesterId,
   ) async {
-    return const Left(ServerFailure(message: 'Not implemented'));
+    try {
+      final url = await _remoteDataSource.generateReportCard(studentId, semesterId);
+      return Right(url);
+    } on ServerException catch (e) {
+      return Left(ServerFailure(message: e.message));
+    } catch (e) {
+      return Left(ServerFailure(message: e.toString()));
+    }
   }
 }

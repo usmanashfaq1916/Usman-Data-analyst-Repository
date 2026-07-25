@@ -6,6 +6,7 @@ import '../../domain/entities/user.dart';
 import '../../domain/repositories/auth_repository.dart';
 import '../datasources/auth_remote_datasource.dart';
 import '../datasources/local_datasource.dart';
+import '../models/user_model.dart';
 
 class AuthRepositoryImpl implements AuthRepository {
   final AuthRemoteDataSource _remoteDataSource;
@@ -98,7 +99,10 @@ class AuthRepositoryImpl implements AuthRepository {
   @override
   Future<Either<Failure, void>> resetPassword(String token, String password) async {
     try {
+      await _remoteDataSource.resetPassword(token, password);
       return const Right(null);
+    } on AuthException catch (e) {
+      return Left(AuthFailure(message: e.message));
     } catch (e) {
       return Left(ServerFailure(message: e.toString()));
     }
@@ -125,7 +129,12 @@ class AuthRepositoryImpl implements AuthRepository {
   @override
   Future<Either<Failure, void>> updateProfile(User user) async {
     try {
+      final userModel = UserModel.fromEntity(user);
+      await _remoteDataSource.updateProfile(userModel);
+      await _localDataSource.cacheUser(userModel);
       return const Right(null);
+    } on AuthException catch (e) {
+      return Left(AuthFailure(message: e.message));
     } catch (e) {
       return Left(ServerFailure(message: e.toString()));
     }

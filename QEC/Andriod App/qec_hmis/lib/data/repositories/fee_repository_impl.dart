@@ -4,6 +4,7 @@ import '../../core/errors/failures.dart';
 import '../../domain/entities/fee.dart';
 import '../../domain/repositories/fee_repository.dart';
 import '../datasources/fee_remote_datasource.dart';
+import '../models/fee_model.dart';
 
 class FeeRepositoryImpl implements FeeRepository {
   final FeeRemoteDataSource _remoteDataSource;
@@ -34,12 +35,39 @@ class FeeRepositoryImpl implements FeeRepository {
 
   @override
   Future<Either<Failure, Fee>> getFee(String id) async {
-    return const Left(ServerFailure(message: 'Not implemented'));
+    try {
+      final model = await _remoteDataSource.getFee(id);
+      return Right(model.toEntity());
+    } on ServerException catch (e) {
+      return Left(NotFoundFailure(message: e.message, statusCode: e.statusCode));
+    } catch (e) {
+      return Left(ServerFailure(message: e.toString()));
+    }
   }
 
   @override
   Future<Either<Failure, Fee>> createFee(Fee fee) async {
-    return const Left(ServerFailure(message: 'Not implemented'));
+    try {
+      final model = await _remoteDataSource.createFee(
+        FeeModel(
+          id: '',
+          studentId: fee.studentId,
+          studentName: fee.studentName,
+          rollNumber: fee.rollNumber,
+          type: fee.type,
+          amount: fee.amount,
+          paidAmount: 0,
+          status: 'PENDING',
+          dueDate: fee.dueDate?.toIso8601String(),
+          createdAt: DateTime.now().toIso8601String(),
+        ),
+      );
+      return Right(model.toEntity());
+    } on ServerException catch (e) {
+      return Left(ServerFailure(message: e.message, statusCode: e.statusCode));
+    } catch (e) {
+      return Left(ServerFailure(message: e.toString()));
+    }
   }
 
   @override
@@ -80,7 +108,14 @@ class FeeRepositoryImpl implements FeeRepository {
 
   @override
   Future<Either<Failure, String>> generateChallan(String feeId) async {
-    return const Left(ServerFailure(message: 'Not implemented'));
+    try {
+      final url = await _remoteDataSource.generateChallan(feeId);
+      return Right(url);
+    } on ServerException catch (e) {
+      return Left(ServerFailure(message: e.message));
+    } catch (e) {
+      return Left(ServerFailure(message: e.toString()));
+    }
   }
 
   @override
@@ -101,7 +136,14 @@ class FeeRepositoryImpl implements FeeRepository {
     double discount,
     String reason,
   ) async {
-    return const Left(ServerFailure(message: 'Not implemented'));
+    try {
+      await _remoteDataSource.applyDiscount(feeId, discount, reason);
+      return const Right(null);
+    } on ServerException catch (e) {
+      return Left(ServerFailure(message: e.message));
+    } catch (e) {
+      return Left(ServerFailure(message: e.toString()));
+    }
   }
 
   @override
@@ -109,6 +151,13 @@ class FeeRepositoryImpl implements FeeRepository {
     String studentId,
     double percentage,
   ) async {
-    return const Left(ServerFailure(message: 'Not implemented'));
+    try {
+      await _remoteDataSource.applyScholarship(studentId, percentage);
+      return const Right(null);
+    } on ServerException catch (e) {
+      return Left(ServerFailure(message: e.message));
+    } catch (e) {
+      return Left(ServerFailure(message: e.toString()));
+    }
   }
 }

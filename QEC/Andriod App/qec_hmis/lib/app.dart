@@ -10,6 +10,12 @@ import 'presentation/screens/students/student_detail_screen.dart';
 import 'presentation/screens/attendance/attendance_screen.dart';
 import 'presentation/screens/exams/exam_list_screen.dart';
 import 'presentation/screens/fees/fee_screen.dart';
+import 'presentation/screens/teachers/teacher_list_screen.dart';
+import 'presentation/screens/timetable/timetable_screen.dart';
+import 'presentation/screens/library/library_screen.dart';
+import 'presentation/screens/transport/transport_screen.dart';
+import 'presentation/screens/hostel/hostel_screen.dart';
+import 'presentation/screens/reports/reports_screen.dart';
 
 class App extends ConsumerWidget {
   const App({super.key});
@@ -34,6 +40,12 @@ class App extends ConsumerWidget {
           '/attendance': (_) => const AttendanceScreen(),
           '/exams': (_) => const ExamListScreen(),
           '/fees': (_) => const FeeScreen(),
+          '/teachers': (_) => const TeacherListScreen(),
+          '/timetable': (_) => const TimetableScreen(),
+          '/library': (_) => const LibraryScreen(),
+          '/transport': (_) => const TransportScreen(),
+          '/hostel': (_) => const HostelScreen(),
+          '/reports': (_) => const ReportsScreen(),
         };
 
         final uri = Uri.parse(settings.name ?? '');
@@ -50,6 +62,13 @@ class App extends ConsumerWidget {
           final id = path.split('/').last;
           return MaterialPageRoute(
             builder: (_) => StudentDetailScreen(studentId: id),
+            settings: settings,
+          );
+        }
+
+        if (path.startsWith('/exams/')) {
+          return MaterialPageRoute(
+            builder: (_) => const ExamListScreen(),
             settings: settings,
           );
         }

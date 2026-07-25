@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../providers/fee_provider.dart';
 import '../../../core/theme/app_colors.dart';
-import '../../../core/utils/extensions.dart';
 import '../../../domain/entities/fee.dart';
 import '../../widgets/loading_widget.dart';
 import '../../widgets/error_widget.dart';

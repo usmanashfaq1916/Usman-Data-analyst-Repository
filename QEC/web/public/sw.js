@@ -1,11 +1,16 @@
-const CACHE_NAME = 'qec-cache-v1';
-const STATIC_CACHE = 'qec-static-v1';
+const CACHE_NAME = 'qec-cache-v2';
+const STATIC_CACHE = 'qec-static-v2';
 const OFFLINE_URL = '/offline';
 
 const STATIC_ASSETS = [
   '/',
   '/offline',
   '/manifest.json',
+  '/login',
+  '/portal/student',
+  '/portal/teacher',
+  '/portal/parent',
+  '/portal/management',
 ];
 
 // Install: cache static assets
@@ -139,4 +144,56 @@ self.addEventListener('notificationclick', (event) => {
   event.waitUntil(
     clients.openWindow(url)
   );
+});
+
+// Background sync: retry failed API calls when back online
+self.addEventListener('sync', (event) => {
+  if (event.tag === 'sync-attendance') {
+    event.waitUntil(syncAttendance());
+  }
+  if (event.tag === 'sync-marks') {
+    event.waitUntil(syncMarks());
+  }
+});
+
+async function syncAttendance() {
+  const cache = await caches.open('qec-sync-v1');
+  const requests = await cache.keys();
+  for (const req of requests) {
+    if (req.url.includes('/api/attendance')) {
+      try {
+        const res = await fetch(req);
+        if (res.ok) await cache.delete(req);
+      } catch { /* will retry */ }
+    }
+  }
+}
+
+async function syncMarks() {
+  const cache = await caches.open('qec-sync-v1');
+  const requests = await cache.keys();
+  for (const req of requests) {
+    if (req.url.includes('/api/exams/') && req.url.endsWith('/results')) {
+      try {
+        const res = await fetch(req);
+        if (res.ok) await cache.delete(req);
+      } catch { /* will retry */ }
+    }
+  }
+}
+
+// Message channel: allow page to refresh cache
+self.addEventListener('message', (event) => {
+  if (event.data === 'SKIP_WAITING') {
+    self.skipWaiting();
+  }
+  if (event.data === 'CLEAR_CACHE') {
+    caches.keys().then((keys) => {
+      return Promise.all(keys.map((key) => caches.delete(key)));
+    }).then(() => {
+      self.clients.matchAll().then((clients) => {
+        clients.forEach((client) => client.postMessage('CACHE_CLEARED'));
+      });
+    });
+  }
 });

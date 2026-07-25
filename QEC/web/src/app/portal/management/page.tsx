@@ -1,10 +1,44 @@
 "use client"
 
+import Link from "next/link"
 import { useDashboardData } from "@/lib/useDashboardData"
 import { Users, GraduationCap, ClipboardList, TrendingUp, Building2, School, ArrowUp } from "lucide-react"
+import { useState, useEffect } from "react"
+
+interface CampusDist {
+  name: string
+  students: number
+}
+
+const defaultCampusDist: CampusDist[] = [
+  { name: "Chowk Begum Kot", students: 420 },
+  { name: "Kot Shabudin", students: 280 },
+  { name: "Kot Abdul Malik", students: 195 },
+  { name: "Al Rehman Garden", students: 225 },
+  { name: "Quaid Lyceum", students: 127 },
+]
 
 export default function ManagementDashboard() {
   const { data } = useDashboardData()
+  const [campusDist, setCampusDist] = useState<CampusDist[]>(defaultCampusDist)
+
+  useEffect(() => {
+    async function load() {
+      try {
+        const res = await fetch("/api/campuses")
+        const campuses = await res.json()
+        if (Array.isArray(campuses) && campuses.length > 0) {
+          setCampusDist(campuses.map((c: { name: string; _count?: { enrollments: number }; students?: string }) => ({
+            name: c.name,
+            students: c._count?.enrollments ?? (parseInt(c.students ?? "0") || 0),
+          })))
+        }
+      } catch {
+        /* keep defaults */
+      }
+    }
+    load()
+  }, [])
 
   const stats = [
     { label: "Total Students", value: data?.totalStudents ?? 1247, change: "+12%", icon: Users, color: "text-primary" },
@@ -15,20 +49,12 @@ export default function ManagementDashboard() {
     { label: "Active Apps", value: data?.activeAdmissions ?? 45, change: "+8%", icon: TrendingUp, color: "text-green-500" },
   ]
 
-  const admissions: Array<{ id: string; name: string; date: string; status: string }> = (data?.recentAdmissions ?? []).map((a) => ({
+  const admissions: Array<{ id: string; name: string; date: string; status: string }> = (data?.recentAdmissions ?? []).map((a: { applicationId?: string; id: string; studentName: string; createdAt: string; status?: string }) => ({
     id: a.applicationId || a.id,
     name: a.studentName,
     date: a.createdAt ? new Date(a.createdAt).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" }) : "N/A",
     status: a.status || "Submitted",
   }))
-
-  const campusDistribution = (data?.campusDistribution ?? [
-    { name: "Chowk Begum Kot", students: 420 },
-    { name: "Kot Shabudin", students: 280 },
-    { name: "Kot Abdul Malik", students: 195 },
-    { name: "Al Rehman Garden", students: 225 },
-    { name: "Quaid Lyceum", students: 127 },
-  ])
 
   return (
     <div className="space-y-8">
@@ -86,18 +112,18 @@ export default function ManagementDashboard() {
           <div className="p-6 rounded-xl border border-border bg-card">
             <h2 className="font-bold text-foreground mb-4 flex items-center gap-2"><Users className="h-5 w-5 text-accent" />Quick Actions</h2>
             <div className="space-y-2">
-              <button className="w-full text-left p-3 rounded-lg border border-border bg-background text-sm font-medium text-card-foreground hover:bg-border transition-colors">Add New Student</button>
-              <button className="w-full text-left p-3 rounded-lg border border-border bg-background text-sm font-medium text-card-foreground hover:bg-border transition-colors">Generate Reports</button>
-              <button className="w-full text-left p-3 rounded-lg border border-border bg-background text-sm font-medium text-card-foreground hover:bg-border transition-colors">Manage Staff</button>
-              <button className="w-full text-left p-3 rounded-lg border border-border bg-background text-sm font-medium text-card-foreground hover:bg-border transition-colors">View Analytics</button>
-              <button className="w-full text-left p-3 rounded-lg border border-border bg-background text-sm font-medium text-card-foreground hover:bg-border transition-colors">Fee Management</button>
+              <Link href="/portal/management/students" className="block w-full text-left p-3 rounded-lg border border-border bg-background text-sm font-medium text-card-foreground hover:bg-border transition-colors">Manage Students</Link>
+              <Link href="/portal/management/teachers" className="block w-full text-left p-3 rounded-lg border border-border bg-background text-sm font-medium text-card-foreground hover:bg-border transition-colors">Manage Staff</Link>
+              <Link href="/portal/management/admissions" className="block w-full text-left p-3 rounded-lg border border-border bg-background text-sm font-medium text-card-foreground hover:bg-border transition-colors">View Admissions</Link>
+              <Link href="/portal/management/reports" className="block w-full text-left p-3 rounded-lg border border-border bg-background text-sm font-medium text-card-foreground hover:bg-border transition-colors">Generate Reports</Link>
+              <Link href="/portal/management/classes" className="block w-full text-left p-3 rounded-lg border border-border bg-background text-sm font-medium text-card-foreground hover:bg-border transition-colors">Fee Management</Link>
             </div>
           </div>
 
           <div className="p-6 rounded-xl border border-border bg-card">
             <h2 className="font-bold text-foreground mb-3 flex items-center gap-2"><School className="h-5 w-5 text-primary" />Campus Distribution</h2>
             <div className="space-y-2">
-              {campusDistribution.map((c) => (
+              {campusDist.map((c) => (
                 <div key={c.name} className="flex justify-between text-sm">
                   <span className="text-card-foreground">{c.name}</span>
                   <span className="text-muted">{c.students} students</span>

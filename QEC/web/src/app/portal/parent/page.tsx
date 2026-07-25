@@ -1,20 +1,31 @@
 "use client"
 
+import Link from "next/link"
 import { useDashboardData } from "@/lib/useDashboardData"
 import { UserCheck, DollarSign, Bell, TrendingUp, Award, User, GraduationCap } from "lucide-react"
+import { useState, useEffect } from "react"
 
-const students = [
+interface StudentInfo {
+  name: string
+  class: string
+  section: string
+  rollNo: string
+  attendance: number
+  gpa: number
+}
+
+const defaultStudents: StudentInfo[] = [
   { name: "Ahmed Khan", class: "10th Grade", section: "A", rollNo: "1001", attendance: 92, gpa: 3.8 },
   { name: "Sara Khan", class: "8th Grade", section: "B", rollNo: "2003", attendance: 95, gpa: 3.9 },
 ]
 
-const feeStatus = [
+const defaultFees = [
   { month: "Jul 2026", amount: "Rs. 4,500", status: "Paid" },
   { month: "Jun 2026", amount: "Rs. 4,500", status: "Paid" },
   { month: "May 2026", amount: "Rs. 4,500", status: "Paid" },
 ]
 
-const notices = [
+const defaultNotices = [
   { title: "Parent-teacher meeting", date: "Jul 25, 2026" },
   { title: "Summer camp registration", date: "Jul 22, 2026" },
   { title: "Annual sports gala", date: "Aug 5, 2026" },
@@ -22,6 +33,9 @@ const notices = [
 
 export default function ParentDashboard() {
   const { data } = useDashboardData()
+  const [students] = useState<StudentInfo[]>(defaultStudents)
+  const [feeStatus] = useState(defaultFees)
+  const [notices] = useState(defaultNotices)
 
   return (
     <div className="space-y-8">
@@ -111,10 +125,10 @@ export default function ParentDashboard() {
           <div className="p-6 rounded-xl border border-border bg-card">
             <h2 className="font-bold text-foreground mb-4 flex items-center gap-2"><TrendingUp className="h-5 w-5 text-accent" />Quick Actions</h2>
             <div className="grid grid-cols-2 gap-3">
-              <button className="p-3 rounded-lg border border-border bg-background text-sm font-medium text-card-foreground hover:bg-border transition-colors">Download Reports</button>
-              <button className="p-3 rounded-lg border border-border bg-background text-sm font-medium text-card-foreground hover:bg-border transition-colors">Contact Teacher</button>
-              <button className="p-3 rounded-lg border border-border bg-background text-sm font-medium text-card-foreground hover:bg-border transition-colors">Pay Fee Online</button>
-              <button className="p-3 rounded-lg border border-border bg-background text-sm font-medium text-card-foreground hover:bg-border transition-colors">Apply for Leave</button>
+              <Link href="/portal/parent/reports" className="p-3 rounded-lg border border-border bg-background text-sm font-medium text-card-foreground hover:bg-border transition-colors text-center">Download Reports</Link>
+              <Link href="/portal/parent/communication" className="p-3 rounded-lg border border-border bg-background text-sm font-medium text-card-foreground hover:bg-border transition-colors text-center">Contact Teacher</Link>
+              <Link href="/portal/parent/fees" className="p-3 rounded-lg border border-border bg-background text-sm font-medium text-card-foreground hover:bg-border transition-colors text-center">Pay Fee Online</Link>
+              <Link href="/portal/parent/notices" className="p-3 rounded-lg border border-border bg-background text-sm font-medium text-card-foreground hover:bg-border transition-colors text-center">View Notices</Link>
             </div>
           </div>
         </div>
