@@ -1,9 +1,5 @@
-import 'package:json_annotation/json_annotation.dart';
 import '../../domain/entities/exam.dart';
 
-part 'exam_model.g.dart';
-
-@JsonSerializable()
 class ExamModel {
   final String id;
   final String name;
@@ -31,8 +27,35 @@ class ExamModel {
     this.isActive = true,
   });
 
-  factory ExamModel.fromJson(Map<String, dynamic> json) => _$ExamModelFromJson(json);
-  Map<String, dynamic> toJson() => _$ExamModelToJson(this);
+  factory ExamModel.fromJson(Map<String, dynamic> json) {
+    return ExamModel(
+      id: json['id'] as String? ?? '',
+      name: json['name'] as String? ?? '',
+      type: json['type'] as String? ?? '',
+      courseId: json['courseId'] as String?,
+      courseName: json['courseName'] as String?,
+      totalMarks: json['totalMarks'] as int? ?? 100,
+      passMarks: json['passMarks'] as int? ?? 40,
+      examDate: json['examDate'] as String? ?? DateTime.now().toIso8601String(),
+      startTime: json['startTime'] as String?,
+      endTime: json['endTime'] as String?,
+      isActive: json['isActive'] as bool? ?? true,
+    );
+  }
+
+  Map<String, dynamic> toJson() => {
+    'id': id,
+    'name': name,
+    'type': type,
+    'courseId': courseId,
+    'courseName': courseName,
+    'totalMarks': totalMarks,
+    'passMarks': passMarks,
+    'examDate': examDate,
+    'startTime': startTime,
+    'endTime': endTime,
+    'isActive': isActive,
+  };
 
   Exam toEntity() {
     return Exam(
@@ -51,7 +74,6 @@ class ExamModel {
   }
 }
 
-@JsonSerializable()
 class ExamResultModel {
   final String id;
   final String examId;
@@ -77,9 +99,33 @@ class ExamResultModel {
     this.totalMarks = 100,
   });
 
-  factory ExamResultModel.fromJson(Map<String, dynamic> json) =>
-      _$ExamResultModelFromJson(json);
-  Map<String, dynamic> toJson() => _$ExamResultModelToJson(this);
+  factory ExamResultModel.fromJson(Map<String, dynamic> json) {
+    return ExamResultModel(
+      id: json['id'] as String? ?? '',
+      examId: json['examId'] as String? ?? '',
+      examName: json['examName'] as String?,
+      studentId: json['studentId'] as String? ?? '',
+      studentName: json['studentName'] as String?,
+      rollNumber: json['rollNumber'] as String?,
+      marks: (json['marks'] as num?)?.toDouble() ?? 0,
+      grade: json['grade'] as String?,
+      remarks: json['remarks'] as String?,
+      totalMarks: json['totalMarks'] as int? ?? 100,
+    );
+  }
+
+  Map<String, dynamic> toJson() => {
+    'id': id,
+    'examId': examId,
+    'examName': examName,
+    'studentId': studentId,
+    'studentName': studentName,
+    'rollNumber': rollNumber,
+    'marks': marks,
+    'grade': grade,
+    'remarks': remarks,
+    'totalMarks': totalMarks,
+  };
 
   ExamResult toEntity() {
     return ExamResult(

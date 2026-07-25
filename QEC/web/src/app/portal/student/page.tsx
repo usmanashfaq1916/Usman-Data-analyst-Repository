@@ -1,5 +1,6 @@
 "use client"
 
+import { useDashboardData } from "@/lib/useDashboardData"
 import { BookOpen, UserCheck, DollarSign, Bell, Calendar, Award, Clock } from "lucide-react"
 
 const courses = [
@@ -23,6 +24,8 @@ const notices = [
 ]
 
 export default function StudentDashboard() {
+  const { data } = useDashboardData()
+
   return (
     <div className="space-y-8">
       <div>
@@ -34,25 +37,25 @@ export default function StudentDashboard() {
         <div className="p-5 rounded-xl border border-border bg-card">
           <div className="flex items-center gap-3">
             <div className="h-10 w-10 rounded-lg bg-primary/10 flex items-center justify-center"><BookOpen className="h-5 w-5 text-primary" /></div>
-            <div><p className="text-2xl font-bold text-foreground">4</p><p className="text-xs text-muted">Enrolled Courses</p></div>
+            <div><p className="text-2xl font-bold text-foreground">{data?.enrolledCourses ?? 4}</p><p className="text-xs text-muted">Enrolled Courses</p></div>
           </div>
         </div>
         <div className="p-5 rounded-xl border border-border bg-card">
           <div className="flex items-center gap-3">
             <div className="h-10 w-10 rounded-lg bg-accent/10 flex items-center justify-center"><UserCheck className="h-5 w-5 text-accent" /></div>
-            <div><p className="text-2xl font-bold text-foreground">85%</p><p className="text-xs text-muted">Attendance</p></div>
+            <div><p className="text-2xl font-bold text-foreground">{data?.attendance ?? 85}%</p><p className="text-xs text-muted">Attendance</p></div>
           </div>
         </div>
         <div className="p-5 rounded-xl border border-border bg-card">
           <div className="flex items-center gap-3">
             <div className="h-10 w-10 rounded-lg bg-yellow-500/10 flex items-center justify-center"><DollarSign className="h-5 w-5 text-yellow-500" /></div>
-            <div><p className="text-2xl font-bold text-foreground">Rs. 4,500</p><p className="text-xs text-muted">Monthly Fee</p></div>
+            <div><p className="text-2xl font-bold text-foreground">Rs. {data?.fee ?? 4500}</p><p className="text-xs text-muted">Monthly Fee</p></div>
           </div>
         </div>
         <div className="p-5 rounded-xl border border-border bg-card">
           <div className="flex items-center gap-3">
             <div className="h-10 w-10 rounded-lg bg-blue-500/10 flex items-center justify-center"><Award className="h-5 w-5 text-blue-500" /></div>
-            <div><p className="text-2xl font-bold text-foreground">3.6</p><p className="text-xs text-muted">Current GPA</p></div>
+            <div><p className="text-2xl font-bold text-foreground">{data?.gpa ?? 3.6}</p><p className="text-xs text-muted">Current GPA</p></div>
           </div>
         </div>
       </div>

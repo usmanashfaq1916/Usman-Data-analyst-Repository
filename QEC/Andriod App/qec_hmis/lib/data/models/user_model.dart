@@ -1,9 +1,5 @@
-import 'package:json_annotation/json_annotation.dart';
 import '../../domain/entities/user.dart';
 
-part 'user_model.g.dart';
-
-@JsonSerializable()
 class UserModel {
   final String id;
   final String email;
@@ -29,8 +25,33 @@ class UserModel {
     required this.createdAt,
   });
 
-  factory UserModel.fromJson(Map<String, dynamic> json) => _$UserModelFromJson(json);
-  Map<String, dynamic> toJson() => _$UserModelToJson(this);
+  factory UserModel.fromJson(Map<String, dynamic> json) {
+    return UserModel(
+      id: json['id'] as String? ?? '',
+      email: json['email'] as String? ?? '',
+      firstName: json['firstName'] as String? ?? '',
+      lastName: json['lastName'] as String? ?? '',
+      phone: json['phone'] as String?,
+      avatar: json['avatar'] as String?,
+      role: json['role'] as String? ?? 'STUDENT',
+      isActive: json['isActive'] as bool? ?? true,
+      lastLoginAt: json['lastLoginAt'] as String?,
+      createdAt: json['createdAt'] as String? ?? DateTime.now().toIso8601String(),
+    );
+  }
+
+  Map<String, dynamic> toJson() => {
+    'id': id,
+    'email': email,
+    'firstName': firstName,
+    'lastName': lastName,
+    'phone': phone,
+    'avatar': avatar,
+    'role': role,
+    'isActive': isActive,
+    'lastLoginAt': lastLoginAt,
+    'createdAt': createdAt,
+  };
 
   User toEntity() {
     return User(

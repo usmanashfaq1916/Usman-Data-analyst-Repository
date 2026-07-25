@@ -1,5 +1,6 @@
 "use client"
 
+import { useDashboardData } from "@/lib/useDashboardData"
 import { School, Users, ClipboardList, Clock, BookOpen, UserCheck, Calendar } from "lucide-react"
 
 const classes = [
@@ -16,6 +17,8 @@ const recentAttendance = [
 ]
 
 export default function TeacherDashboard() {
+  const { data } = useDashboardData()
+
   return (
     <div className="space-y-8">
       <div>
@@ -27,25 +30,25 @@ export default function TeacherDashboard() {
         <div className="p-5 rounded-xl border border-border bg-card">
           <div className="flex items-center gap-3">
             <div className="h-10 w-10 rounded-lg bg-primary/10 flex items-center justify-center"><School className="h-5 w-5 text-primary" /></div>
-            <div><p className="text-2xl font-bold text-foreground">4</p><p className="text-xs text-muted">Active Classes</p></div>
+            <div><p className="text-2xl font-bold text-foreground">{data?.activeClasses ?? 4}</p><p className="text-xs text-muted">Active Classes</p></div>
           </div>
         </div>
         <div className="p-5 rounded-xl border border-border bg-card">
           <div className="flex items-center gap-3">
             <div className="h-10 w-10 rounded-lg bg-accent/10 flex items-center justify-center"><Users className="h-5 w-5 text-accent" /></div>
-            <div><p className="text-2xl font-bold text-foreground">141</p><p className="text-xs text-muted">Total Students</p></div>
+            <div><p className="text-2xl font-bold text-foreground">{data?.totalStudents ?? 141}</p><p className="text-xs text-muted">Total Students</p></div>
           </div>
         </div>
         <div className="p-5 rounded-xl border border-border bg-card">
           <div className="flex items-center gap-3">
             <div className="h-10 w-10 rounded-lg bg-yellow-500/10 flex items-center justify-center"><BookOpen className="h-5 w-5 text-yellow-500" /></div>
-            <div><p className="text-2xl font-bold text-foreground">18</p><p className="text-xs text-muted">Weekly Hours</p></div>
+            <div><p className="text-2xl font-bold text-foreground">{data?.weeklyHours ?? 18}</p><p className="text-xs text-muted">Weekly Hours</p></div>
           </div>
         </div>
         <div className="p-5 rounded-xl border border-border bg-card">
           <div className="flex items-center gap-3">
             <div className="h-10 w-10 rounded-lg bg-blue-500/10 flex items-center justify-center"><UserCheck className="h-5 w-5 text-blue-500" /></div>
-            <div><p className="text-2xl font-bold text-foreground">87%</p><p className="text-xs text-muted">Avg Attendance</p></div>
+            <div><p className="text-2xl font-bold text-foreground">{data?.avgAttendance ?? 87}%</p><p className="text-xs text-muted">Avg Attendance</p></div>
           </div>
         </div>
       </div>

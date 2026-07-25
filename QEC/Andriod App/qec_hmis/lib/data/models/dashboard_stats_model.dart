@@ -1,9 +1,5 @@
-import 'package:json_annotation/json_annotation.dart';
 import '../../domain/entities/dashboard_stats.dart';
 
-part 'dashboard_stats_model.g.dart';
-
-@JsonSerializable()
 class DashboardStatsModel {
   final int totalStudents;
   final int totalTeachers;
@@ -31,8 +27,21 @@ class DashboardStatsModel {
     this.birthdays = 0,
   });
 
-  factory DashboardStatsModel.fromJson(Map<String, dynamic> json) =>
-      _$DashboardStatsModelFromJson(json);
+  factory DashboardStatsModel.fromJson(Map<String, dynamic> json) {
+    return DashboardStatsModel(
+      totalStudents: json['totalStudents'] as int? ?? 0,
+      totalTeachers: json['totalTeachers'] as int? ?? 0,
+      totalStaff: json['totalStaff'] as int? ?? 0,
+      totalParents: json['totalParents'] as int? ?? 0,
+      todayAttendance: (json['todayAttendance'] as num?)?.toDouble() ?? 0,
+      totalFeeCollected: (json['totalFeeCollected'] as num?)?.toDouble() ?? 0,
+      totalFeePending: (json['totalFeePending'] as num?)?.toDouble() ?? 0,
+      upcomingExams: json['upcomingExams'] as int? ?? 0,
+      recentAdmissions: json['recentAdmissions'] as int? ?? 0,
+      newNotifications: json['newNotifications'] as int? ?? 0,
+      birthdays: json['birthdays'] as int? ?? 0,
+    );
+  }
 
   DashboardStats toEntity() {
     return DashboardStats(
@@ -51,7 +60,6 @@ class DashboardStatsModel {
   }
 }
 
-@JsonSerializable()
 class CampusStatsModel {
   final String campusName;
   final int studentCount;
@@ -63,8 +71,13 @@ class CampusStatsModel {
     this.teacherCount = 0,
   });
 
-  factory CampusStatsModel.fromJson(Map<String, dynamic> json) =>
-      _$CampusStatsModelFromJson(json);
+  factory CampusStatsModel.fromJson(Map<String, dynamic> json) {
+    return CampusStatsModel(
+      campusName: json['campusName'] as String? ?? '',
+      studentCount: json['studentCount'] as int? ?? 0,
+      teacherCount: json['teacherCount'] as int? ?? 0,
+    );
+  }
 
   CampusStats toEntity() {
     return CampusStats(
@@ -75,15 +88,18 @@ class CampusStatsModel {
   }
 }
 
-@JsonSerializable()
 class ChartDataModel {
   final String label;
   final double value;
 
   const ChartDataModel({required this.label, required this.value});
 
-  factory ChartDataModel.fromJson(Map<String, dynamic> json) =>
-      _$ChartDataModelFromJson(json);
+  factory ChartDataModel.fromJson(Map<String, dynamic> json) {
+    return ChartDataModel(
+      label: json['label'] as String? ?? '',
+      value: (json['value'] as num?)?.toDouble() ?? 0,
+    );
+  }
 
   ChartData toEntity() => ChartData(label: label, value: value);
 }

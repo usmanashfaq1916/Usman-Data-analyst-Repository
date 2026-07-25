@@ -1,5 +1,6 @@
 "use client"
 
+import { useDashboardData } from "@/lib/useDashboardData"
 import { UserCheck, DollarSign, Bell, TrendingUp, Award, User, GraduationCap } from "lucide-react"
 
 const students = [
@@ -20,6 +21,8 @@ const notices = [
 ]
 
 export default function ParentDashboard() {
+  const { data } = useDashboardData()
+
   return (
     <div className="space-y-8">
       <div>
@@ -31,25 +34,25 @@ export default function ParentDashboard() {
         <div className="p-5 rounded-xl border border-border bg-card">
           <div className="flex items-center gap-3">
             <div className="h-10 w-10 rounded-lg bg-primary/10 flex items-center justify-center"><GraduationCap className="h-5 w-5 text-primary" /></div>
-            <div><p className="text-2xl font-bold text-foreground">2</p><p className="text-xs text-muted">Children Enrolled</p></div>
+            <div><p className="text-2xl font-bold text-foreground">{data?.children ?? 2}</p><p className="text-xs text-muted">Children Enrolled</p></div>
           </div>
         </div>
         <div className="p-5 rounded-xl border border-border bg-card">
           <div className="flex items-center gap-3">
             <div className="h-10 w-10 rounded-lg bg-accent/10 flex items-center justify-center"><Award className="h-5 w-5 text-accent" /></div>
-            <div><p className="text-2xl font-bold text-foreground">3.85</p><p className="text-xs text-muted">Avg. GPA</p></div>
+            <div><p className="text-2xl font-bold text-foreground">{data?.avgGpa ?? 3.85}</p><p className="text-xs text-muted">Avg. GPA</p></div>
           </div>
         </div>
         <div className="p-5 rounded-xl border border-border bg-card">
           <div className="flex items-center gap-3">
             <div className="h-10 w-10 rounded-lg bg-yellow-500/10 flex items-center justify-center"><UserCheck className="h-5 w-5 text-yellow-500" /></div>
-            <div><p className="text-2xl font-bold text-foreground">93%</p><p className="text-xs text-muted">Avg. Attendance</p></div>
+            <div><p className="text-2xl font-bold text-foreground">{data?.avgAttendance ?? 93}%</p><p className="text-xs text-muted">Avg. Attendance</p></div>
           </div>
         </div>
         <div className="p-5 rounded-xl border border-border bg-card">
           <div className="flex items-center gap-3">
             <div className="h-10 w-10 rounded-lg bg-blue-500/10 flex items-center justify-center"><DollarSign className="h-5 w-5 text-blue-500" /></div>
-            <div><p className="text-2xl font-bold text-foreground">Clear</p><p className="text-xs text-muted">Fee Status</p></div>
+            <div><p className="text-2xl font-bold text-foreground">{data?.feeStatus ?? "Clear"}</p><p className="text-xs text-muted">Fee Status</p></div>
           </div>
         </div>
       </div>

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 import '../../providers/auth_provider.dart';
 import '../../../core/theme/app_colors.dart';
 
@@ -35,12 +34,13 @@ class _SplashScreenState extends ConsumerState<SplashScreen>
   }
 
   Future<void> _checkAuth() async {
-    await Future.delayed(const Duration(seconds: 2));
+    await ref.read(authProvider.notifier).checkAuth();
+    await Future.delayed(const Duration(seconds: 1));
     final authState = ref.read(authProvider);
     if (authState.status == AuthStatus.authenticated) {
-      context.go('/');
+      Navigator.pushReplacementNamed(context, '/');
     } else {
-      context.go('/login');
+      Navigator.pushReplacementNamed(context, '/login');
     }
   }
 

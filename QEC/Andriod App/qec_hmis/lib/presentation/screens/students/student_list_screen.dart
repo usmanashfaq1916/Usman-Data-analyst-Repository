@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 import '../../providers/student_provider.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../widgets/loading_widget.dart';
@@ -119,7 +118,7 @@ class _StudentListScreenState extends ConsumerState<StudentListScreen> {
     return Card(
       margin: const EdgeInsets.only(bottom: 8),
       child: InkWell(
-        onTap: () => context.go('/students/${student.id}'),
+        onTap: () => Navigator.pushNamed(context, '/students/${student.id}'),
         borderRadius: BorderRadius.circular(12),
         child: Padding(
           padding: const EdgeInsets.all(12),

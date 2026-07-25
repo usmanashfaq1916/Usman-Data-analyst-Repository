@@ -1,9 +1,5 @@
-import 'package:json_annotation/json_annotation.dart';
 import '../../domain/entities/attendance.dart';
 
-part 'attendance_model.g.dart';
-
-@JsonSerializable()
 class AttendanceModel {
   final String id;
   final String studentId;
@@ -25,8 +21,29 @@ class AttendanceModel {
     required this.createdAt,
   });
 
-  factory AttendanceModel.fromJson(Map<String, dynamic> json) => _$AttendanceModelFromJson(json);
-  Map<String, dynamic> toJson() => _$AttendanceModelToJson(this);
+  factory AttendanceModel.fromJson(Map<String, dynamic> json) {
+    return AttendanceModel(
+      id: json['id'] as String? ?? '',
+      studentId: json['studentId'] as String? ?? '',
+      studentName: json['studentName'] as String?,
+      rollNumber: json['rollNumber'] as String?,
+      date: json['date'] as String? ?? DateTime.now().toIso8601String(),
+      status: json['status'] as String? ?? 'PRESENT',
+      remarks: json['remarks'] as String?,
+      createdAt: json['createdAt'] as String? ?? DateTime.now().toIso8601String(),
+    );
+  }
+
+  Map<String, dynamic> toJson() => {
+    'id': id,
+    'studentId': studentId,
+    'studentName': studentName,
+    'rollNumber': rollNumber,
+    'date': date,
+    'status': status,
+    'remarks': remarks,
+    'createdAt': createdAt,
+  };
 
   Attendance toEntity() {
     return Attendance(
@@ -58,7 +75,6 @@ class AttendanceModel {
   }
 }
 
-@JsonSerializable()
 class AttendanceStatsModel {
   final int present;
   final int absent;
@@ -74,8 +90,15 @@ class AttendanceStatsModel {
     required this.total,
   });
 
-  factory AttendanceStatsModel.fromJson(Map<String, dynamic> json) =>
-      _$AttendanceStatsModelFromJson(json);
+  factory AttendanceStatsModel.fromJson(Map<String, dynamic> json) {
+    return AttendanceStatsModel(
+      present: json['present'] as int? ?? 0,
+      absent: json['absent'] as int? ?? 0,
+      late: json['late'] as int? ?? 0,
+      excused: json['excused'] as int? ?? 0,
+      total: json['total'] as int? ?? 0,
+    );
+  }
 
   AttendanceStats toEntity() {
     return AttendanceStats(

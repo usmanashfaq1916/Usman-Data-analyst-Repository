@@ -1,9 +1,5 @@
-import 'package:json_annotation/json_annotation.dart';
 import '../../domain/entities/fee.dart';
 
-part 'fee_model.g.dart';
-
-@JsonSerializable()
 class FeeModel {
   final String id;
   final String studentId;
@@ -31,8 +27,35 @@ class FeeModel {
     required this.createdAt,
   });
 
-  factory FeeModel.fromJson(Map<String, dynamic> json) => _$FeeModelFromJson(json);
-  Map<String, dynamic> toJson() => _$FeeModelToJson(this);
+  factory FeeModel.fromJson(Map<String, dynamic> json) {
+    return FeeModel(
+      id: json['id'] as String? ?? '',
+      studentId: json['studentId'] as String? ?? '',
+      studentName: json['studentName'] as String?,
+      rollNumber: json['rollNumber'] as String?,
+      type: json['type'] as String? ?? '',
+      amount: (json['amount'] as num?)?.toDouble() ?? 0,
+      paidAmount: (json['paidAmount'] as num?)?.toDouble() ?? 0,
+      status: json['status'] as String? ?? 'PENDING',
+      dueDate: json['dueDate'] as String?,
+      paidAt: json['paidAt'] as String?,
+      createdAt: json['createdAt'] as String? ?? DateTime.now().toIso8601String(),
+    );
+  }
+
+  Map<String, dynamic> toJson() => {
+    'id': id,
+    'studentId': studentId,
+    'studentName': studentName,
+    'rollNumber': rollNumber,
+    'type': type,
+    'amount': amount,
+    'paidAmount': paidAmount,
+    'status': status,
+    'dueDate': dueDate,
+    'paidAt': paidAt,
+    'createdAt': createdAt,
+  };
 
   Fee toEntity() {
     return Fee(
@@ -54,7 +77,6 @@ class FeeModel {
   }
 }
 
-@JsonSerializable()
 class FeeCollectionModel {
   final double totalCollected;
   final double totalPending;
@@ -70,8 +92,15 @@ class FeeCollectionModel {
     this.pendingCount = 0,
   });
 
-  factory FeeCollectionModel.fromJson(Map<String, dynamic> json) =>
-      _$FeeCollectionModelFromJson(json);
+  factory FeeCollectionModel.fromJson(Map<String, dynamic> json) {
+    return FeeCollectionModel(
+      totalCollected: (json['totalCollected'] as num?)?.toDouble() ?? 0,
+      totalPending: (json['totalPending'] as num?)?.toDouble() ?? 0,
+      totalOverdue: (json['totalOverdue'] as num?)?.toDouble() ?? 0,
+      paidCount: json['paidCount'] as int? ?? 0,
+      pendingCount: json['pendingCount'] as int? ?? 0,
+    );
+  }
 
   FeeCollection toEntity() {
     return FeeCollection(

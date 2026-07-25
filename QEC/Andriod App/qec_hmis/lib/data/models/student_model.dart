@@ -1,9 +1,5 @@
-import 'package:json_annotation/json_annotation.dart';
 import '../../domain/entities/student.dart';
 
-part 'student_model.g.dart';
-
-@JsonSerializable()
 class StudentModel {
   final String id;
   final String userId;
@@ -47,8 +43,51 @@ class StudentModel {
     required this.createdAt,
   });
 
-  factory StudentModel.fromJson(Map<String, dynamic> json) => _$StudentModelFromJson(json);
-  Map<String, dynamic> toJson() => _$StudentModelToJson(this);
+  factory StudentModel.fromJson(Map<String, dynamic> json) {
+    return StudentModel(
+      id: json['id'] as String? ?? '',
+      userId: json['userId'] as String? ?? '',
+      rollNumber: json['rollNumber'] as String? ?? '',
+      cnic: json['cnic'] as String?,
+      dateOfBirth: json['dateOfBirth'] as String?,
+      gender: json['gender'] as String?,
+      admissionDate: json['admissionDate'] as String? ?? DateTime.now().toIso8601String(),
+      departmentId: json['departmentId'] as String?,
+      departmentName: json['departmentName'] as String?,
+      programId: json['programId'] as String?,
+      programName: json['programName'] as String?,
+      campusId: json['campusId'] as String?,
+      campusName: json['campusName'] as String?,
+      status: json['status'] as String? ?? 'ACTIVE',
+      guardianName: json['guardianName'] as String?,
+      guardianPhone: json['guardianPhone'] as String?,
+      address: json['address'] as String?,
+      photoUrl: json['photoUrl'] as String?,
+      createdAt: json['createdAt'] as String? ?? DateTime.now().toIso8601String(),
+    );
+  }
+
+  Map<String, dynamic> toJson() => {
+    'id': id,
+    'userId': userId,
+    'rollNumber': rollNumber,
+    'cnic': cnic,
+    'dateOfBirth': dateOfBirth,
+    'gender': gender,
+    'admissionDate': admissionDate,
+    'departmentId': departmentId,
+    'departmentName': departmentName,
+    'programId': programId,
+    'programName': programName,
+    'campusId': campusId,
+    'campusName': campusName,
+    'status': status,
+    'guardianName': guardianName,
+    'guardianPhone': guardianPhone,
+    'address': address,
+    'photoUrl': photoUrl,
+    'createdAt': createdAt,
+  };
 
   Student toEntity() {
     return Student(

@@ -20,7 +20,7 @@ const campuses = [
   { name: "Quaid Lyceum Campus", location: "Lahore", slug: "/campuses/quaid-lyceum" },
 ]
 
-function AnimatedCounter({ value, label, icon: Icon }: { value: string; label: string; icon: any }) {
+function AnimatedCounter({ value, label, icon: Icon }: { value: string; label: string; icon: React.ElementType }) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 30 }}

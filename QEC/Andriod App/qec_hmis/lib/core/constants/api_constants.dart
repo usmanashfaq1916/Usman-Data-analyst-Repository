@@ -5,6 +5,7 @@ class ApiConstants {
     'API_BASE_URL',
     defaultValue: 'http://localhost:5000/api',
   );
+  // Set via --dart-define=API_BASE_URL=https://your-domain.com/api
 
   static const String login = '/auth/login';
   static const String register = '/auth/register';

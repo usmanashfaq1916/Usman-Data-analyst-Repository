@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 import 'package:fl_chart/fl_chart.dart';
 import '../../providers/auth_provider.dart';
 import '../../providers/dashboard_provider.dart';
@@ -376,15 +375,15 @@ class _DashboardScreenState extends ConsumerState<DashboardScreen> {
         Row(
           children: [
             _actionButton(context, 'Attendance', Icons.calendar_today, () {
-              context.go('/attendance');
+              Navigator.pushNamed(context, '/attendance');
             }),
             const SizedBox(width: 12),
             _actionButton(context, 'Add Student', Icons.person_add, () {
-              context.go('/students');
+              Navigator.pushNamed(context, '/students');
             }),
             const SizedBox(width: 12),
             _actionButton(context, 'New Exam', Icons.assignment, () {
-              context.go('/exams');
+              Navigator.pushNamed(context, '/exams');
             }),
           ],
         ),

@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../core/network/dio_client.dart';
 import '../../core/network/network_info.dart';
 import '../../data/datasources/local_datasource.dart';
+import '../../core/constants/api_constants.dart';
 
 final secureStorageProvider = Provider<FlutterSecureStorage>((ref) {
   return const FlutterSecureStorage();
@@ -14,7 +15,10 @@ final localDataSourceProvider = Provider<LocalDataSource>((ref) {
 });
 
 final dioClientProvider = Provider<DioClient>((ref) {
-  return DioClient(storage: ref.read(secureStorageProvider));
+  return DioClient(
+    storage: ref.read(secureStorageProvider),
+    baseUrl: ApiConstants.baseUrl,
+  );
 });
 
 final connectivityProvider = Provider<Connectivity>((ref) {
