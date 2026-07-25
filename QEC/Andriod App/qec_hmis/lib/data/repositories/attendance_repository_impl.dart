@@ -4,6 +4,7 @@ import '../../core/errors/failures.dart';
 import '../../domain/entities/attendance.dart';
 import '../../domain/repositories/attendance_repository.dart';
 import '../datasources/attendance_remote_datasource.dart';
+import '../models/attendance_model.dart';
 
 class AttendanceRepositoryImpl implements AttendanceRepository {
   final AttendanceRemoteDataSource _remoteDataSource;

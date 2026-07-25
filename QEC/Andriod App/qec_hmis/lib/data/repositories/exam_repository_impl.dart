@@ -4,6 +4,7 @@ import '../../core/errors/failures.dart';
 import '../../domain/entities/exam.dart';
 import '../../domain/repositories/exam_repository.dart';
 import '../datasources/exam_remote_datasource.dart';
+import '../models/exam_model.dart';
 
 class ExamRepositoryImpl implements ExamRepository {
   final ExamRemoteDataSource _remoteDataSource;

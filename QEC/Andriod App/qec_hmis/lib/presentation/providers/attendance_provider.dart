@@ -4,6 +4,7 @@ import '../../data/datasources/attendance_remote_datasource.dart';
 import '../../data/repositories/attendance_repository_impl.dart';
 import '../../domain/entities/attendance.dart';
 import '../../domain/repositories/attendance_repository.dart';
+import 'providers.dart';
 
 final attendanceRepositoryProvider = Provider<AttendanceRepository>((ref) {
   final dioClient = ref.read(dioClientProvider);
@@ -17,10 +18,10 @@ class AttendanceState {
   final bool isLoading;
   final String? error;
 
-  const AttendanceState({
+  AttendanceState({
     this.attendanceList = const [],
     this.stats,
-    this.selectedDate,
+    DateTime? selectedDate,
     this.isLoading = false,
     this.error,
   }) : selectedDate = selectedDate ?? DateTime.now();
@@ -45,7 +46,7 @@ class AttendanceState {
 class AttendanceNotifier extends StateNotifier<AttendanceState> {
   final AttendanceRepository _repository;
 
-  AttendanceNotifier(this._repository) : super(const AttendanceState());
+  AttendanceNotifier(this._repository) : super(AttendanceState());
 
   Future<void> loadAttendance({DateTime? date, String? classId}) async {
     state = state.copyWith(isLoading: true, error: null, selectedDate: date ?? state.selectedDate);

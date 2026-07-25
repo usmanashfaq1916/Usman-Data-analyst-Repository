@@ -4,6 +4,7 @@ import '../../data/datasources/fee_remote_datasource.dart';
 import '../../data/repositories/fee_repository_impl.dart';
 import '../../domain/entities/fee.dart';
 import '../../domain/repositories/fee_repository.dart';
+import 'providers.dart';
 
 final feeRepositoryProvider = Provider<FeeRepository>((ref) {
   final dioClient = ref.read(dioClientProvider);

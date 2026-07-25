@@ -4,6 +4,7 @@ import '../../core/errors/failures.dart';
 import '../../domain/entities/student.dart';
 import '../../domain/repositories/student_repository.dart';
 import '../datasources/student_remote_datasource.dart';
+import '../models/student_model.dart';
 
 class StudentRepositoryImpl implements StudentRepository {
   final StudentRemoteDataSource _remoteDataSource;

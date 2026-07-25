@@ -168,7 +168,7 @@ class _DashboardScreenState extends ConsumerState<DashboardScreen> {
             Icons.account_balance, const Color(0xFFFFB347)),
         _statCard(
             'Attendance', '${stats.todayAttendance.toStringAsFixed(1)}%',
-            Icons.calendar_check, const Color(0xFF9370DB)),
+            Icons.calendar_month, const Color(0xFF9370DB)),
       ],
     );
   }

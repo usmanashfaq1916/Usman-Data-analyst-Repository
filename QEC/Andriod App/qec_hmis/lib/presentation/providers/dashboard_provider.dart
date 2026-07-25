@@ -4,6 +4,7 @@ import '../../data/datasources/dashboard_remote_datasource.dart';
 import '../../data/repositories/dashboard_repository_impl.dart';
 import '../../domain/entities/dashboard_stats.dart';
 import '../../domain/repositories/dashboard_repository.dart';
+import 'providers.dart';
 
 final dashboardRepositoryProvider = Provider<DashboardRepository>((ref) {
   final dioClient = ref.read(dioClientProvider);

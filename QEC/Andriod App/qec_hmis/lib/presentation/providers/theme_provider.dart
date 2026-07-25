@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../data/datasources/local_datasource.dart';
+import 'providers.dart';
 
 final themeModeProvider =
     StateNotifierProvider<ThemeNotifier, ThemeMode>((ref) {

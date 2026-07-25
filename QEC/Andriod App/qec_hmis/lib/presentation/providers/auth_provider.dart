@@ -7,6 +7,7 @@ import '../../data/datasources/local_datasource.dart';
 import '../../data/repositories/auth_repository_impl.dart';
 import '../../domain/entities/user.dart';
 import '../../domain/repositories/auth_repository.dart';
+import 'providers.dart';
 
 final authRepositoryProvider = Provider<AuthRepository>((ref) {
   final dioClient = ref.read(dioClientProvider);

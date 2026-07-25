@@ -12,7 +12,7 @@ abstract class StudentRepository {
     String? status,
   });
   Future<Either<Failure, Student>> getStudent(String id);
-  Future<Either<Failure<Student>, Student>> createStudent(Student student);
+  Future<Either<Failure, Student>> createStudent(Student student);
   Future<Either<Failure, Student>> updateStudent(Student student);
   Future<Either<Failure, void>> deleteStudent(String id);
   Future<Either<Failure, Student>> transferCampus(String studentId, String campusId);

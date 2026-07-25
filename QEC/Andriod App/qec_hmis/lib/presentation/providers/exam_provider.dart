@@ -4,6 +4,7 @@ import '../../data/datasources/exam_remote_datasource.dart';
 import '../../data/repositories/exam_repository_impl.dart';
 import '../../domain/entities/exam.dart';
 import '../../domain/repositories/exam_repository.dart';
+import 'providers.dart';
 
 final examRepositoryProvider = Provider<ExamRepository>((ref) {
   final dioClient = ref.read(dioClientProvider);

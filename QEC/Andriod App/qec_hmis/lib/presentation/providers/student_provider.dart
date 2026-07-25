@@ -4,6 +4,7 @@ import '../../data/datasources/student_remote_datasource.dart';
 import '../../data/repositories/student_repository_impl.dart';
 import '../../domain/entities/student.dart';
 import '../../domain/repositories/student_repository.dart';
+import 'providers.dart';
 
 final studentRepositoryProvider = Provider<StudentRepository>((ref) {
   final dioClient = ref.read(dioClientProvider);
