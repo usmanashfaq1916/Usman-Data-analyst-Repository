@@ -47,9 +47,13 @@ class AuthRepositoryImpl implements AuthRepository {
   @override
   Future<Either<Failure, User>> loginWithPhone(String phone, String password) async {
     try {
-      final userModel = await _remoteDataSource.loginWithPhone(phone, password);
-      await _localDataSource.cacheUser(userModel);
-      return Right(userModel.toEntity());
+      if (await _networkInfo.isConnected) {
+        final userModel = await _remoteDataSource.loginWithPhone(phone, password);
+        await _localDataSource.cacheUser(userModel);
+        return Right(userModel.toEntity());
+      } else {
+        return const Left(NetworkFailure());
+      }
     } on AuthException catch (e) {
       return Left(AuthFailure(message: e.message, statusCode: e.statusCode));
     } on ServerException catch (e) {

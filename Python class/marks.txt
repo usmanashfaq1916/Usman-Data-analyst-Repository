@@ -1,8 +1,6 @@
-Student 1 marks 23 
-Student 2 marks 20 
-Student 3 marks 21 
-Student 4 marks 24 
-Student 5 marks 25 
-Studen 5 marks 30 
-Studen 6 marks 30 
-Studen 6 marks 30 
+Usman, 30
+Ashfaq,40
+Azan,500
+Salman,60
+Usama,70
+Umer.80
