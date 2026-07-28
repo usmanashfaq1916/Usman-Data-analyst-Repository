@@ -6,10 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="26c670dd-0235-4bc2-96f3-ac9356c41abe" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Python class/bank1.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Python class/bank1.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Python class/result1.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Python class/result1.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Python class/revision upto dict.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Python class/revision upto dict.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Python class/revisionPandas.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Python class/revisionPandas.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Python class/~$VendorProducts.xlsx" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/UniConnect/next.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/UniConnect/next.config.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UniConnect/src/app/programs/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/UniConnect/src/app/programs/page.tsx" afterDir="false" />
     </list>
@@ -184,7 +181,7 @@
       <workItem from="1784717446770" duration="48473000" />
       <workItem from="1784969981232" duration="33558000" />
       <workItem from="1785154902819" duration="538000" />
-      <workItem from="1785155513059" duration="10796000" />
+      <workItem from="1785155513059" duration="13617000" />
     </task>
     <servers />
   </component>
