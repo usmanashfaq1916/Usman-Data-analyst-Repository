@@ -6,12 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="26c670dd-0235-4bc2-96f3-ac9356c41abe" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Python class/Foundation.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Python class/Foundation.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Python class/result.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Python class/bank1.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Python class/bank1.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Python class/result1.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Python class/result1.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Python class/revision upto dict.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Python class/revision upto dict.ipynb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Python class/revisionPandas.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Python class/revisionPandas.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/QEC/Andriod App/qec_hmis/.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/QEC/Andriod App/qec_hmis/.flutter-plugins-dependencies" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/QEC/Andriod App/qec_hmis/android/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/QEC/Andriod App/qec_hmis/android/app/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UniConnect/next.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/UniConnect/next.config.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UniConnect/src/app/programs/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/UniConnect/src/app/programs/page.tsx" afterDir="false" />
     </list>
@@ -37,61 +35,61 @@
   </component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.0000058319125835" />
-      <entry key="MS500" value="1.1147106543030005" />
-      <entry key="S2" value="1.9448291356168808" />
-      <entry key="S5" value="2.4771850317254573" />
-      <entry key="S10" value="2.717954605618608" />
-      <entry key="S30" value="2.91765151007637" />
-      <entry key="S60" value="3.079499476573813" />
-      <entry key="M2" value="3.3625437831517795" />
-      <entry key="M5" value="4.433133653526625" />
-      <entry key="M10" value="7.009725888922491" />
-      <entry key="M15" value="9.155596131018678" />
-      <entry key="M30" value="13.141078060467208" />
-      <entry key="H1" value="25.515740726984717" />
-      <entry key="H2" value="72.86495426428962" />
-      <entry key="H4" value="155.37357483737378" />
-      <entry key="D1" value="702.8283967456968" />
-      <entry key="W1" value="1571.4713713421463" />
+      <entry key="MS100" value="1.0000000000882263" />
+      <entry key="MS500" value="1.0097525824132938" />
+      <entry key="S2" value="1.314253343707449" />
+      <entry key="S5" value="1.6294686563668832" />
+      <entry key="S10" value="1.8028251953001229" />
+      <entry key="S30" value="2.148355157770112" />
+      <entry key="S60" value="2.55825509391057" />
+      <entry key="M2" value="3.2399801888419377" />
+      <entry key="M5" value="5.74983136973126" />
+      <entry key="M10" value="10.562628837129965" />
+      <entry key="M15" value="14.221067653596856" />
+      <entry key="M30" value="20.155145658874225" />
+      <entry key="H1" value="24.5021151902628" />
+      <entry key="H2" value="30.533406630466864" />
+      <entry key="H4" value="64.0981687740937" />
+      <entry key="D1" value="605.7592375201199" />
+      <entry key="W1" value="1624.4523166295232" />
     </decayedCancelled>
     <decayedSelected>
-      <entry key="MS100" value="0.0" />
-      <entry key="MS500" value="0.0" />
-      <entry key="S2" value="1.994861340196151E-172" />
-      <entry key="S5" value="3.047507156014227E-69" />
-      <entry key="S10" value="7.753779328067756E-35" />
-      <entry key="S30" value="6.758695678032E-12" />
-      <entry key="S60" value="3.698899459790732E-6" />
-      <entry key="M2" value="0.0030442768625338545" />
-      <entry key="M5" value="0.2487494418926868" />
-      <entry key="M10" value="1.2620760821744164" />
-      <entry key="M15" value="2.2131517171002995" />
-      <entry key="M30" value="4.010889464400203" />
-      <entry key="H1" value="7.539019609071724" />
-      <entry key="H2" value="17.972446599224302" />
-      <entry key="H4" value="34.768275826930385" />
-      <entry key="D1" value="144.01772832253246" />
-      <entry key="W1" value="327.90872075103624" />
+      <entry key="MS100" value="6.460738292270939E-32" />
+      <entry key="MS500" value="5.781711669262981E-7" />
+      <entry key="S2" value="0.027589031011023148" />
+      <entry key="S5" value="0.2498099907149393" />
+      <entry key="S10" value="0.6179202805424825" />
+      <entry key="S30" value="1.5648803933507063" />
+      <entry key="S60" value="2.424021218327169" />
+      <entry key="M2" value="3.950464360647296" />
+      <entry key="M5" value="7.982759167996966" />
+      <entry key="M10" value="13.328684145157316" />
+      <entry key="M15" value="16.82832795777429" />
+      <entry key="M30" value="22.043931203052544" />
+      <entry key="H1" value="25.631710406641815" />
+      <entry key="H2" value="29.413008185991213" />
+      <entry key="H4" value="42.4102264689311" />
+      <entry key="D1" value="174.64856865098884" />
+      <entry key="W1" value="397.0872414664783" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="0.2002674795337003" />
-      <entry key="MS500" value="0.7633898698962572" />
-      <entry key="S2" value="1.660799626788407" />
-      <entry key="S5" value="2.3097029692084377" />
-      <entry key="S10" value="2.621753625094279" />
-      <entry key="S30" value="2.8823714668308913" />
-      <entry key="S60" value="3.0613518259601378" />
-      <entry key="M2" value="3.3562557937434696" />
-      <entry key="M5" value="4.675935565081398" />
-      <entry key="M10" value="8.264231534527411" />
-      <entry key="M15" value="11.360808065900997" />
-      <entry key="M30" value="17.14522104919815" />
-      <entry key="H1" value="33.04795436663177" />
-      <entry key="H2" value="90.82793600206945" />
-      <entry key="H4" value="190.13181971125437" />
-      <entry key="D1" value="846.8372662885931" />
-      <entry key="W1" value="1899.3770735686423" />
+      <entry key="MS100" value="3.0640179716696695E-8" />
+      <entry key="MS500" value="0.031745479464713025" />
+      <entry key="S2" value="0.5654494359359685" />
+      <entry key="S5" value="1.3190168825065582" />
+      <entry key="S10" value="1.9828577875968407" />
+      <entry key="S30" value="3.394164440340266" />
+      <entry key="S60" value="4.747714599670283" />
+      <entry key="M2" value="7.025759446552359" />
+      <entry key="M5" value="13.626872031722618" />
+      <entry key="M10" value="23.811467845773343" />
+      <entry key="M15" value="30.98380720817059" />
+      <entry key="M30" value="42.15675091880336" />
+      <entry key="H1" value="50.109288539856664" />
+      <entry key="H2" value="59.93217452652696" />
+      <entry key="H4" value="106.49746011198019" />
+      <entry key="D1" value="780.3981288931069" />
+      <entry key="W1" value="2021.5361075536837" />
     </decayedShown>
   </component>
   <component name="ProjectColorInfo">{
@@ -103,35 +101,35 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "Python.Foundation 1.executor": "Run",
-    "Python.Tea or Coffee.executor": "Run",
-    "Python.analysis.executor": "Run",
-    "Python.generate_notebook.executor": "Run",
-    "RunOnceActivity.MCP Project settings loaded": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "codeWithMe.voiceChat.enabledByDefault": "false",
-    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "git-widget-placeholder": "main",
-    "ignore.virus.scanning.warn.message": "true",
-    "junie.onboarding.icon.badge.shown": "true",
-    "last_opened_file_path": "C:/Users/user/Documents/GitHub/Usman Data analyst Repository",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable",
-    "to.speed.mode.migration.done": "true",
-    "ts.external.directory.path": "C:\\Users\\user\\Documents\\GitHub\\Usman Data analyst Repository\\QEC\\web\\node_modules\\typescript\\lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;Python.Foundation 1.executor&quot;: &quot;Run&quot;,
+    &quot;Python.Tea or Coffee.executor&quot;: &quot;Run&quot;,
+    &quot;Python.analysis.executor&quot;: &quot;Run&quot;,
+    &quot;Python.generate_notebook.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
+    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/user/Documents/GitHub/Usman Data analyst Repository&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;,
+    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\user\\Documents\\GitHub\\Usman Data analyst Repository\\QEC\\web\\node_modules\\typescript\\lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -186,6 +184,7 @@
       <workItem from="1784717446770" duration="48473000" />
       <workItem from="1784969981232" duration="33558000" />
       <workItem from="1785154902819" duration="538000" />
+      <workItem from="1785155513059" duration="10796000" />
     </task>
     <servers />
   </component>
